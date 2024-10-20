@@ -105,7 +105,7 @@ hook_mario_action(ACT_DAISY_JUMP, act_daisy_jump)
 -- Rosalina Spin --
 -------------------
 
-_G.ACT_SPINJUMP = allocate_mario_action(ACT_GROUP_AIRBORNE | ACT_FLAG_AIR | ACT_FLAG_ATTACKING)
+ACT_SPINJUMP = allocate_mario_action(ACT_GROUP_AIRBORNE | ACT_FLAG_AIR | ACT_FLAG_ATTACKING)
 E_MODEL_SPIN_ATTACK = smlua_model_util_get_id("spin_attack_geo")
 
 ---@param o Object
@@ -164,12 +164,21 @@ function act_spinjump(m)
     m.actionTimer = m.actionTimer + 1
 end
 
+local spinCanCancel = {
+    [ACT_LONG_JUMP] = true,
+    [ACT_BACKFLIP] = true,
+}
+
 local function rosalina_update(m)
-    if m.action ~= _G.ACT_SPINJUMP then
+    if m.action ~= ACT_SPINJUMP then
         m.marioObj.hurtboxRadius = 37
     end
+
+    if spinCanCancel[m.action] and m.controller.buttonPressed & B_BUTTON ~= 0 and m.input & (INPUT_Z_DOWN | INPUT_A_DOWN) == 0 then
+        set_mario_action(m, ACT_SPINJUMP, 0)
+    end
 end
-hook_mario_action(_G.ACT_SPINJUMP, { every_frame = act_spinjump }, INT_FAST_ATTACK_OR_SHELL)
+hook_mario_action(ACT_SPINJUMP, { every_frame = act_spinjump }, INT_FAST_ATTACK_OR_SHELL)
 
 local spinJumpActs = {
     [ACT_PUNCHING] = true,
@@ -184,7 +193,7 @@ local function rosalina_before_action(m, nextAct)
         if spinJumpActs[nextAct] and m.input & (INPUT_Z_DOWN | INPUT_A_DOWN) == 0 then
             return set_mario_action(m, ACT_SPINJUMP, 0)
         end
-        if usedSpinJump and (nextAct & ACT_GROUP_MASK) ~= ACT_GROUP_AIRBORNE then
+        if usedSpinJump and ((nextAct & ACT_GROUP_MASK) ~= ACT_GROUP_AIRBORNE or nextAct == ACT_WALL_KICK_AIR) then
             usedSpinJump = false
             play_sound_with_freq_scale(SOUND_GENERAL_COIN_SPURT_EU, m.marioObj.header.gfx.cameraToObject, 1.6)
             spawn_non_sync_object(id_bhvSparkle, E_MODEL_SPARKLES_ANIMATION, m.pos.x, m.pos.y + 200, m.pos.z, function (o)
@@ -195,7 +204,7 @@ local function rosalina_before_action(m, nextAct)
 end
 
 local function rosalina_on_interact(m, o, intType)
-    if intType == INTERACT_GRABBABLE and m.action == _G.ACT_SPINJUMP and o.oInteractionSubtype & INT_SUBTYPE_NOT_GRABBABLE == 0 then
+    if intType == INTERACT_GRABBABLE and m.action == ACT_SPINJUMP and o.oInteractionSubtype & INT_SUBTYPE_NOT_GRABBABLE == 0 then
         m.action = ACT_MOVE_PUNCHING
         m.actionArg = 1
         return
@@ -203,7 +212,7 @@ local function rosalina_on_interact(m, o, intType)
 end
 
 local function rosalina_on_pvp_attack(attacker, victim)
-    if attacker.action == _G.ACT_SPINJUMP then
+    if attacker.action == ACT_SPINJUMP then
         victim.faceAngle.y = mario_obj_angle_to_object(victim, attacker.marioObj)
         set_mario_action(victim, ACT_BACKWARD_AIR_KB, 0)
     end
