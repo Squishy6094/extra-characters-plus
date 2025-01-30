@@ -869,7 +869,15 @@ extraCharacters = {
             [CHAR_ANIM_RUNNING] = 'donkey_72_running',
             [CHAR_ANIM_GROUND_THROW] = 'donkey_65_ground_throw',
             [CHAR_ANIM_PLACE_LIGHT_OBJ] = 'donkey_6E_place_light_obj',
-            [CHAR_ANIM_WALKING] = 'donkey_48_walking'
+            [CHAR_ANIM_WALKING] = 'donkey_48_walking',
+            [CHAR_ANIM_GROUND_THROW] = 'donkey_65_ground_throw',
+            [CHAR_ANIM_PLACE_LIGHT_OBJ] = 'donkey_6E_place_light_obj',
+            [CHAR_ANIM_SOFT_BACK_KB] = 'donkey_74_soft_back_kb',
+            [CHAR_ANIM_SOFT_FRONT_KB] = 'donkey_75_soft_front_kb',
+            [CHAR_ANIM_BACKWARD_KB] = 'donkey_7B_backward_kb',
+            [CHAR_ANIM_FORWARD_KB] = 'donkey_7C _forward_kb',
+            [CHAR_ANIM_GROUND_BONK] = 'donkey_8A _ground_bonk',
+            [CHAR_ANIM_TWIRL_LAND] = 'donkey_93_twirl_land',
         }
     },
     --------------
