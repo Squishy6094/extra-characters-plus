@@ -879,7 +879,9 @@ extraCharacters = {
             [CHAR_ANIM_GROUND_BONK] = 'donkey_8A _ground_bonk',
             [CHAR_ANIM_TWIRL_LAND] = 'donkey_93_twirl_land',
             [CHAR_ANIM_SUMMON_STAR] = 'donkey_9C_summon_star',
-            
+            [CHAR_ANIM_RETURN_STAR_APPROACH_DOOR] = 'donkey_9D_return_star_approach_door',
+            [CHAR_ANIM_RELEASE_BOWSER] = 'donkey_B7_release_bowser',
+            [CHAR_ANIM_HEAVY_THROW] = 'donkey_B9_heavy_throw',
         }
     },
     --------------
