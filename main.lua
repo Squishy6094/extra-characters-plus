@@ -3,7 +3,7 @@
 
 local TEXT_PACK_NAME = "Extra Characters"
 if not _G.charSelectExists then
-    djui_popup_create("\\#ffffa0\\" .. TEXT_PACK_NAME .. " requires\nCharacter Select to be enabled.\n\nPlease rehost with it enabled.", 4)
+    djui_popup_create("\\#ffffa0\\Extra Characters requires\nCharacter Select to be enabled.\n\nPlease rehost with it enabled.", 4)
     return
 end
 
@@ -34,7 +34,7 @@ extraCharacters = {
             [SHIRT]  = { r = 0xFF, g = 0x00, b = 0x00 },
             [GLOVES] = { r = 0xFF, g = 0xFF, b = 0xFF },
             [SHOES]  = { r = 0x68, g = 0x40, b = 0x1B },
-            [HAIR]   = { r = 0xFF, g = 0x00, b = 0x00 },
+            [HAIR]   = { r = 0x73, g = 0x06, b = 0x00 },
             [SKIN]   = { r = 0xFE, g = 0xD5, b = 0xA1 },
             [CAP]    = { r = 0xF3, g = 0x00, b = 0x80 },
             [EMBLEM] = { r = 0xF3, g = 0x00, b = 0x80 }
@@ -398,7 +398,7 @@ extraCharacters = {
     {
         name = "Yoshi",
         description = "A friendly dinosuar originating from Dinosuar Land where he reunited with Mario! These cute little guys come in different colors! Might suggest to stay back when they're in a very hungry mood...",
-        credits = "Coop Team / VA: AngelicMiracles 'Yuyake'",
+        credits = "Coop Team / VA: FunkyLion 'Yuyake'",
         color = { r = 0, g = 255, b = 0 },
         model = smlua_model_util_get_id("yoshi_player_geo"),
         forceChar = CT_MARIO,
@@ -565,8 +565,8 @@ extraCharacters = {
         palette = {
             [PANTS]  = { r = 0x00, g = 0x00, b = 0xFF }, -- 0000FF
             [SHIRT]  = { r = 0x56, g = 0x8E, b = 0xFF }, -- 568EFF
-            [GLOVES] = { r = 0xFF, g = 0xFF, b = 0x00 }, -- FFFF00
-            [SHOES]  = { r = 0xE0, g = 0xAB, b = 0x2A }, -- E0AB2A
+            [GLOVES] = { r = 0x61, g = 0x3E, b = 0x21 }, -- 613E21
+            [SHOES]  = { r = 0x61, g = 0x3E, b = 0x21 }, -- 613E21
             [HAIR]   = { r = 0x00, g = 0x00, b = 0x00 }, -- 000000
             [SKIN]   = { r = 0xFE, g = 0xC1, b = 0x79 }, -- FEC179
             [CAP]    = { r = 0x56, g = 0x8E, b = 0xFF }, -- 568EFF
@@ -769,136 +769,6 @@ extraCharacters = {
             [CHAR_ANIM_GRAB_BOWSER] = 'princess_grab_bowser'
         }
     },
-    {
-        name = "Donkey Kong",
-        description = "An ape who is the King of Swing and would trample anyone who gets in the way of his love for bananas! He is the son of Cranky Kong, the ORIGINAL DK who has fought with Mario! The DK bloodline still dukes out with the heroic plumber!",
-        credits = "Coop Team / VA: Tom Schalk",
-        color = {r = 128, g = 40, b = 32},
-        model = smlua_model_util_get_id("dk_geo"),
-        forceChar = CT_MARIO,
-        lifeIcon = get_texture_info("icon-dk"),
-        camScale = 1.1,
-        offset = 0,
-        caps = {
-            normal = smlua_model_util_get_id("dk_cap_geo"),
-            wing = smlua_model_util_get_id("dk_wing_cap_geo"),
-            metal = smlua_model_util_get_id("dk_metal_cap_geo"),
-            metalWing = smlua_model_util_get_id("dk_metal_wing_cap_geo")
-        },
-        palette = {
-            [PANTS]  = { r = 0xFF, g = 0x00, b = 0x00 }, -- FF0000
-            [SHIRT]  = { r = 0x83, g = 0x1E, b = 0x14 }, -- 831E14
-            [GLOVES] = { r = 0xFE, g = 0xC1, b = 0x79 }, -- FEC179
-            [SHOES]  = { r = 0xFE, g = 0xC1, b = 0x79 }, -- FEC179
-            [HAIR]   = { r = 0x00, g = 0x00, b = 0x00 }, -- Unused
-            [SKIN]   = { r = 0xFE, g = 0xC1, b = 0x79 }, -- FEC179
-            [CAP]    = { r = 0x83, g = 0x1E, b = 0x14 }, -- 831E14
-            [EMBLEM] = { r = 0xFF, g = 0xFF, b = 0x00 }  -- FFFF00
-        },
-        voices = {
-            [CHAR_SOUND_ATTACKED] = "dk_attacked.ogg",
-            [CHAR_SOUND_COUGHING1] = "dk_coughing1.ogg",
-            [CHAR_SOUND_COUGHING2] = "dk_coughing2.ogg",
-            [CHAR_SOUND_COUGHING3] = "dk_coughing3.ogg",
-            [CHAR_SOUND_DOH] = "dk_doh.ogg",
-            [CHAR_SOUND_DROWNING] = "dk_drowning.ogg",
-            [CHAR_SOUND_DYING] = "dk_dying.ogg",
-            [CHAR_SOUND_EEUH] = "dk_eeuh.ogg",
-            [CHAR_SOUND_GROUND_POUND_WAH] = "dk_ground_pound_wah.ogg",
-            [CHAR_SOUND_HAHA] = "dk_haha.ogg",
-            [CHAR_SOUND_HAHA_2] = "dk_haha.ogg",
-            [CHAR_SOUND_HERE_WE_GO] = "dk_herewego.ogg",
-            [CHAR_SOUND_HOOHOO] = "dk_hoohoo.ogg",
-            [CHAR_SOUND_HRMM] = "dk_hrmm.ogg",
-            [CHAR_SOUND_IMA_TIRED] = "dk_imatired.ogg",
-            [CHAR_SOUND_MAMA_MIA] = "dk_mamamia.ogg",
-            [CHAR_SOUND_LETS_A_GO] = "dk_letsago.ogg",
-            [CHAR_SOUND_ON_FIRE] = "dk_on_fire.ogg",
-            [CHAR_SOUND_OOOF] = "dk_ooof.ogg",
-            [CHAR_SOUND_OOOF2] = "dk_ooof2.ogg",
-            [CHAR_SOUND_PANTING] = "dk_panting.ogg",
-            [CHAR_SOUND_PANTING_COLD] = "dk_panting_cold.ogg",
-            [CHAR_SOUND_PUNCH_HOO] = "dk_punch_hoo.ogg",
-            [CHAR_SOUND_PUNCH_WAH] = "dk_punch_wah.ogg",
-            [CHAR_SOUND_PUNCH_YAH] = "dk_punch_yah.ogg",
-            [CHAR_SOUND_SO_LONGA_BOWSER] = "dk_solonga_bowser.ogg",
-            [CHAR_SOUND_SNORING1] = "dk_snoring1.ogg",
-            [CHAR_SOUND_SNORING2] = "dk_snoring2.ogg",
-            [CHAR_SOUND_SNORING3] = {"dk_snoring2.ogg", "dk_snoring1.ogg", "dk_snoring3.ogg"},
-            [CHAR_SOUND_TWIRL_BOUNCE] = "dk_twirl_bounce.ogg",
-            [CHAR_SOUND_UH] = "dk_uh.ogg",
-            [CHAR_SOUND_UH2] = "dk_uh2.ogg",
-            [CHAR_SOUND_UH2_2] = "dk_uh2_2.ogg",
-            [CHAR_SOUND_WAAAOOOW] = "dk_waaaooow.ogg",
-            [CHAR_SOUND_WAH2] = "dk_wah2.ogg",
-            [CHAR_SOUND_WHOA] = "dk_whoa.ogg",
-            [CHAR_SOUND_YAHOO] = "dk_yahoo.ogg",
-            [CHAR_SOUND_YAWNING] = "dk_yawning.ogg",
-            [CHAR_SOUND_YAHOO_WAHA_YIPPEE] = { "dk_yahoo.ogg", "dk_yahoo1.ogg", "dk_yahoo2.ogg", "dk_yahoo3.ogg", "dk_yahoo4.ogg", "dk_yahoo5.ogg" },
-            [CHAR_SOUND_YAH_WAH_HOO] = { "dk_yah_wah_hoo1.ogg", "dk_yah_wah_hoo2.ogg", "dk_yah_wah_hoo3.ogg"},
-            --[CHAR_SOUND_HELLO] = "dk_hello.ogg"
-        },
-        anims = {
-            [CHAR_ANIM_IDLE_HEAD_CENTER] = 'donkey_idle_3',
-            [CHAR_ANIM_IDLE_HEAD_LEFT] = 'donkey_idle_1',
-            [CHAR_ANIM_IDLE_HEAD_RIGHT] = 'donkey_idle_2',
-            [CHAR_ANIM_FIRST_PERSON] = 'donkey_first_person',
-            [CHAR_ANIM_SLOW_LEDGE_GRAB] = 'donkey_00_ledgeclimb',
-            [CHAR_ANIM_SKID_ON_GROUND] = 'donkey_0F_skid_on_ground',
-            [CHAR_ANIM_SHIVERING_RETURN_TO_IDLE] = 'donkey_1a_shivering_return_to_idle',
-            [CHAR_ANIM_FALL_OVER_BACKWARDS] = 'donkey_02_fall',
-            [CHAR_ANIM_LAND_ON_STOMACH] = 'donkey_2C_anim_land_on_stomach',
-            [CHAR_ANIM_SUFFOCATING] = 'donkey_2F_suffocating',
-            [CHAR_ANIM_LAND_FROM_DOUBLE_JUMP] = 'donkey_4B_land_from_double_jump',
-            [CHAR_ANIM_LAND_FROM_SINGLE_JUMP] = 'donkey_4E_land_from_single_jump',
-            [CHAR_ANIM_SLOW_LAND_FROM_DIVE] = 'donkey_5A_slow_land_from_dive',
-            [CHAR_ANIM_MISSING_CAP] = 'donkey_5E_missing_cap',
-            [CHAR_ANIM_PULL_DOOR_WALK_IN] = 'donkey_5F_pull_door_walk_in',
-            [CHAR_ANIM_STOP_SKID] = 'donkey_10_stop_skid',
-            [CHAR_ANIM_SHIVERING_WARMING_HAND] = 'donkey_19_shivering_warming_hand',
-            [CHAR_ANIM_CREDITS_RAISE_HAND] = 'donkey_20_credits_raide_hand',
-            [CHAR_ANIM_CREDITS_TAKE_OFF_CAP] = 'donkey_22_credits_take_off_cap',
-            [CHAR_ANIM_STAND_UP_FROM_LAVA_BOOST] = 'donkey_28_standup_from_lava_boost',
-            [CHAR_ANIM_THROW_CATCH_KEY] = 'donkey_31_throw_catch_key',
-            [CHAR_ANIM_PUT_CAP_ON] = 'donkey_36_put_cap_on',
-            [CHAR_ANIM_TAKE_CAP_OFF_THEN_ON] = 'donkey_37_take_cap_off_then_on',
-            [CHAR_ANIM_HEAD_STUCK_IN_GROUND] = 'donkey_39_head_stuck_in_ground',
-            [CHAR_ANIM_LEGS_STUCK_IN_GROUND] = 'donkey_55_legs_stuck_in_ground',
-            [CHAR_ANIM_GENERAL_LAND] = 'donkey_57_general_land',
-            [CHAR_ANIM_RUNNING] = 'donkey_72_running',
-            [CHAR_ANIM_GROUND_THROW] = 'donkey_65_ground_throw',
-            [CHAR_ANIM_PLACE_LIGHT_OBJ] = 'donkey_6E_place_light_obj',
-            [CHAR_ANIM_WALKING] = 'donkey_48_walking',
-            [CHAR_ANIM_GROUND_THROW] = 'donkey_65_ground_throw',
-            [CHAR_ANIM_PLACE_LIGHT_OBJ] = 'donkey_6E_place_light_obj',
-            [CHAR_ANIM_SOFT_BACK_KB] = 'donkey_74_soft_back_kb',
-            [CHAR_ANIM_SOFT_FRONT_KB] = 'donkey_75_soft_front_kb',
-            [CHAR_ANIM_BACKWARD_KB] = 'donkey_7B_backward_kb',
-            [CHAR_ANIM_FORWARD_KB] = 'donkey_7C _forward_kb',
-            [CHAR_ANIM_GROUND_BONK] = 'donkey_8A _ground_bonk',
-            [CHAR_ANIM_TWIRL_LAND] = 'donkey_93_twirl_land',
-            [CHAR_ANIM_SUMMON_STAR] = 'donkey_9C_summon_star',
-            [CHAR_ANIM_RETURN_STAR_APPROACH_DOOR] = 'donkey_9D_return_star_approach_door',
-            [CHAR_ANIM_RELEASE_BOWSER] = 'donkey_B7_release_bowser',
-            [CHAR_ANIM_HEAVY_THROW] = 'donkey_B9_heavy_throw',
-            [CHAR_ANIM_SLIDEFLIP_LAND] = 'donkey_BE_sideflip_land',
-            [CHAR_ANIM_TRIPLE_JUMP_LAND] = 'donkey_C0_triple_jump_land',
-            [CHAR_ANIM_CROUCHING] = 'donkey_98_crouching',
-            [CHAR_ANIM_START_CRAWLING] = 'donkey_9B_start_crawling',
-            [CHAR_ANIM_STOP_CRAWLING] = 'donkey_9A_stop_crawling',
-            [CHAR_ANIM_STOP_CROUCHING] = 'donkey_96_stop_crouching',
-            [CHAR_ANIM_START_CROUCHING] = 'donkey_97_start_crouching',
-            [CHAR_ANIM_IDLE_ON_LEDGE] = 'donkey_33_idle_on_ledge',
-            [CHAR_ANIM_FAST_LEDGE_GRAB] = 'donkey_34_fast_ledge_grab',
-            [CHAR_ANIM_CRAWLING] = 'donkey_99_crawling',
-            [CHAR_ANIM_CROUCH_FROM_SLIDE_KICK] = 'donkey_8D_crouch_from_slide_kick',
-            [CHAR_ANIM_CROUCH_FROM_FAST_LONGJUMP] = 'donkey_11_crouch_from_fast_long_jump',
-            [CHAR_ANIM_CROUCH_FROM_SLOW_LONGJUMP] = 'donkey_12_crouch_from_slow_long_jump',
-            [CHAR_ANIM_WALK_PANTING] = 'donkey_ba_walk_panting',
-            [CHAR_ANIM_STAND_UP_FROM_LAVA_BOOST] = 'donkey_28_standup_from_lava_boost',
-            [CHAR_ANIM_FIRE_LAVA_BURN] = 'donkey_29_fire_lave_burn',
-            }
-    },
     --------------
     -- Rosalina --
     --------------
@@ -969,10 +839,10 @@ extraCharacters = {
             [CHAR_SOUND_YAWNING] = "rosalina_yawning.ogg",
             [CHAR_SOUND_YAHOO_WAHA_YIPPEE] = { "rosalina_yahoo.ogg", "rosalina_yahoo1.ogg", "rosalina_yahoo2.ogg", "rosalina_yahoo3.ogg", "rosalina_yahoo4.ogg", "rosalina_yahoo5.ogg" },
             [CHAR_SOUND_YAH_WAH_HOO] = { "rosalina_yah_wah_hoo1.ogg", "rosalina_yah_wah_hoo2.ogg", "rosalina_yah_wah_hoo3.ogg"},
-            --[CHAR_SOUND_HELLO] = "rosalina_float.ogg"
+            [CHAR_SOUND_HELLO] = {"rosalina_hello.ogg", "rosalina_hello1.ogg", "rosalina_hello2.ogg", "rosalina_hello3.ogg", "rosalina_hello4.ogg"}
         },
         anims = {
-            [CHAR_ANIM_RUNNING] = 'princess_running',
+            [CHAR_ANIM_RUNNING] = 'rosalina_running',
             [CHAR_ANIM_IDLE_HEAD_CENTER] = 'princess_idle_head_center',
             [CHAR_ANIM_IDLE_HEAD_LEFT] = 'princess_idle_head_left',
             [CHAR_ANIM_IDLE_HEAD_RIGHT] = 'princess_idle_head_right',
@@ -1126,6 +996,136 @@ extraCharacters = {
             --[CHAR_SOUND_HELLO] = "wapeach_hello.ogg"
         },
     },
+    {
+        name = "Donkey Kong",
+        description = "An ape who is the King of Swing and would trample anyone who gets in the way of his love for bananas! He is the son of Cranky Kong, the ORIGINAL DK who has fought with Mario! The DK bloodline still dukes out with the heroic plumber!",
+        credits = "Coop Team / VA: Tom Schalk",
+        color = {r = 128, g = 40, b = 32},
+        model = smlua_model_util_get_id("dk_geo"),
+        forceChar = CT_MARIO,
+        lifeIcon = get_texture_info("icon-dk"),
+        camScale = 1.1,
+        offset = 0,
+        caps = {
+            normal = smlua_model_util_get_id("dk_cap_geo"),
+            wing = smlua_model_util_get_id("dk_wing_cap_geo"),
+            metal = smlua_model_util_get_id("dk_metal_cap_geo"),
+            metalWing = smlua_model_util_get_id("dk_metal_wing_cap_geo")
+        },
+        palette = {
+            [PANTS]  = { r = 0xFF, g = 0x00, b = 0x00 }, -- FF0000
+            [SHIRT]  = { r = 0x83, g = 0x1E, b = 0x14 }, -- 831E14
+            [GLOVES] = { r = 0xFE, g = 0xC1, b = 0x79 }, -- FEC179
+            [SHOES]  = { r = 0xFE, g = 0xC1, b = 0x79 }, -- FEC179
+            [HAIR]   = { r = 0x00, g = 0x00, b = 0x00 }, -- Unused
+            [SKIN]   = { r = 0xFE, g = 0xC1, b = 0x79 }, -- FEC179
+            [CAP]    = { r = 0x83, g = 0x1E, b = 0x14 }, -- 831E14
+            [EMBLEM] = { r = 0xFF, g = 0xFF, b = 0x00 }  -- FFFF00
+        },
+        voices = {
+            [CHAR_SOUND_ATTACKED] = "dk_attacked.ogg",
+            [CHAR_SOUND_COUGHING1] = "dk_coughing1.ogg",
+            [CHAR_SOUND_COUGHING2] = "dk_coughing2.ogg",
+            [CHAR_SOUND_COUGHING3] = "dk_coughing3.ogg",
+            [CHAR_SOUND_DOH] = "dk_doh.ogg",
+            [CHAR_SOUND_DROWNING] = "dk_drowning.ogg",
+            [CHAR_SOUND_DYING] = "dk_dying.ogg",
+            [CHAR_SOUND_EEUH] = "dk_eeuh.ogg",
+            [CHAR_SOUND_GROUND_POUND_WAH] = "dk_ground_pound_wah.ogg",
+            [CHAR_SOUND_HAHA] = "dk_haha.ogg",
+            [CHAR_SOUND_HAHA_2] = "dk_haha.ogg",
+            [CHAR_SOUND_HERE_WE_GO] = "dk_herewego.ogg",
+            [CHAR_SOUND_HOOHOO] = "dk_hoohoo.ogg",
+            [CHAR_SOUND_HRMM] = "dk_hrmm.ogg",
+            [CHAR_SOUND_IMA_TIRED] = "dk_imatired.ogg",
+            [CHAR_SOUND_MAMA_MIA] = "dk_mamamia.ogg",
+            [CHAR_SOUND_LETS_A_GO] = "dk_letsago.ogg",
+            [CHAR_SOUND_ON_FIRE] = "dk_on_fire.ogg",
+            [CHAR_SOUND_OOOF] = "dk_ooof.ogg",
+            [CHAR_SOUND_OOOF2] = "dk_ooof2.ogg",
+            [CHAR_SOUND_PANTING] = "dk_panting.ogg",
+            [CHAR_SOUND_PANTING_COLD] = "dk_panting_cold.ogg",
+            [CHAR_SOUND_PUNCH_HOO] = "dk_punch_hoo.ogg",
+            [CHAR_SOUND_PUNCH_WAH] = "dk_punch_wah.ogg",
+            [CHAR_SOUND_PUNCH_YAH] = "dk_punch_yah.ogg",
+            [CHAR_SOUND_SO_LONGA_BOWSER] = "dk_solonga_bowser.ogg",
+            [CHAR_SOUND_SNORING1] = "dk_snoring1.ogg",
+            [CHAR_SOUND_SNORING2] = "dk_snoring2.ogg",
+            [CHAR_SOUND_SNORING3] = {"dk_snoring2.ogg", "dk_snoring1.ogg", "dk_snoring3.ogg"},
+            [CHAR_SOUND_TWIRL_BOUNCE] = "dk_twirl_bounce.ogg",
+            [CHAR_SOUND_UH] = "dk_uh.ogg",
+            [CHAR_SOUND_UH2] = "dk_uh2.ogg",
+            [CHAR_SOUND_UH2_2] = "dk_uh2_2.ogg",
+            [CHAR_SOUND_WAAAOOOW] = "dk_waaaooow.ogg",
+            [CHAR_SOUND_WAH2] = "dk_wah2.ogg",
+            [CHAR_SOUND_WHOA] = "dk_whoa.ogg",
+            [CHAR_SOUND_YAHOO] = "dk_yahoo.ogg",
+            [CHAR_SOUND_YAWNING] = "dk_yawning.ogg",
+            [CHAR_SOUND_YAHOO_WAHA_YIPPEE] = { "dk_yahoo.ogg", "dk_yahoo1.ogg", "dk_yahoo2.ogg", "dk_yahoo3.ogg", "dk_yahoo4.ogg", "dk_yahoo5.ogg" },
+            [CHAR_SOUND_YAH_WAH_HOO] = { "dk_yah_wah_hoo1.ogg", "dk_yah_wah_hoo2.ogg", "dk_yah_wah_hoo3.ogg"},
+            --[CHAR_SOUND_HELLO] = "dk_hello.ogg"
+        },
+        anims = {
+            [CHAR_ANIM_IDLE_HEAD_CENTER] = 'donkey_idle_3',
+            [CHAR_ANIM_IDLE_HEAD_LEFT] = 'donkey_idle_1',
+            [CHAR_ANIM_IDLE_HEAD_RIGHT] = 'donkey_idle_2',
+            [CHAR_ANIM_FIRST_PERSON] = 'donkey_first_person',
+            [CHAR_ANIM_SLOW_LEDGE_GRAB] = 'donkey_00_ledgeclimb',
+            [CHAR_ANIM_SKID_ON_GROUND] = 'donkey_0F_skid_on_ground',
+            [CHAR_ANIM_SHIVERING_RETURN_TO_IDLE] = 'donkey_1a_shivering_return_to_idle',
+            [CHAR_ANIM_FALL_OVER_BACKWARDS] = 'donkey_02_fall',
+            [CHAR_ANIM_LAND_ON_STOMACH] = 'donkey_2C_anim_land_on_stomach',
+            [CHAR_ANIM_SUFFOCATING] = 'donkey_2F_suffocating',
+            [CHAR_ANIM_LAND_FROM_DOUBLE_JUMP] = 'donkey_4B_land_from_double_jump',
+            [CHAR_ANIM_LAND_FROM_SINGLE_JUMP] = 'donkey_4E_land_from_single_jump',
+            [CHAR_ANIM_SLOW_LAND_FROM_DIVE] = 'donkey_5A_slow_land_from_dive',
+            [CHAR_ANIM_MISSING_CAP] = 'donkey_5E_missing_cap',
+            [CHAR_ANIM_PULL_DOOR_WALK_IN] = 'donkey_5F_pull_door_walk_in',
+            [CHAR_ANIM_STOP_SKID] = 'donkey_10_stop_skid',
+            [CHAR_ANIM_SHIVERING_WARMING_HAND] = 'donkey_19_shivering_warming_hand',
+            [CHAR_ANIM_CREDITS_RAISE_HAND] = 'donkey_20_credits_raide_hand',
+            [CHAR_ANIM_CREDITS_TAKE_OFF_CAP] = 'donkey_22_credits_take_off_cap',
+            [CHAR_ANIM_STAND_UP_FROM_LAVA_BOOST] = 'donkey_28_standup_from_lava_boost',
+            [CHAR_ANIM_THROW_CATCH_KEY] = 'donkey_31_throw_catch_key',
+            [CHAR_ANIM_PUT_CAP_ON] = 'donkey_36_put_cap_on',
+            [CHAR_ANIM_TAKE_CAP_OFF_THEN_ON] = 'donkey_37_take_cap_off_then_on',
+            [CHAR_ANIM_HEAD_STUCK_IN_GROUND] = 'donkey_39_head_stuck_in_ground',
+            [CHAR_ANIM_LEGS_STUCK_IN_GROUND] = 'donkey_55_legs_stuck_in_ground',
+            [CHAR_ANIM_GENERAL_LAND] = 'donkey_57_general_land',
+            [CHAR_ANIM_RUNNING] = 'donkey_72_running',
+            [CHAR_ANIM_GROUND_THROW] = 'donkey_65_ground_throw',
+            [CHAR_ANIM_PLACE_LIGHT_OBJ] = 'donkey_6E_place_light_obj',
+            [CHAR_ANIM_WALKING] = 'donkey_48_walking',
+            [CHAR_ANIM_GROUND_THROW] = 'donkey_65_ground_throw',
+            [CHAR_ANIM_PLACE_LIGHT_OBJ] = 'donkey_6E_place_light_obj',
+            [CHAR_ANIM_SOFT_BACK_KB] = 'donkey_74_soft_back_kb',
+            [CHAR_ANIM_SOFT_FRONT_KB] = 'donkey_75_soft_front_kb',
+            [CHAR_ANIM_BACKWARD_KB] = 'donkey_7B_backward_kb',
+            [CHAR_ANIM_FORWARD_KB] = 'donkey_7C _forward_kb',
+            [CHAR_ANIM_GROUND_BONK] = 'donkey_8A _ground_bonk',
+            [CHAR_ANIM_TWIRL_LAND] = 'donkey_93_twirl_land',
+            [CHAR_ANIM_SUMMON_STAR] = 'donkey_9C_summon_star',
+            [CHAR_ANIM_RETURN_STAR_APPROACH_DOOR] = 'donkey_9D_return_star_approach_door',
+            [CHAR_ANIM_RELEASE_BOWSER] = 'donkey_B7_release_bowser',
+            [CHAR_ANIM_HEAVY_THROW] = 'donkey_B9_heavy_throw',
+            [CHAR_ANIM_SLIDEFLIP_LAND] = 'donkey_BE_sideflip_land',
+            [CHAR_ANIM_TRIPLE_JUMP_LAND] = 'donkey_C0_triple_jump_land',
+            [CHAR_ANIM_CROUCHING] = 'donkey_98_crouching',
+            [CHAR_ANIM_START_CRAWLING] = 'donkey_9B_start_crawling',
+            [CHAR_ANIM_STOP_CRAWLING] = 'donkey_9A_stop_crawling',
+            [CHAR_ANIM_STOP_CROUCHING] = 'donkey_96_stop_crouching',
+            [CHAR_ANIM_START_CROUCHING] = 'donkey_97_start_crouching',
+            [CHAR_ANIM_IDLE_ON_LEDGE] = 'donkey_33_idle_on_ledge',
+            [CHAR_ANIM_FAST_LEDGE_GRAB] = 'donkey_34_fast_ledge_grab',
+            [CHAR_ANIM_CRAWLING] = 'donkey_99_crawling',
+            [CHAR_ANIM_CROUCH_FROM_SLIDE_KICK] = 'donkey_8D_crouch_from_slide_kick',
+            [CHAR_ANIM_CROUCH_FROM_FAST_LONGJUMP] = 'donkey_11_crouch_from_fast_long_jump',
+            [CHAR_ANIM_CROUCH_FROM_SLOW_LONGJUMP] = 'donkey_12_crouch_from_slow_long_jump',
+            [CHAR_ANIM_WALK_PANTING] = 'donkey_ba_walk_panting',
+            [CHAR_ANIM_STAND_UP_FROM_LAVA_BOOST] = 'donkey_28_standup_from_lava_boost',
+            [CHAR_ANIM_FIRE_LAVA_BURN] = 'donkey_29_fire_lave_burn',
+            }
+    },
     -----------
     -- Sonic --
     -----------
@@ -1202,19 +1202,19 @@ extraCharacters = {
 }
 
 local TEXT_VOICE_ACTOR = " (Voice Actors)"
-
+local TEXT_MOVESET     = " (Movesets)"
 local CSloaded = false
 local function on_character_select_load()
     for i = 1, #extraCharacters do
         local char = extraCharacters[i]
-        char.tablePos = _G.charSelect.character_add(char.name, char.description, char.credits, char.color, char.model, char.forceChar, char.lifeIcon, char.camScale, char.offset)
+        char.tablePos = _G.charSelect.character_add(char.name, char.description, char.credits, char.color, char.model, char.forceChar, char.lifeIcon, char.camScale, char.offset, char.meter)
         if char.caps then _G.charSelect.character_add_caps(char.model, char.caps) end
         if char.voices then _G.charSelect.character_add_voice(char.model, char.voices) end
         if char.palette then _G.charSelect.character_add_palette_preset(char.model, char.palette) end
         if char.anims then _G.charSelect.character_add_animations(char.model, char.anims) end
     end
 
-    _G.charSelect.credit_add(TEXT_PACK_NAME, "AngelicMiracles", "Lead Dev")
+    _G.charSelect.credit_add(TEXT_PACK_NAME, "FunkyLion", "Lead Dev")
     _G.charSelect.credit_add(TEXT_PACK_NAME, "Melzinoff", "Models / Animation")
     _G.charSelect.credit_add(TEXT_PACK_NAME, "Sharen", "Animation")
     _G.charSelect.credit_add(TEXT_PACK_NAME, "FluffaMario", "Models")
@@ -1225,7 +1225,7 @@ local function on_character_select_load()
     _G.charSelect.credit_add(TEXT_PACK_NAME..TEXT_VOICE_ACTOR, "MelissaMekrose", "Toadette")
     _G.charSelect.credit_add(TEXT_PACK_NAME..TEXT_VOICE_ACTOR, "SuperKirbyLover", "Peach")
     _G.charSelect.credit_add(TEXT_PACK_NAME..TEXT_VOICE_ACTOR, "MorphiGalaxi", "Daisy")
-    _G.charSelect.credit_add(TEXT_PACK_NAME..TEXT_VOICE_ACTOR, "AngelicMiracles", "Yoshi")
+    _G.charSelect.credit_add(TEXT_PACK_NAME..TEXT_VOICE_ACTOR, "FunkyLion", "Yoshi")
     _G.charSelect.credit_add(TEXT_PACK_NAME..TEXT_VOICE_ACTOR, "LuUvvUCY", "Birdo")
     _G.charSelect.credit_add(TEXT_PACK_NAME..TEXT_VOICE_ACTOR, "VinnyVinesauce", "Spike")
     _G.charSelect.credit_add(TEXT_PACK_NAME..TEXT_VOICE_ACTOR, "BeckyVO", "Pauline")
@@ -1233,6 +1233,13 @@ local function on_character_select_load()
     _G.charSelect.credit_add(TEXT_PACK_NAME..TEXT_VOICE_ACTOR, "GauntletQueen", "Rosalina")
     _G.charSelect.credit_add(TEXT_PACK_NAME..TEXT_VOICE_ACTOR, "SlashOLantern", "WaPeach")
     _G.charSelect.credit_add(TEXT_PACK_NAME..TEXT_VOICE_ACTOR, "ReeseiMental", "Sonic")
+    _G.charSelect.credit_add(TEXT_PACK_NAME..TEXT_MOVESET, "xLuigiGamerx", "Toadette")
+    _G.charSelect.credit_add(TEXT_PACK_NAME..TEXT_MOVESET, "Wibblus", "Peach")
+    _G.charSelect.credit_add(TEXT_PACK_NAME..TEXT_MOVESET, "Wibblus", "Daisy")
+    _G.charSelect.credit_add(TEXT_PACK_NAME..TEXT_MOVESET, "xLuigiGamerx", "Yoshi")
+    _G.charSelect.credit_add(TEXT_PACK_NAME..TEXT_MOVESET, "EmilyEmmi", "Birdo")
+    _G.charSelect.credit_add(TEXT_PACK_NAME..TEXT_MOVESET, "Squishy6094", "Pauline")
+    _G.charSelect.credit_add(TEXT_PACK_NAME..TEXT_MOVESET, "Wibblus", "Rosalina")
 
     CSloaded = true
 end
@@ -1246,7 +1253,7 @@ end
 
 local function mario_update(m)
     if not CSloaded then return end
-    if m.action == ACT_WALKING and _G.charSelect.character_get_current_number(m.playerIndex) == extraCharacters[8].tablePos then
+    if m.action == ACT_WALKING and _G.charSelect.character_get_current_number(m.playerIndex) == extraCharacters[10].tablePos then
         m.marioBodyState.torsoAngle.x = 0
         m.marioBodyState.torsoAngle.z = 0
         --results in double step sounds when going at the usual 32 speed (sigh)
