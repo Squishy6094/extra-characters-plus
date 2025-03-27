@@ -1245,27 +1245,24 @@ hook_mario_action(ACT_SPINJUMP, { every_frame = act_spinjump }, INT_KICK)
 -- Wapeach Axe Attacks --
 -------------------------
 
-local colObjLists = { OBJ_LIST_GENACTOR, OBJ_LIST_PUSHABLE, OBJ_LIST_SURFACE }
+local colObjLists = { OBJ_LIST_GENACTOR, OBJ_LIST_PUSHABLE, OBJ_LIST_SURFACE, OBJ_LIST_PLAYER}
 
 ACT_AXECHOP = allocate_mario_action(ACT_GROUP_STATIONARY | ACT_FLAG_STATIONARY)
 
 ---@param o Object
 local function bhv_axe_attack_init(o)
     o.oFlags = OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE | OBJ_FLAG_SET_FACE_ANGLE_TO_MOVE_ANGLE
-    o.oDamageOrCoinValue = 2
+    o.oDamageOrCoinValue = 0
     o.oNumLootCoins = 0
     o.oHealth = 0
-    o.hitboxRadius = 80
-    o.hitboxHeight = 70
-    o.hurtboxRadius = 80
-    o.hurtboxHeight = 70
+    o.hitboxRadius = 60
+    o.hitboxHeight = 80
+    o.hurtboxRadius = 60
+    o.hurtboxHeight = 80
     o.hitboxDownOffset = 0
-    o.oInteractType = INTERACT_DAMAGE
+    o.oInteractType = 0
     cur_obj_scale(1)
     cur_obj_become_tangible()
-
-    local m = nearest_mario_state_to_object(o)
-
     network_init_object(o, true, {})
 end
 
@@ -1274,12 +1271,14 @@ local function bhv_axe_attack_loop(o)
     cur_obj_update_floor_and_resolve_wall_collisions(90)
     cur_obj_move_standard(78)
     local m = gMarioStates[network_local_index_from_global(o.globalPlayerIndex)]
-    
-    local dist = 200
+
+    local dist = 185
     local x = get_hand_foot_pos_x(m, 0) + sins(m.faceAngle.y) * coss(m.faceAngle.x) * dist
     --local y = get_hand_foot_pos_y(m, 0) + sins(m.faceAngle.x) * dist
     local z = get_hand_foot_pos_z(m, 0) + coss(m.faceAngle.y) * coss(m.faceAngle.x) * dist
+
     
+
     local handPos_v3f = {x=get_hand_foot_pos_x(m, 0), y=get_hand_foot_pos_y(m, 0), z=get_hand_foot_pos_z(m, 0)}
     local axePos_v3f = {x=handPos_v3f.x, y=handPos_v3f.y, z=handPos_v3f.z}
     vec3f_sub(axePos_v3f,m.pos)
@@ -1292,78 +1291,30 @@ local function bhv_axe_attack_loop(o)
     o.header.gfx.pos.y = o.oPosY
     o.header.gfx.pos.z = o.oPosZ
 
-    for i, list in ipairs(colObjLists) do
-        local o2 = obj_get_first(list)
-        while o2 do
-            if o ~= o2 and obj_check_hitbox_overlap(o, o2) then
-                local bhv = get_id_from_behavior(o2.behavior)
-                if bhv ~= id_bhvBowser then
-                    o2.oInteractStatus = o2.oInteractStatus | ATTACK_FAST_ATTACK | INT_STATUS_WAS_ATTACKED | INT_STATUS_INTERACTED | INT_STATUS_TOUCHED_BOB_OMB
-                    o2.oVelY = o2.oVelY + 10
-                end
-            end
-            o2 = obj_get_next(o2)
-        end
-    end
-
-    if o.oTimer == 15 then
-        obj_mark_for_deletion(o)
-    end
-    
-end
-
-local function bhv_axe_attack_sweetSpot_init(o)
-    o.oFlags = OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE | OBJ_FLAG_SET_FACE_ANGLE_TO_MOVE_ANGLE
-    o.oDamageOrCoinValue = 5
-    o.oNumLootCoins = 0
-    o.oHealth = 0
-    o.hitboxRadius = 80
-    o.hitboxHeight = 50
-    o.hurtboxRadius = 80
-    o.hurtboxHeight = 50
-    o.hitboxDownOffset = 0
-    o.oInteractType = INTERACT_DAMAGE
-    cur_obj_scale(1)
-    cur_obj_become_tangible()
-
-    local m = nearest_mario_state_to_object(o)
-
-    network_init_object(o, true, {})
-end
-
----@param o Object
-local function bhv_axe_attack_sweetSpot_loop(o)
-    cur_obj_update_floor_and_resolve_wall_collisions(90)
-    cur_obj_move_standard(78)
-    local m = gMarioStates[network_local_index_from_global(o.globalPlayerIndex)]
-    
-    local dist = 125
-    local x = get_hand_foot_pos_x(m, 0) + sins(m.faceAngle.y) * coss(m.faceAngle.x) * dist
-    --local y = get_hand_foot_pos_y(m, 0) + sins(m.faceAngle.x) * dist
-    local z = get_hand_foot_pos_z(m, 0) + coss(m.faceAngle.y) * coss(m.faceAngle.x) * dist
-    
-    local handPos_v3f = {x=get_hand_foot_pos_x(m, 0), y=get_hand_foot_pos_y(m, 0), z=get_hand_foot_pos_z(m, 0)}
-    local axePos_v3f = {x=handPos_v3f.x, y=handPos_v3f.y, z=handPos_v3f.z}
-    vec3f_sub(axePos_v3f,m.pos)
-    vec3f_normalize(axePos_v3f)
-    vec3f_mul(axePos_v3f, 120)
-    o.oPosX = x
-    o.oPosY = handPos_v3f.y - axePos_v3f.y
-    o.oPosZ = z
-    o.header.gfx.pos.x = o.oPosX
-    o.header.gfx.pos.y = o.oPosY
-    o.header.gfx.pos.z = o.oPosZ
 
     for i, list in ipairs(colObjLists) do
         local o2 = obj_get_first(list)
         while o2 do
             if o ~= o2 and obj_check_hitbox_overlap(o, o2) then
                 local bhv = get_id_from_behavior(o2.behavior)
-                if bhv ~= id_bhvBowser then
+                
+                if bhv == id_bhvMario then
+
+                    sweetspot = dist_between_objects(m.marioObj,o2)
+                    axelength = dist_between_objects(m.marioObj,o)
+                    
+                    if axelength>= sweetspot then
+                        o.oDamageOrCoinValue = 5
+                    else
+                        o.oDamageOrCoinValue = 2
+                    end
+                
+                elseif bhv ~= id_bhvBowser then
                     o2.oInteractStatus = o2.oInteractStatus | ATTACK_FAST_ATTACK | INT_STATUS_WAS_ATTACKED | INT_STATUS_INTERACTED | INT_STATUS_TOUCHED_BOB_OMB
                     o2.oVelY = o2.oVelY + 10
                 end
             end
+
             o2 = obj_get_next(o2)
         end
     end
@@ -1375,13 +1326,13 @@ local function bhv_axe_attack_sweetSpot_loop(o)
 end
 
 local id_bhvAxeAttack = hook_behavior(nil, OBJ_LIST_DESTRUCTIVE, true, bhv_axe_attack_init, bhv_axe_attack_loop)
-local id_bhvSweetSpot = hook_behavior(nil, OBJ_LIST_DESTRUCTIVE, true, bhv_axe_attack_sweetSpot_init, bhv_axe_attack_sweetSpot_loop)
+
 
 ---@param m MarioState
 ---@param o Object
 ---@param intType integer
 local function allow_interact(m, o, intType)
-    if (obj_has_behavior_id(o, id_bhvAxeAttack) ~= 0 or obj_has_behavior_id(o, id_bhvSweetSpot) ~= 0) and o.globalPlayerIndex == m.marioObj.globalPlayerIndex then
+    if obj_has_behavior_id(o, id_bhvAxeAttack) ~= 0 and o.globalPlayerIndex == m.marioObj.globalPlayerIndex then
         return false
     end
 end
@@ -1404,9 +1355,6 @@ m.marioObj.header.gfx.angle.x = slope
         play_sound(SOUND_OBJ_POUNDING_LOUD, m.marioObj.header.gfx.cameraToObject)
         if m.playerIndex == 0 then
             spawn_sync_object(id_bhvAxeAttack, E_MODEL_EXCLAMATION_BOX_OUTLINE, get_hand_foot_pos_x(m, 0), get_hand_foot_pos_y(m, 0) + 25, get_hand_foot_pos_z(m, 0), function(o)
-                o.globalPlayerIndex = m.marioObj.globalPlayerIndex
-            end)
-            spawn_sync_object(id_bhvSweetSpot, E_MODEL_EXCLAMATION_POINT, get_hand_foot_pos_x(m, 0), get_hand_foot_pos_y(m, 0) + 25, get_hand_foot_pos_z(m, 0), function(o)
                 o.globalPlayerIndex = m.marioObj.globalPlayerIndex
             end)
         end
