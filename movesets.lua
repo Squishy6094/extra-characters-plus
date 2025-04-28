@@ -1292,6 +1292,7 @@ bhvWapeachAxeList = {
 ACT_AXECHOP = allocate_mario_action(ACT_GROUP_STATIONARY | ACT_FLAG_STATIONARY)
 ACT_AXESPIN = allocate_mario_action(ACT_GROUP_MOVING | ACT_FLAG_MOVING | ACT_FLAG_ATTACKING)
 ACT_AXESPINAIR = allocate_mario_action(ACT_FLAG_ATTACKING | ACT_FLAG_AIR | ACT_GROUP_AIRBORNE)
+ACT_AXESPINDIZZY = allocate_mario_action(ACT_GROUP_MOVING | ACT_FLAG_MOVING)
 
 ---@param o Object
 local function bhv_axe_attack_init(o)
@@ -1435,7 +1436,7 @@ local function act_wapeach_axespin(m)
 
     if m.actionTimer == 0 then
         play_character_sound(m, CHAR_SOUND_YAHOO_WAHA_YIPPEE)
-        m.forwardVel = clamp(m.forwardVel + 16, 0, 850)
+        m.forwardVel = clamp(m.forwardVel + 21, 0, 850)
         mario_set_forward_vel(m, m.forwardVel)
     end
     if m.controller.buttonPressed & B_BUTTON ~= 0 then
@@ -1459,8 +1460,8 @@ local function act_wapeach_axespin(m)
         mario_set_forward_vel(m, m.forwardVel)
     end
     local step = perform_ground_step(m)
-    if m.forwardVel < 15 and m.actionTimer >= 15 then
-        set_mario_action(m, ACT_THROWN_FORWARD, 0)
+    if m.forwardVel < 20 and m.actionTimer >= 15 then
+        set_mario_action(m, ACT_AXESPINDIZZY, 0)
         return
     end
     if m.forwardVel >= 100 and m.actionState == 0 then
@@ -1498,7 +1499,7 @@ local function act_wapeach_axespin_air(m)
 
 
     local step = perform_air_step(m, 0)
-    if m.forwardVel < 15 and m.actionTimer >= 10 then
+    if m.forwardVel < 20 and m.actionTimer >= 10 then
         set_mario_action(m, ACT_THROWN_FORWARD, 0)
         return
     end
@@ -1517,6 +1518,47 @@ local function act_wapeach_axespin_air(m)
     m.actionTimer = m.actionTimer + 1
 end
 hook_mario_action(ACT_AXESPINAIR, act_wapeach_axespin_air)
+
+local function act_wapeach_axespin_dizzy(m)
+    m.marioBodyState.handState = 2
+    if m.actionTimer == 0 then
+        play_character_sound(m, CHAR_SOUND_WHOA)
+    end
+    if m.actionTimer >= 42 then
+        set_character_animation(m, CHAR_ANIM_LAND_ON_STOMACH)
+        smlua_anim_util_set_animation(m.marioObj, 'wapeach_flop')
+        if m.actionTimer == 52 then
+        play_sound(SOUND_ACTION_PAT_BACK, m.marioObj.header.gfx.cameraToObject)
+        play_character_sound(m, CHAR_SOUND_OOOF2)
+        end
+        if m.actionTimer >= 52 then
+            set_mario_particle_flags(m, PARTICLE_DUST, 0);
+            play_sound(SOUND_AIR_ROUGH_SLIDE, m.marioObj.header.gfx.cameraToObject)
+        end
+
+        if m.actionTimer >= 111 then
+            m.forwardVel = 0
+            mario_set_forward_vel(m, m.forwardVel)
+            set_mario_action(m, ACT_FORWARD_ROLLOUT, 0)
+        end
+    else
+        m.forwardVel = m.forwardVel - 0.2
+        mario_set_forward_vel(m, m.forwardVel)
+        if is_anim_past_frame(m, 1) ~= 0 then
+            play_sound(SOUND_ACTION_SPIN, m.marioObj.header.gfx.cameraToObject)
+        end
+    set_character_animation(m, CHAR_ANIM_BREAKDANCE)
+    smlua_anim_util_set_animation(m.marioObj, 'wapeach_dizzy')
+    end
+
+    local step = perform_ground_step(m)
+    if step == GROUND_STEP_LEFT_GROUND then
+        set_mario_action(m, ACT_THROWN_FORWARD, 0)
+    end
+
+    m.actionTimer = m.actionTimer + 1
+end
+hook_mario_action(ACT_AXESPINDIZZY, act_wapeach_axespin_dizzy)
 
 ---@param m MarioState
 ---@param incomingAct integer
