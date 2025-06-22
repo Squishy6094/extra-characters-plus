@@ -1205,25 +1205,8 @@ extraCharacters = {
             --[CHAR_SOUND_HELLO] = "sonic_hello.ogg"
         },
         anims = {
-            [CHAR_ANIM_RUNNING] = 'sonic_running',
-            [CHAR_ANIM_IDLE_HEAD_CENTER] = 'sonic_idle_head_center',
-            [CHAR_ANIM_IDLE_HEAD_LEFT] = 'sonic_idle_head_left',
-            [CHAR_ANIM_IDLE_HEAD_RIGHT] = 'sonic_idle_head_right',
-            [CHAR_ANIM_SKID_ON_GROUND] = 'sonic_skid',
-            [CHAR_ANIM_STOP_SKID] = 'sonic_skid_stop',
-            [CHAR_ANIM_SHIVERING_RETURN_TO_IDLE] = 'sonic_shivering_stop',
-            [CHAR_ANIM_STAND_UP_FROM_LAVA_BOOST] = 'sonic_lava_boost_landing',
-            [CHAR_ANIM_BACKWARD_KB] = 'sonic_hard_backward_knockback',
-            [CHAR_ANIM_FORWARD_KB] = 'sonic_hard_forward_knockback',
             [CHAR_ANIM_TAKE_CAP_OFF_THEN_ON] = 'sonic_star_exit_with_hat',
             [CHAR_ANIM_PUT_CAP_ON] = 'sonic_putting_on_hat',
-            [CHAR_ANIM_SLOW_LEDGE_GRAB] = 'sonic_ledge_up',
-            [CHAR_ANIM_FAST_LEDGE_GRAB] = 'sonic_quick_ledge_get_up',
-            [CHAR_ANIM_LAND_FROM_DOUBLE_JUMP] = 'sonic_doublejump_landing',
-            [CHAR_ANIM_LAND_FROM_SINGLE_JUMP] = 'sonic_singlejump_landing',
-            [CHAR_ANIM_SLOW_LAND_FROM_DIVE] = 'sonic_stop_sliding', 
-            [CHAR_ANIM_SHIVERING_WARMING_HAND] = "sonic_shivering",
-            [CHAR_ANIM_AIR_KICK] = "sonic_air_kick",
         }
     },
 }
@@ -1234,13 +1217,13 @@ local TEXT_MOVESET     = " (Movesets)"
 local CSloaded = false
 local function on_character_select_load()
     local _ENV = setmetatable(charSelect, { __index = _ENV }) -- The CS environment
-    for _, char in pairs(extraCharacters) do
+    for i, char in pairs(extraCharacters) do
         local _ENV = setmetatable(char, { __index = _ENV })
         tablePos = character_add(name, description, credits, color, model, forceChar, lifeIcon, camScale, offset, meter)
         -- if caps then charSelect.character_add_caps(model, caps) end
         if voices then character_add_voice(model, voices) end
         if palette then character_add_palette_preset(model, palette) end
-        if anims then character_add_animations(model, anims) end
+        if i ~= 11 and anims then character_add_animations(model, anims) end
         -- if meter then charSelect.character_add_health_meter(model, meter) end
     end
 
@@ -1283,6 +1266,28 @@ local function on_character_sound(m, sound)
     end
 end
 
+local sonicAnimMovesetOverrides = {
+    [CHAR_ANIM_RUNNING] = 'sonic_running',
+    [CHAR_ANIM_IDLE_HEAD_CENTER] = 'sonic_idle_head_center',
+    [CHAR_ANIM_IDLE_HEAD_LEFT] = 'sonic_idle_head_left',
+    [CHAR_ANIM_IDLE_HEAD_RIGHT] = 'sonic_idle_head_right',
+    [CHAR_ANIM_SKID_ON_GROUND] = 'sonic_skid',
+    [CHAR_ANIM_STOP_SKID] = 'sonic_skid_stop',
+    [CHAR_ANIM_SHIVERING_RETURN_TO_IDLE] = 'sonic_shivering_stop',
+    [CHAR_ANIM_STAND_UP_FROM_LAVA_BOOST] = 'sonic_lava_boost_landing',
+    [CHAR_ANIM_BACKWARD_KB] = 'sonic_hard_backward_knockback',
+    [CHAR_ANIM_FORWARD_KB] = 'sonic_hard_forward_knockback',
+    [CHAR_ANIM_TAKE_CAP_OFF_THEN_ON] = 'sonic_star_exit_with_hat',
+    [CHAR_ANIM_PUT_CAP_ON] = 'sonic_putting_on_hat',
+    [CHAR_ANIM_SLOW_LEDGE_GRAB] = 'sonic_ledge_up',
+    [CHAR_ANIM_FAST_LEDGE_GRAB] = 'sonic_quick_ledge_get_up',
+    [CHAR_ANIM_LAND_FROM_DOUBLE_JUMP] = 'sonic_doublejump_landing',
+    [CHAR_ANIM_LAND_FROM_SINGLE_JUMP] = 'sonic_singlejump_landing',
+    [CHAR_ANIM_SLOW_LAND_FROM_DIVE] = 'sonic_stop_sliding', 
+    [CHAR_ANIM_SHIVERING_WARMING_HAND] = "sonic_shivering",
+    [CHAR_ANIM_AIR_KICK] = "sonic_air_kick",
+}
+
 --Used for the final Extra Character
 
 local function mario_update(m)
@@ -1290,6 +1295,19 @@ local function mario_update(m)
 
     local _ENV = setmetatable(charSelect, { __index = _ENV }) -- The CS environment
 
+    if sonicMoveset then
+        for i, anim in pairs(sonicAnimMovesetOverrides) do
+            extraCharacters[11].anims[i] = anim
+        end
+    sonicMoveset = false
+    else
+        for i, _ in pairs(sonicAnimMovesetOverrides) do
+            extraCharacters[11].anims[i] = nil
+        end
+    end
+
+    character_add_animations(extraCharacters[11].model, extraCharacters[11].anims)
+    
     for _, char in pairs(extraCharacters) do
         local _ENV = setmetatable(char, { __index = _ENV })
         if character_get_voice(m) == voices then return voice.snore(m) end

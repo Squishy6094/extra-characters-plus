@@ -1886,6 +1886,12 @@ local function before_set_sonic_action(m, action)
     end
 end
 
+--- @param m MarioState
+function sonic_update(m)
+    sonicMoveset = true
+end
+
+
 hook_mario_action(ACT_SPIN_JUMP,        act_spin_jump)
 hook_mario_action(ACT_SPIN_DASH_CHARGE, act_spin_dash_charge)
 hook_mario_action(ACT_SPIN_DASH,        act_spin_dash)
@@ -1947,6 +1953,8 @@ local function on_character_select_load()
     character_hook_moveset(CT_DONKEY_KONG, HOOK_BEFORE_PHYS_STEP, before_donkey_kong_phys_step)
     -- Sonic
     character_hook_moveset(CT_SONIC, HOOK_BEFORE_SET_MARIO_ACTION, before_set_sonic_action)
+    character_hook_moveset(CT_SONIC, HOOK_MARIO_UPDATE, sonic_update)
+    
 end
 
 hook_event(HOOK_ON_MODS_LOADED, on_character_select_load)
