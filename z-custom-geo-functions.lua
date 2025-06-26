@@ -5,7 +5,10 @@
 local sSonicSpinBallActs = {
     [ACT_SPIN_JUMP]        = true,
     [ACT_SPIN_DASH]        = true,
-    [ACT_SPIN_DASH_CHARGE] = true,
+}
+
+local sSonicSpinDashActs = {
+    [ACT_SPIN_DASH_CHARGE]        = true,
 }
 
 --- @param n GraphNode | FnGraphNode
@@ -15,6 +18,8 @@ function geo_ball_switch(n)
     local m = geo_get_mario_state()
     if sSonicSpinBallActs[m.action] then
         switch.selectedCase = ((m.actionTimer - 1) % 4 // 2 + 1)
+    elseif sSonicSpinDashActs[m.action] then
+        switch.selectedCase = 3
     else
         switch.selectedCase = 0
     end

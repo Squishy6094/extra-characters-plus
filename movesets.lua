@@ -2109,6 +2109,8 @@ local function align_with_floor_but_better(m)
     m.marioObj.header.gfx.angle.z = find_floor_slope(m, 0x4000)
 end
 
+CUSTOM_CHAR_ANIM_SONIC_RUN = 'sonic_running_2'
+
 local function sonic_anim_and_audio_for_walk(m, walkCap, runCap)
 
     local val14 = 0
