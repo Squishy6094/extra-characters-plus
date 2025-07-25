@@ -87,7 +87,9 @@ extraCharacters = {
             [CHAR_SOUND_YAH_WAH_HOO] = { "toadette_yah_wah_hoo1.ogg", "toadette_yah_wah_hoo2.ogg", "toadette_yah_wah_hoo3.ogg"},
             [CHAR_SOUND_HELLO] = "toadette_hello.ogg"
         },
-        anims = nil
+        anims = {
+        [charSelect.CS_ANIM_MENU] = 'cs_toadette',
+        }
     },
     --------------------
     -- Princess Peach --
@@ -240,7 +242,8 @@ extraCharacters = {
             [CHAR_ANIM_SWINGING_BOWSER] = 'princess_swinging_bowser',
             [CHAR_ANIM_HOLDING_BOWSER] = 'princess_holding_bowser',
             [CHAR_ANIM_GRAB_BOWSER] = 'princess_grab_bowser',
-            [CHAR_ANIM_BEND_KNESS_RIDING_SHELL] = "peach_dressfloating"
+            [CHAR_ANIM_BEND_KNESS_RIDING_SHELL] = "peach_dressfloating",
+            [charSelect.CS_ANIM_MENU] = 'cs_peach',
         }
     },
     --------------------
