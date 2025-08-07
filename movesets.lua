@@ -2232,9 +2232,6 @@ local function perform_sonic_a_action(m)
         m.action = ACT_SPIN_JUMP
         m.vel.y = 30
     else
-        if o ~= nil then
-			djui_chat_message_create(tostring(o.oHealth))
-		end
 		
         if o ~= nil and dist < 1000 then
             return set_mario_action(m, ACT_HOMING_ATTACK, 0)
