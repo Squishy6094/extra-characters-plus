@@ -1077,6 +1077,12 @@ function sonic_on_interact(m, o, intType)
             end
         end
     end
+
+    if intType == INTERACT_BREAKABLE then
+        if m.action == ACT_HOMING_ATTACK then
+            set_mario_action(m, ACT_AIR_SPIN, 0)
+        end
+    end
 end
 
 function sonic_before_phys_step(m)

@@ -13,6 +13,31 @@ local sSonicSpinDashActs = {
     [ACT_SPIN_DASH_CHARGE] = true,
 }
 
+local l = gLakituState
+
+function object_yaw_from_camera(o) -- Returns from 1 to 8 directions.
+    local tau = math.pi * 2
+    local pitch = object_pitch_from_camera(o)
+
+    local vector = {X = l.pos.x - o.oPosX, Y = l.pos.y - o.oPosY,  Z = l.pos.z - o.oPosZ}
+    local r0 = math.rad((o.oFaceAngleYaw * 360) / 0x10000)
+    local r1 = r0 < 0 and tau - math.abs(r0) or r0
+    local a0 = math.atan2(vector.Z, vector.X) + math.pi * 0.5
+
+    local a1 = 0
+    if pitch == 2 or pitch == -2 then
+        a1 = math.rad((limit_angle(o.oFaceAngleYaw - l.yaw) * 360) / 0x10000)
+    else
+        a1 = ((a0 < 0 and tau - math.abs(a0) or a0) + r1)
+    end
+    
+
+    local a2 = (a1 % tau) * 8 / tau
+    local angle = (round(a2) % 8) + 1
+    --djui_chat_message_create(tostring(angle))
+    return angle
+end
+
 --- @param n GraphNode | FnGraphNode
 --- Switches between the spin and ball models during a spin/ball actions
 function geo_ball_switch(n)
