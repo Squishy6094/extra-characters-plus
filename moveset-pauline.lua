@@ -1,3 +1,7 @@
+---------------------
+-- Pauline Moveset --
+---------------------
+
 local OmmEnabled = OmmEnabled
 if not charSelect then return end
 

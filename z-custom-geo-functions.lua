@@ -6,7 +6,7 @@ local sSonicSpinBallActs = {
     [ACT_SPIN_JUMP]        = true,
     [ACT_SPIN_DASH]        = true,
     [ACT_AIR_SPIN]         = true,
-    [ACT_HOMING_ATTACK]         = true,
+    [ACT_HOMING_ATTACK]    = true,
 }
 
 local sSonicSpinDashActs = {
@@ -30,10 +30,10 @@ end
 -- Wapeach Axe Acts --
 
 local sWapeachAxeActs = {
-    [ACT_AXECHOP]      = true,
-    [ACT_AXESPIN]      = true,
-    [ACT_AXESPINAIR]   = true,
-    [ACT_AXESPINDIZZY] = true,
+    [ACT_AXE_CHOP]      = true,
+    [ACT_AXE_SPIN]      = true,
+    [ACT_AXE_SPIN_AIR]   = true,
+    [ACT_AXE_SPIN_DIZZY] = true,
 }
 
 --- @param n GraphNode | FnGraphNode
