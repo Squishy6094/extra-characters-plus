@@ -485,8 +485,11 @@ local sonicActionOverride = {
     [ACT_CROUCH_SLIDE] = ACT_SPIN_DASH,
 }
 
-local function obj_is_treasure_chest(obj)
-    return obj_has_behavior_id(obj, id_bhvTreasureChestBottom) == 1 and obj.oAction == 0
+--- @param o Object
+--- @return boolean
+--- Checks if `o` is a treasure chest
+local function obj_is_treasure_chest(o)
+    return obj_has_behavior_id(o, id_bhvTreasureChestBottom) == 1 and o.oAction == 0
 end
 
 local breakableObjects = {
@@ -534,7 +537,7 @@ function sonic_find_homing_target(m, distmax)
             if sonic_is_obj_targetable(obj) then
                 local distToObj = math.sqrt((pos.x - obj.oPosX)^2 + (pos.y - obj.oPosY)^2 + (pos.z - obj.oPosZ)^2) - (m.marioObj.hitboxRadius + obj.hitboxRadius)
                 local angleToObj = obj_angle_to_object(m.marioObj, obj)
-                
+
                 if distToObj < distmin and math.abs(m.faceAngle.y - angleToObj) < 0x3800 then
                     distmin = distToObj
                     target = obj
@@ -558,7 +561,7 @@ local function perform_sonic_a_action(m)
         m.action = ACT_SPIN_JUMP
         m.vel.y = 30
     else
-    
+
         if not e.sonic.actionADone then
             if o and dist < 1000 then
                 return set_mario_action(m, ACT_HOMING_ATTACK, 0)
@@ -1138,12 +1141,12 @@ function sonic_homing_hud()
             local pos = gVec3fZero()
             local rotation = get_global_timer()
             scaleTimer = scaleTimer + 1
-            
+
             if prevTarget ~= o then
                 prevTarget = o
                 audio_sample_play(SOUND_SONIC_HOMING, l.pos, 3)
             end
-            
+
             object_pos_to_vec3f(pos, o)
             local onScreen = djui_hud_world_pos_to_screen_pos(pos, hudPos)
             if onScreen then
@@ -1169,6 +1172,4 @@ hook_mario_action(ACT_SPIN_DASH, act_spin_dash, INT_FAST_ATTACK_OR_SHELL)
 hook_mario_action(ACT_SONIC_RUNNING, act_sonic_running)
 hook_mario_action(ACT_SONIC_FALL, act_sonic_fall)
 hook_mario_action(ACT_AIR_SPIN, act_air_spin)
-hook_mario_action(ACT_HOMING_ATTACK, 
-                  {every_frame = act_homing_attack, gravity = function () end},
-                  (INT_FAST_ATTACK_OR_SHELL | INT_KICK | INT_HIT_FROM_ABOVE))
+hook_mario_action(ACT_HOMING_ATTACK, { every_frame = act_homing_attack, gravity = function () end }, (INT_FAST_ATTACK_OR_SHELL | INT_KICK | INT_HIT_FROM_ABOVE))

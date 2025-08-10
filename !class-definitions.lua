@@ -40,7 +40,7 @@
 --- @field public groundYVel integer
 --- @field public prevForwardVel integer
 --- @field public peakHeight integer
---- @field public actionEnd boolean
+--- @field public actionADone boolean
 
 --- @class CharacterState
 --- @field public mario MarioState
@@ -59,3 +59,13 @@
 --- @field public wapeach WapeachState
 --- @field public donkeyKong DonkeyKongState
 --- @field public sonic SonicState
+
+--- @alias SonicMouthGSCId
+--- | `SONIC_MOUTH_NORMAL`
+--- | `SONIC_MOUTH_FROWN`
+--- | `SONIC_MOUTH_GRIMACING`
+--- | `SONIC_MOUTH_HAPPY`
+
+--- @alias SonicMouthSideGSCId
+--- | `SONIC_MOUTH_LEFT`
+--- | `SONIC_MOUTH_RIGHT`
