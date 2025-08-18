@@ -801,8 +801,9 @@ local function act_spin_dash_charge(m)
     m.marioObj.header.gfx.animInfo.animID = -1
     stationary_ground_step(m)
 
-    m.faceAngle.x = m.faceAngle.x + 0x500 * e.sonic.spinCharge
-    m.marioObj.header.gfx.angle.x = m.faceAngle.x
+    if e.sonic.spindashState > 7 then
+        e.sonic.spindashState = 0
+    end
 
     m.marioObj.header.gfx.pos.y = m.pos.y + 50
 
@@ -812,6 +813,7 @@ local function act_spin_dash_charge(m)
         e.sonic.spinCharge = 0
         return set_mario_action(m, ACT_SPIN_DASH, 0)
     end
+    e.sonic.spindashState = e.sonic.spindashState + e.sonic.spinCharge / 50
 end
 
 ---@param m MarioState

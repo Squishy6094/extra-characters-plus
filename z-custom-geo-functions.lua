@@ -52,7 +52,11 @@ end
 --- @param n GraphNode | FnGraphNode
 --- Switches the spindash states
 function geo_custom_spindash_states(n)
+    local switch = cast_graph_node(n)
+    local m = geo_get_mario_state()
+    local e = gCharacterStates[m.playerIndex]
 
+    switch.selectedCase = math.floor(e.sonic.spindashState)
 end
 
 -- Mouth Switch --
