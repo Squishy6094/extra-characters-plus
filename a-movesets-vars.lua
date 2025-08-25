@@ -38,6 +38,7 @@ for i = 0, (MAX_PLAYERS - 1) do
     e.sonic.peakHeight = 0
     e.sonic.actionADone = false
     e.sonic.actionBDone = false
+    e.sonic.bounced = false
     e.sonic.spindashState = 0
     e.sonic.instashieldTimer = 0
 end

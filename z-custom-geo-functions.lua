@@ -54,6 +54,8 @@ function geo_ball_switch(n)
         end
     elseif sSonicSpinDashActs[m.action] then
         switch.selectedCase = 3
+    elseif m.action == ACT_GROUND_POUND and m.actionTimer > 15 then
+        switch.selectedCase = 1
     else
         switch.selectedCase = 0
     end
