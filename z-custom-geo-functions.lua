@@ -83,7 +83,7 @@ SONIC_MOUTH_GRIN      = 4 --- @type SonicMouthGSCId
 SONIC_MOUTH_ATTACKED  = 5 --- @type SonicMouthGSCId
 SONIC_MOUTH_SHOCKED   = 6 --- @type SonicMouthGSCId
 SONIC_MOUTH_SURPRISED = 7 --- @type SonicMouthGSCId
-SONIC_MOUTH_NOEMOTE   = 8 --- @type SonicMouthGSCId
+SONIC_MOUTH_NEUTRAL   = 8 --- @type SonicMouthGSCId
 
 local sGrimacingActs = {
     [ACT_HOLD_HEAVY_IDLE]    = true,
@@ -93,7 +93,7 @@ local sGrimacingActs = {
     [ACT_HEAVY_THROW]        = true,
 }
 
-local sEyeStates = {
+local sSurprisedEyeStates = {
     [MARIO_EYES_LOOK_LEFT]  = true,
     [MARIO_EYES_LOOK_RIGHT] = true,
     [MARIO_EYES_LOOK_UP]    = true,
@@ -116,7 +116,7 @@ function geo_switch_mario_mouth(n)
         switch.selectedCase = SONIC_MOUTH_FROWN
     elseif sGrimacingActs[m.action] then
         switch.selectedCase = SONIC_MOUTH_GRIMACING
-    elseif sEyeStates[m.marioBodyState.eyeState] or m.action == ACT_PANTING then
+    elseif sSurprisedEyeStates[m.marioBodyState.eyeState] or m.action == ACT_PANTING then
         switch.selectedCase = SONIC_MOUTH_SURPRISED
     elseif m.marioBodyState.eyeState == MARIO_EYES_HALF_CLOSED and m.action == ACT_START_SLEEPING then
         switch.selectedCase = SONIC_MOUTH_SHOCKED
@@ -168,7 +168,7 @@ local sWapeachAxeActs = {
     [ACT_AXE_SPIN_DIZZY] = true,
 }
 
--- Sonic Hand
+    -- Sonic Hand
 
 local sSonicHandCopies = {
     [MARIO_HAND_FISTS]            = true,
@@ -198,7 +198,7 @@ function geo_custom_hand_switch(n)
             switch.selectedCase = 0
         end
     else
-        if sSonicHandStateActs[m.action] then
+        if sSonicHandStateActs[m.action] and m.marioObj.header.gfx.animInfo.animFrame >= 58 then
             switch.selectedCase = sSonicHandStateActs[m.action][param]
         elseif sSonicHandCopies[bodyState.handState] then
             if bodyState.handState == MARIO_HAND_OPEN or bodyState.handState == MARIO_HAND_RIGHT_OPEN then

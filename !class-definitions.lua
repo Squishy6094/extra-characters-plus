@@ -41,6 +41,10 @@
 --- @field public prevForwardVel integer
 --- @field public peakHeight integer
 --- @field public actionADone boolean
+--- @field public actionBDone boolean
+--- @field public bounced boolean
+--- @field public spindashState integer
+--- @field public instashieldTimer integer
 
 --- @class CharacterState
 --- @field public mario MarioState
@@ -69,7 +73,7 @@
 --- | `SONIC_MOUTH_ATTACKED`
 --- | `SONIC_MOUTH_SHOCKED`
 --- | `SONIC_MOUTH_SURPRISED`
---- | `SONIC_MOUTH_NOEMOTE`
+--- | `SONIC_MOUTH_NEUTRAL`
 
 --- @alias SonicMouthSideGSCId
 --- | `SONIC_MOUTH_LEFT`
