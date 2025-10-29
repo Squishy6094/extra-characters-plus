@@ -9,6 +9,9 @@ if not charSelect then
     return
 end
 
+-- Additional Voicelines used for Characters
+YOSHI_SOUND_FLUTTER = CHAR_SOUND_MAX + 1
+
 -- Characters are stored in a table for ease of addition
 
 extraCharacters = {
@@ -31,15 +34,18 @@ extraCharacters = {
             metal = smlua_model_util_get_id("toadette_metal_cap_geo"),
             metalWing = smlua_model_util_get_id("toadette_metal_wing_cap_geo")
         },
-        palette = {
-            [PANTS]  = { r = 0xFF, g = 0xFF, b = 0xFF },
-            [SHIRT]  = { r = 0xFF, g = 0x00, b = 0x00 },
-            [GLOVES] = { r = 0xFF, g = 0xFF, b = 0xFF },
-            [SHOES]  = { r = 0x68, g = 0x40, b = 0x1B },
-            [HAIR]   = { r = 0x73, g = 0x06, b = 0x00 },
-            [SKIN]   = { r = 0xFE, g = 0xD5, b = 0xA1 },
-            [CAP]    = { r = 0xF3, g = 0x00, b = 0x80 },
-            [EMBLEM] = { r = 0xF3, g = 0x00, b = 0x80 }
+        palettes = {
+            {
+                name = "Default",
+                [PANTS]  = { r = 0xFF, g = 0xFF, b = 0xFF },
+                [SHIRT]  = { r = 0xFF, g = 0x00, b = 0x00 },
+                [GLOVES] = { r = 0xFF, g = 0xFF, b = 0xFF },
+                [SHOES]  = { r = 0x68, g = 0x40, b = 0x1B },
+                [HAIR]   = { r = 0x73, g = 0x06, b = 0x00 },
+                [SKIN]   = { r = 0xFE, g = 0xD5, b = 0xA1 },
+                [CAP]    = { r = 0xF3, g = 0x00, b = 0x80 },
+                [EMBLEM] = { r = 0xF3, g = 0x00, b = 0x80 }
+            }
         },
         voices = {
             [CHAR_SOUND_ATTACKED] = "toadette_attacked.ogg",
@@ -107,16 +113,18 @@ extraCharacters = {
             metal = smlua_model_util_get_id("peach_player_metal_cap_geo"),
             metalWing = smlua_model_util_get_id("peach_player_metal_wing_cap_geo")
         },
-        palette = {
-            palettename = "Default",
-            [PANTS]  = { r = 0xFF, g = 0x50, b = 0x96 },
-            [SHIRT]  = { r = 0xF8, g = 0xC8, b = 0xBB },
-            [GLOVES] = { r = 0xFF, g = 0xFF, b = 0xFF },
-            [SHOES]  = { r = 0x00, g = 0x00, b = 0xFF },
-            [HAIR]   = { r = 0xFF, g = 0xD3, b = 0x02 },
-            [SKIN]   = { r = 0xFE, g = 0xC1, b = 0x79 },
-            [CAP]    = { r = 0xFF, g = 0xFF, b = 0x00 },
-            [EMBLEM] = { r = 0x00, g = 0x82, b = 0xFF }
+        palettes = {
+            {
+                name = "Default",
+                [PANTS]  = { r = 0xFF, g = 0x50, b = 0x96 },
+                [SHIRT]  = { r = 0xF8, g = 0xC8, b = 0xBB },
+                [GLOVES] = { r = 0xFF, g = 0xFF, b = 0xFF },
+                [SHOES]  = { r = 0x00, g = 0x00, b = 0xFF },
+                [HAIR]   = { r = 0xFF, g = 0xD3, b = 0x02 },
+                [SKIN]   = { r = 0xFE, g = 0xC1, b = 0x79 },
+                [CAP]    = { r = 0xFF, g = 0xFF, b = 0x00 },
+                [EMBLEM] = { r = 0x00, g = 0x82, b = 0xFF }
+            }
         },
         voices = {
             [CHAR_SOUND_ATTACKED] = "peach_attacked.ogg",
@@ -263,15 +271,18 @@ extraCharacters = {
             metal = smlua_model_util_get_id("daisy_metal_cap_geo"),
             metalWing = smlua_model_util_get_id("daisy_metal_wing_cap_geo")
         },
-        palette = {
-            [PANTS]  = { r = 0xFF, g = 0xFF, b = 0xFF },
-            [SHIRT]  = { r = 0xEF, g = 0xCA, b = 0x11 },
-            [GLOVES] = { r = 0xFF, g = 0xFF, b = 0xFF },
-            [SHOES]  = { r = 0x00, g = 0x00, b = 0xFF },
-            [HAIR]   = { r = 0xFF, g = 0x61, b = 0x00 },
-            [SKIN]   = { r = 0xFD, g = 0xAE, b = 0x82 },
-            [CAP]    = { r = 0xFF, g = 0x00, b = 0x00 },
-            [EMBLEM] = { r = 0x00, g = 0xFF, b = 0xFF }
+        palettes = {
+            {
+                name = "Default",
+                [PANTS]  = { r = 0xFF, g = 0xFF, b = 0xFF },
+                [SHIRT]  = { r = 0xEF, g = 0xCA, b = 0x11 },
+                [GLOVES] = { r = 0xFF, g = 0xFF, b = 0xFF },
+                [SHOES]  = { r = 0x00, g = 0x00, b = 0xFF },
+                [HAIR]   = { r = 0xFF, g = 0x61, b = 0x00 },
+                [SKIN]   = { r = 0xFD, g = 0xAE, b = 0x82 },
+                [CAP]    = { r = 0xFF, g = 0x00, b = 0x00 },
+                [EMBLEM] = { r = 0x00, g = 0xFF, b = 0xFF }
+            }
         },
         voices = {
             [CHAR_SOUND_ATTACKED] = {'daisy_attacked_1.ogg','daisy_attacked_2.ogg','daisy_attacked_3.ogg'},
@@ -419,15 +430,51 @@ extraCharacters = {
             metal = smlua_model_util_get_id("yoshi_player_metal_cap_geo"),
             metalWing = smlua_model_util_get_id("yoshi_player_metal_wing_cap_geo")
         },
-        palette = {
-            [PANTS]  = { r = 0xFF, g = 0x00, b = 0x00 },
-            [SHIRT]  = { r = 0x00, g = 0xFF, b = 0x00 },
-            [GLOVES] = { r = 0xFF, g = 0xFF, b = 0xFF },
-            [SHOES]  = { r = 0xFF, g = 0x00, b = 0x00 },
-            [HAIR]   = { r = 0xFF, g = 0x00, b = 0x00 },
-            [SKIN]   = { r = 0xFF, g = 0xDE, b = 0x39 },
-            [CAP]    = { r = 0x00, g = 0xFF, b = 0x00 },
-            [EMBLEM] = { r = 0xFF, g = 0x00, b = 0x00 }
+        palettes = {
+            {
+                name = "Default",
+                [PANTS]  = { r = 0xFF, g = 0x00, b = 0x00 },
+                [SHIRT]  = { r = 0x00, g = 0xFF, b = 0x00 },
+                [GLOVES] = { r = 0xFF, g = 0xFF, b = 0xFF },
+                [SHOES]  = { r = 0xFF, g = 0x00, b = 0x00 },
+                [HAIR]   = { r = 0xFF, g = 0x00, b = 0x00 },
+                [SKIN]   = { r = 0xFF, g = 0xDE, b = 0x39 },
+                [CAP]    = { r = 0x00, g = 0xFF, b = 0x00 },
+                [EMBLEM] = { r = 0xFF, g = 0x00, b = 0x00 }
+            },
+            {
+                name = "Red",
+                [PANTS]  = { r = 0xff, g = 0x00, b = 0x00 }, -- FFFF00
+                [SHIRT]  = { r = 0xff, g = 0x00, b = 0x00 }, -- FEC179
+                [GLOVES] = { r = 0xff, g = 0xff, b = 0xff }, -- FFFFFF
+                [SHOES]  = { r = 0x00, g = 0x00, b = 0xff }, -- FF0000
+                [HAIR]   = { r = 0xff, g = 0x68, b = 0x00 }, -- ff6800
+                [SKIN]   = { r = 0xfe, g = 0xc1, b = 0x79 }, -- FEC179
+                [CAP]    = { r = 0xff, g = 0x00, b = 0x00 }, -- 0000FF
+                [EMBLEM] = { r = 0xff, g = 0x00, b = 0x00 }, -- 0000FF
+            },
+            {
+                name = "Blue",
+                [PANTS]  = { r = 0x00, g = 0x40, b = 0x98 }, -- FFFF00
+                [SHIRT]  = { r = 0x00, g = 0x40, b = 0x98 }, -- FEC179
+                [GLOVES] = { r = 0xff, g = 0xff, b = 0xff }, -- FFFFFF
+                [SHOES]  = { r = 0xcb, g = 0x29, b = 0x98 }, -- cb2998
+                [HAIR]   = { r = 0xff, g = 0x68, b = 0x00 }, -- FFFF00
+                [SKIN]   = { r = 0xfe, g = 0xc1, b = 0x79 }, -- FEC179
+                [CAP]    = { r = 0x00, g = 0x40, b = 0x98 }, -- 004098
+                [EMBLEM] = { r = 0xff, g = 0x00, b = 0x00 }, -- 0000FF
+            },
+            {
+                name = "Yellow",
+                [PANTS]  = { r = 0xff, g = 0xff, b = 0x00 }, -- FFFF00
+                [SHIRT]  = { r = 0xff, g = 0xff, b = 0x00 }, -- FEC179
+                [GLOVES] = { r = 0xff, g = 0xff, b = 0xff }, -- FFFFFF
+                [SHOES]  = { r = 0x00, g = 0xff, b = 0x00 }, -- cb2998
+                [HAIR]   = { r = 0xff, g = 0x68, b = 0x00 }, -- FFFF00
+                [SKIN]   = { r = 0xfe, g = 0xc1, b = 0x79 }, -- FEC179
+                [CAP]    = { r = 0xff, g = 0xff, b = 0x00 }, -- 004098
+                [EMBLEM] = { r = 0xff, g = 0x00, b = 0x00 }, -- 0000FF
+            },
         },
         voices = {
             [CHAR_SOUND_ATTACKED] = "yoshi_attacked.ogg",
@@ -471,6 +518,8 @@ extraCharacters = {
             [CHAR_SOUND_YAHOO_WAHA_YIPPEE] = { "yoshi_yahoo.ogg", "yoshi_yahoo1.ogg", "yoshi_yahoo2.ogg", "yoshi_yahoo3.ogg", "yoshi_yahoo4.ogg", "yoshi_yahoo5.ogg" },
             [CHAR_SOUND_YAH_WAH_HOO] = { "yoshi_yah_wah_hoo1.ogg", "yoshi_yah_wah_hoo2.ogg", "yoshi_yah_wah_hoo3.ogg"},
             [CHAR_SOUND_HELLO] = "yoshi_hello.ogg",
+            -- Non-vanilla lines
+            [YOSHI_SOUND_FLUTTER] = "yoshi_flutter.ogg",
         },
         anims = {
             [CS_ANIM_MENU] = "cs_yoshi",
@@ -495,15 +544,18 @@ extraCharacters = {
             metal = smlua_model_util_get_id("birdo_metal_cap_geo"),
             metalWing = smlua_model_util_get_id("birdo_metal_wing_cap_geo")
         },
-        palette = {
-            [PANTS]  = { r = 0xFF, g = 0x00, b = 0x00 }, --FF0000
-            [SHIRT]  = { r = 0xFE, g = 0x4D, b = 0x7F }, --FE4D7F
-            [GLOVES] = { r = 0xFF, g = 0xFF, b = 0xFF }, --FFFFFF
-            [SHOES]  = { r = 0xFE, g = 0x4D, b = 0x7F }, --FE4D7F
-            [HAIR]   = { r = 0xFF, g = 0x00, b = 0x00 }, --FF0000
-            [SKIN]   = { r = 0xFE, g = 0xC1, b = 0x79 }, --FEC179
-            [CAP]    = { r = 0xFE, g = 0x4D, b = 0x7F }, --FE4D7F
-            [EMBLEM] = { r = 0xFF, g = 0x00, b = 0x00 }  --FF0000
+        palettes = {
+            {
+                name = "Default",
+                [PANTS]  = { r = 0xFF, g = 0x00, b = 0x00 }, --FF0000
+                [SHIRT]  = { r = 0xFE, g = 0x4D, b = 0x7F }, --FE4D7F
+                [GLOVES] = { r = 0xFF, g = 0xFF, b = 0xFF }, --FFFFFF
+                [SHOES]  = { r = 0xFE, g = 0x4D, b = 0x7F }, --FE4D7F
+                [HAIR]   = { r = 0xFF, g = 0x00, b = 0x00 }, --FF0000
+                [SKIN]   = { r = 0xFE, g = 0xC1, b = 0x79 }, --FEC179
+                [CAP]    = { r = 0xFE, g = 0x4D, b = 0x7F }, --FE4D7F
+                [EMBLEM] = { r = 0xFF, g = 0x00, b = 0x00 }  --FF0000
+            }
         },
         voices = {
             [CHAR_SOUND_ATTACKED] = "birdo_attacked.ogg",
@@ -576,15 +628,18 @@ extraCharacters = {
             metal = smlua_model_util_get_id("foreman_spike_metal_cap_geo"),
             metalWing = smlua_model_util_get_id("foreman_spike_metal_wing_cap_geo")
         },
-        palette = {
-            [PANTS]  = { r = 0x00, g = 0x00, b = 0xFF }, -- 0000FF
-            [SHIRT]  = { r = 0x56, g = 0x8E, b = 0xFF }, -- 568EFF
-            [GLOVES] = { r = 0x61, g = 0x3E, b = 0x21 }, -- 613E21
-            [SHOES]  = { r = 0x61, g = 0x3E, b = 0x21 }, -- 613E21
-            [HAIR]   = { r = 0x00, g = 0x00, b = 0x00 }, -- 000000
-            [SKIN]   = { r = 0xFE, g = 0xC1, b = 0x79 }, -- FEC179
-            [CAP]    = { r = 0x56, g = 0x8E, b = 0xFF }, -- 568EFF
-            [EMBLEM] = { r = 0xFF, g = 0xFF, b = 0x00 }  -- FFFF00
+        palettes = {
+            {
+                name = "Default",
+                [PANTS]  = { r = 0x00, g = 0x00, b = 0xFF }, -- 0000FF
+                [SHIRT]  = { r = 0x56, g = 0x8E, b = 0xFF }, -- 568EFF
+                [GLOVES] = { r = 0x61, g = 0x3E, b = 0x21 }, -- 613E21
+                [SHOES]  = { r = 0x61, g = 0x3E, b = 0x21 }, -- 613E21
+                [HAIR]   = { r = 0x00, g = 0x00, b = 0x00 }, -- 000000
+                [SKIN]   = { r = 0xFE, g = 0xC1, b = 0x79 }, -- FEC179
+                [CAP]    = { r = 0x56, g = 0x8E, b = 0xFF }, -- 568EFF
+                [EMBLEM] = { r = 0xFF, g = 0xFF, b = 0x00 }  -- FFFF00
+            }
         },
         voices = {
             [CHAR_SOUND_ATTACKED] = "foreman_spike_attacked.ogg",
@@ -649,15 +704,18 @@ extraCharacters = {
             metal = smlua_model_util_get_id("pauline_metal_cap_geo"),
             metalWing = smlua_model_util_get_id("pauline_metal_wing_cap_geo")
         },
-        palette = {
-            [PANTS]  = { r = 0xCF, g = 0x42, b = 0x39 }, -- CF4239
-            [SHIRT]  = { r = 0xCF, g = 0x42, b = 0x39 }, -- CF4239
-            [GLOVES] = { r = 0xFF, g = 0xFF, b = 0x00 }, -- FFFF00
-            [SHOES]  = { r = 0xCF, g = 0x42, b = 0x39 }, -- CF4239
-            [HAIR]   = { r = 0x79, g = 0x31, b = 0x27 }, -- 793127
-            [SKIN]   = { r = 0xF8, g = 0xC1, b = 0xAC }, -- F8C1AC
-            [CAP]    = { r = 0xCF, g = 0x42, b = 0x39 }, -- CF4239
-            [EMBLEM] = { r = 0xFF, g = 0xFF, b = 0x00 }  -- FFFF00
+        palettes = {
+            {
+                name = "Default",
+                [PANTS]  = { r = 0xCF, g = 0x42, b = 0x39 }, -- CF4239
+                [SHIRT]  = { r = 0xCF, g = 0x42, b = 0x39 }, -- CF4239
+                [GLOVES] = { r = 0xFF, g = 0xFF, b = 0x00 }, -- FFFF00
+                [SHOES]  = { r = 0xCF, g = 0x42, b = 0x39 }, -- CF4239
+                [HAIR]   = { r = 0x79, g = 0x31, b = 0x27 }, -- 793127
+                [SKIN]   = { r = 0xF8, g = 0xC1, b = 0xAC }, -- F8C1AC
+                [CAP]    = { r = 0xCF, g = 0x42, b = 0x39 }, -- CF4239
+                [EMBLEM] = { r = 0xFF, g = 0xFF, b = 0x00 }  -- FFFF00
+            }
         },
         voices = {
             [CHAR_SOUND_ATTACKED] = "pauline_attacked.ogg",
@@ -802,15 +860,18 @@ extraCharacters = {
             metal = smlua_model_util_get_id("rosalina_metal_cap_geo"),
             metalWing = smlua_model_util_get_id("rosalina_metal_wing_cap_geo")
         },
-        palette = {
-            [PANTS]  = { r = 0x8F, g = 0xEF, b = 0xF6 }, -- 8FEFF6
-            [SHIRT]  = { r = 0x8F, g = 0xEF, b = 0xF6 }, -- 8FEFF6
-            [GLOVES] = { r = 0xFF, g = 0xFF, b = 0xFF }, -- FFFFFF
-            [SHOES]  = { r = 0xFF, g = 0xFF, b = 0x00 }, -- FFFF00
-            [HAIR]   = { r = 0xFC, g = 0xC6, b = 0x9A }, -- FCC69A
-            [SKIN]   = { r = 0xFC, g = 0xE3, b = 0xCD }, -- FCE3CD
-            [CAP]    = { r = 0xB7, g = 0xB7, b = 0xBB }, -- B7B7BB
-            [EMBLEM] = { r = 0xFF, g = 0xFF, b = 0x00 }  -- FFFF00
+        palettes = {
+            {
+                name = "Default",
+                [PANTS]  = { r = 0x8F, g = 0xEF, b = 0xF6 }, -- 8FEFF6
+                [SHIRT]  = { r = 0x8F, g = 0xEF, b = 0xF6 }, -- 8FEFF6
+                [GLOVES] = { r = 0xFF, g = 0xFF, b = 0xFF }, -- FFFFFF
+                [SHOES]  = { r = 0xFF, g = 0xFF, b = 0x00 }, -- FFFF00
+                [HAIR]   = { r = 0xFC, g = 0xC6, b = 0x9A }, -- FCC69A
+                [SKIN]   = { r = 0xFC, g = 0xE3, b = 0xCD }, -- FCE3CD
+                [CAP]    = { r = 0xB7, g = 0xB7, b = 0xBB }, -- B7B7BB
+                [EMBLEM] = { r = 0xFF, g = 0xFF, b = 0x00 }  -- FFFF00
+            }
         },
         voices = {
             [CHAR_SOUND_ATTACKED] = "rosalina_attacked.ogg",
@@ -956,15 +1017,18 @@ extraCharacters = {
             metal = smlua_model_util_get_id("wapeach_metal_cap_geo"),
             metalWing = smlua_model_util_get_id("wapeach_metal_wing_cap_geo")
         },
-        palette = {
-            [PANTS]  = { r = 0x6C, g = 0x3A, b = 0xAC }, -- 6C3AAC
-            [SHIRT]  = { r = 0x6C, g = 0x3A, b = 0xAC }, -- 6C3AAC
-            [GLOVES] = { r = 0x6C, g = 0x3A, b = 0xAC }, -- 6C3AAC
-            [SHOES]  = { r = 0x6C, g = 0x3A, b = 0xAC }, -- 6C3AAC
-            [HAIR]   = { r = 0xFF, g = 0x81, b = 0x45 }, -- FF8145
-            [SKIN]   = { r = 0xBF, g = 0x94, b = 0x68 }, -- BF9468
-            [CAP]    = { r = 0xEF, g = 0xCA, b = 0x11 }, -- EFCA11
-            [EMBLEM] = { r = 0xFF, g = 0x00, b = 0x00 }  -- FF0000
+        palettes = {
+            {
+                name = "Default",
+                [PANTS]  = { r = 0x6C, g = 0x3A, b = 0xAC }, -- 6C3AAC
+                [SHIRT]  = { r = 0x6C, g = 0x3A, b = 0xAC }, -- 6C3AAC
+                [GLOVES] = { r = 0x6C, g = 0x3A, b = 0xAC }, -- 6C3AAC
+                [SHOES]  = { r = 0x6C, g = 0x3A, b = 0xAC }, -- 6C3AAC
+                [HAIR]   = { r = 0xFF, g = 0x81, b = 0x45 }, -- FF8145
+                [SKIN]   = { r = 0xBF, g = 0x94, b = 0x68 }, -- BF9468
+                [CAP]    = { r = 0xEF, g = 0xCA, b = 0x11 }, -- EFCA11
+                [EMBLEM] = { r = 0xFF, g = 0x00, b = 0x00 }  -- FF0000
+            }
         },
         voices = {
             [CHAR_SOUND_ATTACKED] = "wapeach_attacked.ogg",
@@ -1029,15 +1093,18 @@ extraCharacters = {
             metal = smlua_model_util_get_id("dk_metal_cap_geo"),
             metalWing = smlua_model_util_get_id("dk_metal_wing_cap_geo")
         },
-        palette = {
-            [PANTS]  = { r = 0xff, g = 0x00, b = 0x00 }, -- FF0000
-            [SHIRT]  = { r = 0x83, g = 0x1e, b = 0x14 }, -- 831E14
-            [GLOVES] = { r = 0x6C, g = 0x3A, b = 0xAC }, -- 6C3AAC
-            [SHOES]  = { r = 0x6C, g = 0x3A, b = 0xAC }, -- Unused
-            [HAIR]   = { r = 0x83, g = 0x1e, b = 0x14 }, -- 831E14
-            [SKIN]   = { r = 0xfe, g = 0xc1, b = 0x79 }, -- fec179
-            [CAP]    = { r = 0x83, g = 0x1e, b = 0x14 }, -- 831E14
-            [EMBLEM] = { r = 0xFF, g = 0xe9, b = 0x00 }  -- FFE900
+        palettes = {
+            {
+                name = "Default",
+                [PANTS]  = { r = 0xff, g = 0x00, b = 0x00 }, -- FF0000
+                [SHIRT]  = { r = 0x83, g = 0x1e, b = 0x14 }, -- 831E14
+                [GLOVES] = { r = 0x6C, g = 0x3A, b = 0xAC }, -- 6C3AAC
+                [SHOES]  = { r = 0x6C, g = 0x3A, b = 0xAC }, -- Unused
+                [HAIR]   = { r = 0x83, g = 0x1e, b = 0x14 }, -- 831E14
+                [SKIN]   = { r = 0xfe, g = 0xc1, b = 0x79 }, -- fec179
+                [CAP]    = { r = 0x83, g = 0x1e, b = 0x14 }, -- 831E14
+                [EMBLEM] = { r = 0xFF, g = 0xe9, b = 0x00 }  -- FFE900
+            }
         },
         voices = {
             [CHAR_SOUND_ATTACKED] = "dk_attacked.ogg",
@@ -1150,9 +1217,9 @@ extraCharacters = {
             
         },
     },
-    -------------
+    -----------
     -- Sonic --
-    -------------
+    -----------
     {
         name = "Sonic",
         description = "A rebellious teenage hedgehog with a blue of attitude, originating from Christmas Island. How'd he got here is anyone's guess.",
@@ -1169,15 +1236,29 @@ extraCharacters = {
             -- metal = smlua_model_util_get_id("sonic_metal_cap_geo"),
             -- metalWing = smlua_model_util_get_id("sonic_metal_wing_cap_geo")
         },
-        palette = {
-            [PANTS]  = { r = 0xff, g = 0xff, b = 0x00 }, -- FFFF00
-            [SHIRT]  = { r = 0xfe, g = 0xc1, b = 0x79 }, -- FEC179
-            [GLOVES] = { r = 0xff, g = 0xff, b = 0xff }, -- FFFFFF
-            [SHOES]  = { r = 0xff, g = 0x00, b = 0x00 }, -- FF0000
-            [HAIR]   = { r = 0xff, g = 0xff, b = 0x00 }, -- FFFF00
-            [SKIN]   = { r = 0xfe, g = 0xc1, b = 0x79 }, -- FEC179
-            [CAP]    = { r = 0x00, g = 0x00, b = 0xff }, -- 0000FF
-            [EMBLEM] = { r = 0x00, g = 0x00, b = 0xff }, -- 0000FF
+        palettes = {
+            {
+                name = "Default",
+                [PANTS]  = { r = 0xff, g = 0xff, b = 0x00 }, -- FFFF00
+                [SHIRT]  = { r = 0xfe, g = 0xc1, b = 0x79 }, -- FEC179
+                [GLOVES] = { r = 0xff, g = 0xff, b = 0xff }, -- FFFFFF
+                [SHOES]  = { r = 0xff, g = 0x00, b = 0x00 }, -- FF0000
+                [HAIR]   = { r = 0xff, g = 0xff, b = 0x00 }, -- FFFF00
+                [SKIN]   = { r = 0xfe, g = 0xc1, b = 0x79 }, -- FEC179
+                [CAP]    = { r = 0x00, g = 0x00, b = 0xff }, -- 0000FF
+                [EMBLEM] = { r = 0x00, g = 0x00, b = 0xff }, -- 0000FF
+            },
+            {
+                name = "Super Sonic",
+                [PANTS]  = { r = 0xff, g = 0xff, b = 0x00 }, -- FFFF00
+                [SHIRT]  = { r = 0xfe, g = 0xc1, b = 0x79 }, -- FEC179
+                [GLOVES] = { r = 0xff, g = 0xff, b = 0xff }, -- FFFFFF
+                [SHOES]  = { r = 0xff, g = 0x00, b = 0x00 }, -- FF0000
+                [HAIR]   = { r = 0xff, g = 0xff, b = 0x00 }, -- FFFF00
+                [SKIN]   = { r = 0xfe, g = 0xc1, b = 0x79 }, -- FEC179
+                [CAP]    = { r = 0x00, g = 0x00, b = 0xff }, -- 0000FF
+                [EMBLEM] = { r = 0x00, g = 0x00, b = 0xff }, -- 0000FF
+            },
         },
         voices = {
             [CHAR_SOUND_ATTACKED] = "sonic_attacked.ogg",
@@ -1255,14 +1336,15 @@ local function on_character_select_load()
         tablePos = character_add(name, description, credits, color, model, forceChar, lifeIcon, camScale, offset, meter)
         if caps then character_add_caps(model, caps) end
         if voices then character_add_voice(model, voices) end
-        if palette then character_add_palette_preset(model, palette) end
+        if palettes then
+            for i = 1, #palettes do
+                character_add_palette_preset(model, palettes[i], palettes[i].name)
+            end
+        end
+        character_set_category(tablePos, "CoopDX")
         if i ~= 11 and anims then character_add_animations(model, anims, eyes) end
         -- if meter then character_add_health_meter(model, meter) end
     end
-
-    -- Extra Palettes
-    --character_add_palette_preset(model, PALETTE_REDYOSHI, 'Red Yoshi')
-
 
     -- CoopDX Characters Voice Cast
     credit_add(TEXT_VANILLA_CAST..TEXT_VOICE_ACTOR, "Charles Martinet", "Mario")
