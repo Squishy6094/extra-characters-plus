@@ -15,14 +15,13 @@ local flutterActs = {
 
 _G.ACT_FLUTTER = allocate_mario_action(ACT_FLAG_AIR | ACT_FLAG_ALLOW_VERTICAL_WIND_ACTION | ACT_GROUP_AIRBORNE)
 YOSHI_ANIM_FLUTTER = 'yoshi_flutter_jump'
-local YOSHI_SOUND_FLUTTER = audio_sample_load("yoshi_flutter.ogg") -- Load audio sample
 
 ---@param m MarioState
 function act_flutter(m)
     -- End flutter after 1 second
     if m.actionTimer >= 30 or (m.input & INPUT_A_DOWN) == 0 then
         if m.actionTimer < 30 then
-            audio_sample_stop(YOSHI_SOUND_FLUTTER) -- Stop sample after letting go of A
+            play_character_sound(m, CHAR_SOUND_MAX) -- Stop sample after letting go of A
         end
         return set_mario_action(m, ACT_FREEFALL, 0)
     end
@@ -30,9 +29,9 @@ function act_flutter(m)
     local ended = common_air_action_step(m, ACT_JUMP_LAND, CHAR_ANIM_RUNNING_UNUSED, 0) ~= 0 -- Checks if the action ended earlier due to forced actions like bonking or landing
 
     if ended then
-        audio_sample_stop(YOSHI_SOUND_FLUTTER)           -- Stop sample after landing
+        play_character_sound(m, CHAR_SOUND_MAX) -- Stop sample after landing
     elseif m.actionTimer == 0 then
-        audio_sample_play(YOSHI_SOUND_FLUTTER, m.pos, 1) -- Play audio sample
+        play_character_sound(m, YOSHI_SOUND_FLUTTER) -- Play audio sample
     end
 
     smlua_anim_util_set_animation(m.marioObj, YOSHI_ANIM_FLUTTER) -- Sets the animation
