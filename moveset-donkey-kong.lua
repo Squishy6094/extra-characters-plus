@@ -170,6 +170,8 @@ local function act_donkey_kong_roll(m)
         play_sound(SOUND_ACTION_SPIN, m.marioObj.header.gfx.cameraToObject)
     end
 
+    --set_mario_action(m, ACT_DIVE, m.forwardVel * 0x1000) == 0
+    
     local result = perform_ground_step(m)
     if result == GROUND_STEP_LEFT_GROUND then
         --mario_set_forward_vel(m, DONKEY_KONG_ROLL_SPEED)

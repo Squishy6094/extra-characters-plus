@@ -236,3 +236,22 @@ function geo_custom_dk_head_switch(n)
         switch.selectedCase = 0
     end
 end
+
+--[[]
+local sDonkeyKongRollActs = {
+    [ACT_DIVE]        = true,
+}
+]]
+
+--- @param n GraphNode | FnGraphNode
+--- Switches between the spin and main model.
+function geo_dkroll_switch(n)
+    local switch = cast_graph_node(n)
+    local m = geo_get_mario_state()
+
+    if sDonkeyKongRollActs[m.action] then
+        switch.selectedCase = 1
+    else
+        switch.selectedCase = 0
+    end
+end

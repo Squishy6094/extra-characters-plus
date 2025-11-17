@@ -1292,7 +1292,7 @@ local prevTarget
 
 function sonic_homing_hud()
     djui_hud_set_resolution(RESOLUTION_N64)
-    local color = network_player_get_palette_color(gNetworkPlayers[0], EMBLEM)
+    local color = network_player_get_palette_color(gNetworkPlayers[0], CAP)
     djui_hud_set_color(color.r, color.g, color.b, 255)
     local m = gMarioStates[0]
     local e = gCharacterStates[m.playerIndex]
