@@ -1567,7 +1567,7 @@ local function on_character_select_load()
         end
         character_set_category(tablePos, "CoopDX")
         if i ~= 11 and anims then character_add_animations(model, anims, eyes) end
-        if meter then character_add_health_meter(model, meter) end
+        if meter then character_add_health_meter(tablePos, meter) end
     end
 
     -- Super Sonic Palette
