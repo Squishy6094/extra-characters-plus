@@ -5,7 +5,8 @@
 local TEXT_VANILLA_CAST = "CoopDX Characters"
 local TEXT_PACK_NAME = "Extra Characters"
 if not charSelect then
-    djui_popup_create("\\#ffffa0\\Extra Characters requires\nCharacter Select to be enabled.\n\nPlease rehost with it enabled.", 4)
+    djui_popup_create(
+    "\\#ffffa0\\Extra Characters requires\nCharacter Select to be enabled.\n\nPlease rehost with it enabled.", 4)
     return
 end
 
@@ -24,7 +25,8 @@ extraCharacters = {
     --------------
     {
         name = "Toadette",
-        description = "A very rare female toad with a bubbly personality who lives in a world of male toads! She seems to enjoy her hobby as a construction boss! Although for some reason, she seems to hate unions. Wonder why?",
+        description =
+        "A very rare female toad with a bubbly personality who lives in a world of male toads! She seems to enjoy her hobby as a construction boss! Although for some reason, she seems to hate unions. Wonder why?",
         credits = "Coop Team / VA: MelissaMekrose",
         color = { r = 255, g = 70, b = 161 },
         model = smlua_model_util_get_id("toadette_geo"),
@@ -56,7 +58,7 @@ extraCharacters = {
         },
         palettes = {
             {
-                name = "Default",
+                name     = "Default",
                 [PANTS]  = { r = 0xFF, g = 0xFF, b = 0xFF },
                 [SHIRT]  = { r = 0xFF, g = 0x00, b = 0x00 },
                 [GLOVES] = { r = 0xFF, g = 0xFF, b = 0xFF },
@@ -68,7 +70,7 @@ extraCharacters = {
             },
 
             {
-                name = "Drill",
+                name     = "Drill",
                 [PANTS]  = { r = 0xFF, g = 0xFF, b = 0xFF },
                 [SHIRT]  = { r = 0xEE, g = 0x99, b = 0x00 },
                 [GLOVES] = { r = 0xFF, g = 0x98, b = 0xDD },
@@ -80,7 +82,7 @@ extraCharacters = {
             },
 
             {
-                name = "Chanterelle",
+                name     = "Chanterelle",
                 [PANTS]  = { r = 0x73, g = 0x42, b = 0xA5 },
                 [SHIRT]  = { r = 0x73, g = 0x42, b = 0xA5 },
                 [GLOVES] = { r = 0x73, g = 0x42, b = 0xA5 },
@@ -90,9 +92,9 @@ extraCharacters = {
                 [CAP]    = { r = 0xBD, g = 0xBD, b = 0xBD },
                 [EMBLEM] = { r = 0x55, g = 0x55, b = 0x55 }
             },
-            
+
             {
-                name = "Poison",
+                name     = "Poison",
                 [PANTS]  = { r = 0x00, g = 0x00, b = 0x00 },
                 [SHIRT]  = { r = 0x00, g = 0x00, b = 0x00 },
                 [GLOVES] = { r = 0x00, g = 0x00, b = 0x00 },
@@ -132,7 +134,7 @@ extraCharacters = {
             [CHAR_SOUND_SO_LONGA_BOWSER] = "toadette_solonga_bowser.ogg",
             [CHAR_SOUND_SNORING1] = "toadette_snoring1.ogg",
             [CHAR_SOUND_SNORING2] = "toadette_snoring2.ogg",
-            [CHAR_SOUND_SNORING3] = {"toadette_snoring2.ogg", "toadette_snoring1.ogg", "toadette_snoring3.ogg"},
+            [CHAR_SOUND_SNORING3] = { "toadette_snoring2.ogg", "toadette_snoring1.ogg", "toadette_snoring3.ogg" },
             [CHAR_SOUND_TWIRL_BOUNCE] = "toadette_twirl_bounce.ogg",
             [CHAR_SOUND_UH] = "toadette_uh.ogg",
             [CHAR_SOUND_UH2] = "toadette_uh2.ogg",
@@ -143,7 +145,7 @@ extraCharacters = {
             [CHAR_SOUND_YAHOO] = "toadette_yahoo.ogg",
             [CHAR_SOUND_YAWNING] = "toadette_yawning.ogg",
             [CHAR_SOUND_YAHOO_WAHA_YIPPEE] = { "toadette_yahoo.ogg", "toadette_yahoo1.ogg", "toadette_yahoo2.ogg", "toadette_yahoo3.ogg", "toadette_yahoo4.ogg", "toadette_yahoo5.ogg" },
-            [CHAR_SOUND_YAH_WAH_HOO] = { "toadette_yah_wah_hoo1.ogg", "toadette_yah_wah_hoo2.ogg", "toadette_yah_wah_hoo3.ogg"},
+            [CHAR_SOUND_YAH_WAH_HOO] = { "toadette_yah_wah_hoo1.ogg", "toadette_yah_wah_hoo2.ogg", "toadette_yah_wah_hoo3.ogg" },
             [CHAR_SOUND_HELLO] = "toadette_hello.ogg"
         },
         anims = {
@@ -155,9 +157,10 @@ extraCharacters = {
     --------------------
     {
         name = "Peach",
-        description = "The ruler of the Mushroom Kingdom, always ready to help Mario in his adventures and save her kingdom from the evil clutches of King Bowser! .........wait. What?! Why is she here?! How did she escape?! And who's the Peach we saw earlier?! This is confusing!",
+        description =
+        "The ruler of the Mushroom Kingdom, always ready to help Mario in his adventures and save her kingdom from the evil clutches of King Bowser! .........wait. What?! Why is she here?! How did she escape?! And who's the Peach we saw earlier?! This is confusing!",
         credits = "Coop Team / VA: SuperKirbyLover",
-        color = {r = 239, g = 128, b = 177},
+        color = { r = 239, g = 128, b = 177 },
         model = smlua_model_util_get_id("peach_player_geo"),
         forceChar = CT_MARIO,
         lifeIcon = get_texture_info("icon-peach"),
@@ -187,7 +190,7 @@ extraCharacters = {
         },
         palettes = {
             {
-                name = "Default",
+                name     = "Default",
                 [PANTS]  = { r = 0xFF, g = 0x50, b = 0x96 },
                 [SHIRT]  = { r = 0xF8, g = 0xC8, b = 0xBB },
                 [GLOVES] = { r = 0xFF, g = 0xFF, b = 0xFF },
@@ -198,7 +201,7 @@ extraCharacters = {
                 [EMBLEM] = { r = 0x00, g = 0x82, b = 0xFF }
             },
             {
-                name = "Classic",
+                name     = "Classic",
                 [PANTS]  = { r = 0xB5, g = 0x31, b = 0x20 },
                 [SHIRT]  = { r = 0xFF, g = 0xFF, b = 0xFF },
                 [GLOVES] = { r = 0xFF, g = 0xFF, b = 0xFF },
@@ -209,7 +212,7 @@ extraCharacters = {
                 [EMBLEM] = { r = 0xB5, g = 0x31, b = 0x20 }
             },
             {
-                name = "Ice Cream",
+                name     = "Ice Cream",
                 [PANTS]  = { r = 0xA8, g = 0xE0, b = 0xF8 },
                 [SHIRT]  = { r = 0x50, g = 0xD0, b = 0xF8 },
                 [GLOVES] = { r = 0xF8, g = 0xF8, b = 0xF8 },
@@ -220,7 +223,7 @@ extraCharacters = {
                 [EMBLEM] = { r = 0xF8, g = 0xF8, b = 0x00 }
             },
             {
-                name = "Shadow Queen",
+                name     = "Shadow Queen",
                 [PANTS]  = { r = 0x4A, g = 0x38, b = 0x4A },
                 [SHIRT]  = { r = 0x6B, g = 0x55, b = 0x63 },
                 [GLOVES] = { r = 0xAD, g = 0x9E, b = 0xA5 },
@@ -260,7 +263,7 @@ extraCharacters = {
             [CHAR_SOUND_SO_LONGA_BOWSER] = "peach_solonga_bowser.ogg",
             [CHAR_SOUND_SNORING1] = "peach_snoring1.ogg",
             [CHAR_SOUND_SNORING2] = "peach_snoring2.ogg",
-            [CHAR_SOUND_SNORING3] = {"peach_snoring2.ogg", "peach_snoring1.ogg", "peach_snoring3.ogg"},
+            [CHAR_SOUND_SNORING3] = { "peach_snoring2.ogg", "peach_snoring1.ogg", "peach_snoring3.ogg" },
             [CHAR_SOUND_TWIRL_BOUNCE] = "peach_twirl_bounce.ogg",
             [CHAR_SOUND_UH] = "peach_uh.ogg",
             [CHAR_SOUND_UH2] = "peach_uh2.ogg",
@@ -271,7 +274,7 @@ extraCharacters = {
             [CHAR_SOUND_YAHOO] = "peach_yahoo.ogg",
             [CHAR_SOUND_YAWNING] = "peach_yawning.ogg",
             [CHAR_SOUND_YAHOO_WAHA_YIPPEE] = { "peach_yahoo.ogg", "peach_yahoo1.ogg", "peach_yahoo2.ogg", "peach_yahoo3.ogg", "peach_yahoo4.ogg", "peach_yahoo5.ogg" },
-            [CHAR_SOUND_YAH_WAH_HOO] = { "peach_yah_wah_hoo1.ogg", "peach_yah_wah_hoo2.ogg", "peach_yah_wha_hoo3.ogg"},
+            [CHAR_SOUND_YAH_WAH_HOO] = { "peach_yah_wah_hoo1.ogg", "peach_yah_wah_hoo2.ogg", "peach_yah_wha_hoo3.ogg" },
             [CHAR_SOUND_HELLO] = "peach_float.ogg"
         },
         anims = {
@@ -362,9 +365,10 @@ extraCharacters = {
     --------------------
     {
         name = "Daisy",
-        description = "Princess of the Sarasaland who was once rescued by Mario against the evil alien, Tatanga! Boasting with energy, she has joined Mario and friends on occasional friendly events, such as golf, tennis, and parties! Try to stay on her good side, if you know what's best for ya!",
+        description =
+        "Princess of the Sarasaland who was once rescued by Mario against the evil alien, Tatanga! Boasting with energy, she has joined Mario and friends on occasional friendly events, such as golf, tennis, and parties! Try to stay on her good side, if you know what's best for ya!",
         credits = "Coop Team / VA: MorphiGalaxi",
-        color = {r = 255, g = 97, b = 0},
+        color = { r = 255, g = 97, b = 0 },
         model = smlua_model_util_get_id("daisy_geo"),
         forceChar = CT_MARIO,
         lifeIcon = get_texture_info("icon-daisy"),
@@ -394,7 +398,7 @@ extraCharacters = {
         },
         palettes = {
             {
-                name = "Default",
+                name     = "Default",
                 [PANTS]  = { r = 0xFF, g = 0xFF, b = 0xFF }, --FFFFFF
                 [SHIRT]  = { r = 0xEF, g = 0xCA, b = 0x11 }, --EFCA11
                 [GLOVES] = { r = 0xFF, g = 0xFF, b = 0xFF }, --FFFFFF
@@ -405,7 +409,7 @@ extraCharacters = {
                 [EMBLEM] = { r = 0x00, g = 0xFF, b = 0xFF }  --00FFFF
             },
             {
-                name = "Modern",
+                name     = "Modern",
                 [PANTS]  = { r = 0xF1, g = 0x66, b = 0x2F }, --F1662F
                 [SHIRT]  = { r = 0xFF, g = 0xD0, b = 0x1C }, --FFD01C
                 [GLOVES] = { r = 0xFE, g = 0xFF, b = 0xFF }, --FEFFFF
@@ -417,7 +421,7 @@ extraCharacters = {
             },
 
             {
-                name = "Chai",
+                name     = "Chai",
                 [PANTS]  = { r = 0xF7, g = 0xEA, b = 0x6E }, --f7ea6e
                 [SHIRT]  = { r = 0x9B, g = 0xDF, b = 0x7C }, --9bdf7c
                 [GLOVES] = { r = 0x69, g = 0xB2, b = 0x89 }, --69b289
@@ -429,7 +433,7 @@ extraCharacters = {
             },
 
             {
-                name = "LCD",
+                name     = "LCD",
                 [PANTS]  = { r = 0xA8, g = 0xA8, b = 0xA8 }, --A8A8A8
                 [SHIRT]  = { r = 0x50, g = 0x50, b = 0x50 }, --505050
                 [GLOVES] = { r = 0x50, g = 0x50, b = 0x50 }, --505050
@@ -442,11 +446,11 @@ extraCharacters = {
 
         },
         voices = {
-            [CHAR_SOUND_ATTACKED] = {'daisy_attacked_1.ogg','daisy_attacked_2.ogg','daisy_attacked_3.ogg'},
+            [CHAR_SOUND_ATTACKED] = { 'daisy_attacked_1.ogg', 'daisy_attacked_2.ogg', 'daisy_attacked_3.ogg' },
             [CHAR_SOUND_COUGHING1] = 'daisy_coughing1.ogg',
             [CHAR_SOUND_COUGHING2] = 'daisy_coughing2.ogg',
             [CHAR_SOUND_COUGHING3] = 'daisy_coughing3.ogg',
-            [CHAR_SOUND_DOH] = {'daisy_doh_1.ogg', 'daisy_doh_2.ogg'},
+            [CHAR_SOUND_DOH] = { 'daisy_doh_1.ogg', 'daisy_doh_2.ogg' },
             [CHAR_SOUND_DROWNING] = 'daisy_drowning_1.ogg',
             [CHAR_SOUND_DYING] = 'daisy_dying.ogg',
             [CHAR_SOUND_EEUH] = 'daisy_eeuh.ogg',
@@ -470,7 +474,7 @@ extraCharacters = {
             [CHAR_SOUND_SO_LONGA_BOWSER] = 'daisy_so_longa_bowser.ogg',
             [CHAR_SOUND_SNORING1] = 'daisy_snoring1.ogg',
             [CHAR_SOUND_SNORING2] = 'daisy_snoring2.ogg',
-            [CHAR_SOUND_SNORING3] = {'daisy_snoring2.ogg', 'daisy_snoring1.ogg', 'daisy_snoring3.ogg'},
+            [CHAR_SOUND_SNORING3] = { 'daisy_snoring2.ogg', 'daisy_snoring1.ogg', 'daisy_snoring3.ogg' },
             [CHAR_SOUND_TWIRL_BOUNCE] = 'daisy_twirl_bounce.ogg',
             [CHAR_SOUND_UH] = 'daisy_uh.ogg',
             [CHAR_SOUND_UH2] = 'daisy_uh2.ogg',
@@ -480,8 +484,8 @@ extraCharacters = {
             [CHAR_SOUND_WHOA] = 'daisy_whoa.ogg',
             [CHAR_SOUND_YAHOO] = 'daisy_yahoo.ogg',
             [CHAR_SOUND_YAWNING] = 'daisy_yawning.ogg',
-            [CHAR_SOUND_YAHOO_WAHA_YIPPEE] = { 'daisy_yahoo.ogg', 'daisy_yahoo2.ogg', 'daisy_yahoo3.ogg', 'daisy_yahoo4.ogg'},
-            [CHAR_SOUND_YAH_WAH_HOO] = { 'daisy_yah1.ogg', 'daisy_yah2.ogg', 'daisy_yah3.ogg'},
+            [CHAR_SOUND_YAHOO_WAHA_YIPPEE] = { 'daisy_yahoo.ogg', 'daisy_yahoo2.ogg', 'daisy_yahoo3.ogg', 'daisy_yahoo4.ogg' },
+            [CHAR_SOUND_YAH_WAH_HOO] = { 'daisy_yah1.ogg', 'daisy_yah2.ogg', 'daisy_yah3.ogg' },
             [CHAR_SOUND_HELLO] = 'daisy_double_jump.ogg'
         },
         anims = {
@@ -567,13 +571,14 @@ extraCharacters = {
             [CS_ANIM_MENU] = 'cs_daisy'
         }
     },
-    
+
     -----------
     -- Yoshi --
     -----------
     {
         name = "Yoshi",
-        description = "A friendly dinosuar originating from Dinosuar Land where he reunited with Mario! These cute little guys come in different colors! Might suggest to stay back when they're in a very hungry mood...",
+        description =
+        "A friendly dinosuar originating from Dinosuar Land where he reunited with Mario! These cute little guys come in different colors! Might suggest to stay back when they're in a very hungry mood...",
         credits = "Coop Team / VA: FunkyLion 'Yuyake'",
         color = { r = 0, g = 255, b = 0 },
         model = smlua_model_util_get_id("yoshi_player_geo"),
@@ -605,7 +610,7 @@ extraCharacters = {
         },
         palettes = {
             {
-                name = "Default",
+                name     = "Default",
                 [PANTS]  = { r = 0xFF, g = 0x00, b = 0x00 },
                 [SHIRT]  = { r = 0x00, g = 0xFF, b = 0x00 },
                 [GLOVES] = { r = 0xFF, g = 0xFF, b = 0xFF },
@@ -616,7 +621,7 @@ extraCharacters = {
                 [EMBLEM] = { r = 0xFF, g = 0x00, b = 0x00 }
             },
             {
-                name = "Red",
+                name     = "Red",
                 [PANTS]  = { r = 0xff, g = 0x00, b = 0x00 }, -- FFFF00
                 [SHIRT]  = { r = 0xff, g = 0x00, b = 0x00 }, -- FEC179
                 [GLOVES] = { r = 0xff, g = 0xff, b = 0xff }, -- FFFFFF
@@ -627,7 +632,7 @@ extraCharacters = {
                 [EMBLEM] = { r = 0xff, g = 0x00, b = 0x00 }, -- 0000FF
             },
             {
-                name = "Blue",
+                name     = "Blue",
                 [PANTS]  = { r = 0x00, g = 0x40, b = 0x98 }, -- FFFF00
                 [SHIRT]  = { r = 0x00, g = 0x40, b = 0x98 }, -- FEC179
                 [GLOVES] = { r = 0xff, g = 0xff, b = 0xff }, -- FFFFFF
@@ -638,7 +643,7 @@ extraCharacters = {
                 [EMBLEM] = { r = 0xff, g = 0x00, b = 0x00 }, -- 0000FF
             },
             {
-                name = "Yellow",
+                name     = "Yellow",
                 [PANTS]  = { r = 0xff, g = 0xff, b = 0x00 }, -- FFFF00
                 [SHIRT]  = { r = 0xff, g = 0xff, b = 0x00 }, -- FEC179
                 [GLOVES] = { r = 0xff, g = 0xff, b = 0xff }, -- FFFFFF
@@ -678,7 +683,7 @@ extraCharacters = {
             [CHAR_SOUND_SO_LONGA_BOWSER] = "yoshi_solonga_bowser.ogg",
             [CHAR_SOUND_SNORING1] = "yoshi_snoring1.ogg",
             [CHAR_SOUND_SNORING2] = "yoshi_snoring2.ogg",
-            [CHAR_SOUND_SNORING3] = {"yoshi_snoring2.ogg", "yoshi_snoring1.ogg", "yoshi_snoring3.ogg"},
+            [CHAR_SOUND_SNORING3] = { "yoshi_snoring2.ogg", "yoshi_snoring1.ogg", "yoshi_snoring3.ogg" },
             [CHAR_SOUND_TWIRL_BOUNCE] = "yoshi_twirl_bounce.ogg",
             [CHAR_SOUND_UH] = "yoshi_uh.ogg",
             [CHAR_SOUND_UH2] = "yoshi_uh2.ogg",
@@ -689,7 +694,7 @@ extraCharacters = {
             [CHAR_SOUND_YAHOO] = "yoshi_yahoo.ogg",
             [CHAR_SOUND_YAWNING] = "yoshi_yawning.ogg",
             [CHAR_SOUND_YAHOO_WAHA_YIPPEE] = { "yoshi_yahoo.ogg", "yoshi_yahoo1.ogg", "yoshi_yahoo2.ogg", "yoshi_yahoo3.ogg", "yoshi_yahoo4.ogg", "yoshi_yahoo5.ogg" },
-            [CHAR_SOUND_YAH_WAH_HOO] = { "yoshi_yah_wah_hoo1.ogg", "yoshi_yah_wah_hoo2.ogg", "yoshi_yah_wah_hoo3.ogg"},
+            [CHAR_SOUND_YAH_WAH_HOO] = { "yoshi_yah_wah_hoo1.ogg", "yoshi_yah_wah_hoo2.ogg", "yoshi_yah_wah_hoo3.ogg" },
             [CHAR_SOUND_HELLO] = "yoshi_hello.ogg",
             -- Non-vanilla lines
             [YOSHI_SOUND_FLUTTER] = "yoshi_flutter.ogg",
@@ -703,7 +708,8 @@ extraCharacters = {
     -----------
     {
         name = "Birdo",
-        description = "A very feminine dinosuar who has fought against Mario during his dreams! How she came into reality is anyone's guess. It is said she was once a boy before she learned more about herself in life and eventually became a girl!",
+        description =
+        "A very feminine dinosuar who has fought against Mario during his dreams! How she came into reality is anyone's guess. It is said she was once a boy before she learned more about herself in life and eventually became a girl!",
         credits = "Coop Team / VA: LuUvvUCY 'Lucy'",
         color = { r = 254, g = 77, b = 127 },
         model = smlua_model_util_get_id("birdo_geo"),
@@ -735,7 +741,7 @@ extraCharacters = {
         },
         palettes = {
             {
-                name = "Default",
+                name     = "Default",
                 [PANTS]  = { r = 0xFF, g = 0x00, b = 0x00 }, --FF0000
                 [SHIRT]  = { r = 0xFE, g = 0x4D, b = 0x7F }, --FE4D7F
                 [GLOVES] = { r = 0xFF, g = 0xFF, b = 0xFF }, --FFFFFF
@@ -746,7 +752,7 @@ extraCharacters = {
                 [EMBLEM] = { r = 0xFF, g = 0x00, b = 0x00 }  --FF0000
             },
             {
-                name = "Green",
+                name     = "Green",
                 [PANTS]  = { r = 0xFD, g = 0xE4, b = 0x00 }, --FDE400
                 [SHIRT]  = { r = 0xA4, g = 0xE7, b = 0x84 }, --A4E784
                 [GLOVES] = { r = 0xFF, g = 0xFF, b = 0xFF }, --FFFFFF
@@ -757,7 +763,7 @@ extraCharacters = {
                 [EMBLEM] = { r = 0x72, g = 0xFF, b = 0xFF }  --72FFFF
             },
             {
-                name = "Red",
+                name     = "Red",
                 [PANTS]  = { r = 0xFF, g = 0x5E, b = 0xC9 }, --FF0000
                 [SHIRT]  = { r = 0xEB, g = 0x19, b = 0x05 }, --FE4D7F
                 [GLOVES] = { r = 0xFF, g = 0xFF, b = 0xFF }, --FFFFFF
@@ -768,7 +774,7 @@ extraCharacters = {
                 [EMBLEM] = { r = 0x72, g = 0xFF, b = 0xFF }  --FF0000
             },
             {
-                name = "Grey",
+                name     = "Grey",
                 [PANTS]  = { r = 0xCF, g = 0xCF, b = 0xCF }, --CFCFCF
                 [SHIRT]  = { r = 0x64, g = 0x64, b = 0x64 }, --646464
                 [GLOVES] = { r = 0xFF, g = 0xFF, b = 0xFF }, --FFFFFF
@@ -808,7 +814,7 @@ extraCharacters = {
             [CHAR_SOUND_SO_LONGA_BOWSER] = "birdo_solonga_bowser.ogg",
             [CHAR_SOUND_SNORING1] = "birdo_snoring1.ogg",
             [CHAR_SOUND_SNORING2] = "birdo_snoring2.ogg",
-            [CHAR_SOUND_SNORING3] = {"birdo_snoring2.ogg", "birdo_snoring1.ogg", "birdo_snoring3.ogg"},
+            [CHAR_SOUND_SNORING3] = { "birdo_snoring2.ogg", "birdo_snoring1.ogg", "birdo_snoring3.ogg" },
             [CHAR_SOUND_TWIRL_BOUNCE] = "birdo_twirl_bounce.ogg",
             [CHAR_SOUND_UH] = "birdo_uh.ogg",
             [CHAR_SOUND_UH2] = "birdo_uh2.ogg",
@@ -819,7 +825,7 @@ extraCharacters = {
             [CHAR_SOUND_YAHOO] = "birdo_yahoo.ogg",
             [CHAR_SOUND_YAWNING] = "birdo_yawning.ogg",
             [CHAR_SOUND_YAHOO_WAHA_YIPPEE] = { "birdo_yahoo.ogg", "birdo_yahoo1.ogg", "birdo_yahoo2.ogg", "birdo_yahoo3.ogg", "birdo_yahoo4.ogg", "birdo_yahoo5.ogg" },
-            [CHAR_SOUND_YAH_WAH_HOO] = { "birdo_yah_wah_hoo1.ogg", "birdo_yah_wah_hoo2.ogg", "birdo_yah_wah_hoo3.ogg"},
+            [CHAR_SOUND_YAH_WAH_HOO] = { "birdo_yah_wah_hoo1.ogg", "birdo_yah_wah_hoo2.ogg", "birdo_yah_wah_hoo3.ogg" },
             [CHAR_SOUND_HELLO] = "birdo_hello.ogg"
         },
         anims = {
@@ -827,18 +833,19 @@ extraCharacters = {
         }
     },
 
---------------------------------
--- Extra Characters - Wave II --
---------------------------------
+    --------------------------------
+    -- Extra Characters - Wave II --
+    --------------------------------
 
     -----------
     -- Spike --
     -----------
     {
         name = "Spike",
-        description = "Owner of the Wrecking Crew company and former boss of the Mario Brothers before they moved to the plumbing business! He's had a vendetta against the bros since! Quite versitile with his hammer!",
+        description =
+        "Owner of the Wrecking Crew company and former boss of the Mario Brothers before they moved to the plumbing business! He's had a vendetta against the bros since! Quite versitile with his hammer!",
         credits = "Coop Team / VA: VinnyVinesauce",
-        color = {r = 88, g = 142, b = 255},
+        color = { r = 88, g = 142, b = 255 },
         model = smlua_model_util_get_id("foreman_spike_geo"),
         forceChar = CT_MARIO,
         lifeIcon = get_texture_info("icon-spike"),
@@ -868,7 +875,7 @@ extraCharacters = {
         },
         palettes = {
             {
-                name = "Default",
+                name     = "Default",
                 [PANTS]  = { r = 0x00, g = 0x00, b = 0xFF }, -- 0000FF
                 [SHIRT]  = { r = 0x56, g = 0x8E, b = 0xFF }, -- 568EFF
                 [GLOVES] = { r = 0x61, g = 0x3E, b = 0x21 }, -- 613E21
@@ -879,7 +886,7 @@ extraCharacters = {
                 [EMBLEM] = { r = 0xFF, g = 0xFF, b = 0x00 }  -- FFFF00
             },
             {
-                name = "Classic",
+                name     = "Classic",
                 [PANTS]  = { r = 0xc3, g = 0x9e, b = 0x4e }, -- 0000FF
                 [SHIRT]  = { r = 0xf0, g = 0xf1, b = 0xdd }, -- 568EFF
                 [GLOVES] = { r = 0xff, g = 0xff, b = 0xff }, -- 613E21
@@ -919,7 +926,7 @@ extraCharacters = {
             [CHAR_SOUND_SO_LONGA_BOWSER] = "foreman_spike_solonga_bowser.ogg",
             [CHAR_SOUND_SNORING1] = "foreman_spike_snoring1.ogg",
             [CHAR_SOUND_SNORING2] = "foreman_spike_snoring2.ogg",
-            [CHAR_SOUND_SNORING3] = {"foreman_spike_snoring2.ogg", "foreman_spike_snoring1.ogg", "foreman_spike_snoring3.ogg"},
+            [CHAR_SOUND_SNORING3] = { "foreman_spike_snoring2.ogg", "foreman_spike_snoring1.ogg", "foreman_spike_snoring3.ogg" },
             [CHAR_SOUND_TWIRL_BOUNCE] = "foreman_spike_twirl_bounce.ogg",
             [CHAR_SOUND_UH] = "foreman_spike_uh.ogg",
             [CHAR_SOUND_UH2] = "foreman_spike_uh2.ogg",
@@ -930,7 +937,7 @@ extraCharacters = {
             [CHAR_SOUND_YAHOO] = "foreman_spike_yahoo.ogg",
             [CHAR_SOUND_YAWNING] = "foreman_spike_yawning.ogg",
             [CHAR_SOUND_YAHOO_WAHA_YIPPEE] = { "foreman_spike_yahoo.ogg", "foreman_spike_yahoo1.ogg", "foreman_spike_yahoo2.ogg", "foreman_spike_yahoo3.ogg", "foreman_spike_yahoo4.ogg", "foreman_spike_yahoo5.ogg" },
-            [CHAR_SOUND_YAH_WAH_HOO] = { "foreman_spike_yah_wah_hoo1.ogg", "foreman_spike_yah_wah_hoo2.ogg", "foreman_spike_yah_wah_hoo3.ogg"},
+            [CHAR_SOUND_YAH_WAH_HOO] = { "foreman_spike_yah_wah_hoo1.ogg", "foreman_spike_yah_wah_hoo2.ogg", "foreman_spike_yah_wah_hoo3.ogg" },
             [CHAR_SOUND_HELLO] = "foreman_spike_hello.ogg"
         },
         anims = {
@@ -942,9 +949,10 @@ extraCharacters = {
     -------------
     {
         name = "Pauline",
-        description = "Mayor of New Donk City who was originally saved by Mario in his days as a carpenter against the big ape, Donkey Kong!",
+        description =
+        "Mayor of New Donk City who was originally saved by Mario in his days as a carpenter against the big ape, Donkey Kong!",
         credits = "Coop Team / VA: BeckyVO",
-        color = {r = 207, g = 66, b = 57},
+        color = { r = 207, g = 66, b = 57 },
         model = smlua_model_util_get_id("pauline_geo"),
         forceChar = CT_MARIO,
         lifeIcon = get_texture_info("icon-pauline"),
@@ -974,7 +982,7 @@ extraCharacters = {
         },
         palettes = {
             {
-                name = "Default",
+                name     = "Default",
                 [PANTS]  = { r = 0xCF, g = 0x42, b = 0x39 }, -- CF4239
                 [SHIRT]  = { r = 0xCF, g = 0x42, b = 0x39 }, -- CF4239
                 [GLOVES] = { r = 0xFF, g = 0xFF, b = 0x00 }, -- FFFF00
@@ -985,7 +993,7 @@ extraCharacters = {
                 [EMBLEM] = { r = 0xFF, g = 0xFF, b = 0x00 }  -- FFFF00
             },
             {
-                name = "Classic",
+                name     = "Classic",
                 [PANTS]  = { r = 0xff, g = 0x9f, b = 0xd5 }, -- CF4239
                 [SHIRT]  = { r = 0xff, g = 0x9f, b = 0xd5 }, -- CF4239
                 [GLOVES] = { r = 0xff, g = 0x9f, b = 0xd5 }, -- FFFF00
@@ -995,8 +1003,8 @@ extraCharacters = {
                 [CAP]    = { r = 0xff, g = 0x9f, b = 0xd5 }, -- CF4239
                 [EMBLEM] = { r = 0xff, g = 0xff, b = 0xff }  -- FFFF00
             },
-                        {
-                name = "Odd Rock",
+            {
+                name     = "Odd Rock",
                 [PANTS]  = { r = 0x72, g = 0x34, b = 0xF5 }, -- 7234F5
                 [SHIRT]  = { r = 0x72, g = 0x34, b = 0xF5 }, -- 7234F5
                 [GLOVES] = { r = 0x72, g = 0x34, b = 0xF5 }, -- 7234F5
@@ -1006,8 +1014,8 @@ extraCharacters = {
                 [CAP]    = { r = 0x72, g = 0x34, b = 0xF5 }, -- 7234F5
                 [EMBLEM] = { r = 0x72, g = 0xff, b = 0xff }  -- 72FFFF
             },
-                        {
-                name = "Family",
+            {
+                name     = "Family",
                 [PANTS]  = { r = 0xD8, g = 0xB5, b = 0x1D }, -- D8B51D
                 [SHIRT]  = { r = 0x9D, g = 0x21, b = 0x21 }, -- 9D2121
                 [GLOVES] = { r = 0x72, g = 0x34, b = 0xF5 }, -- 7234F5
@@ -1047,7 +1055,7 @@ extraCharacters = {
             [CHAR_SOUND_SO_LONGA_BOWSER] = "pauline_solonga_bowser.ogg",
             [CHAR_SOUND_SNORING1] = "pauline_snoring1.ogg",
             [CHAR_SOUND_SNORING2] = "pauline_snoring2.ogg",
-            [CHAR_SOUND_SNORING3] = {"pauline_snoring2.ogg", "pauline_snoring1.ogg", "pauline_snoring3.ogg"},
+            [CHAR_SOUND_SNORING3] = { "pauline_snoring2.ogg", "pauline_snoring1.ogg", "pauline_snoring3.ogg" },
             [CHAR_SOUND_TWIRL_BOUNCE] = "pauline_twirl_bounce.ogg",
             [CHAR_SOUND_UH] = "pauline_uh.ogg",
             [CHAR_SOUND_UH2] = "pauline_uh2.ogg",
@@ -1058,7 +1066,7 @@ extraCharacters = {
             [CHAR_SOUND_YAHOO] = "pauline_yahoo.ogg",
             [CHAR_SOUND_YAWNING] = "pauline_yawning.ogg",
             [CHAR_SOUND_YAHOO_WAHA_YIPPEE] = { "pauline_yahoo.ogg", "pauline_yahoo1.ogg", "pauline_yahoo2.ogg", "pauline_yahoo3.ogg", "pauline_yahoo4.ogg", "pauline_yahoo5.ogg" },
-            [CHAR_SOUND_YAH_WAH_HOO] = { "pauline_yah_wah_hoo1.ogg", "pauline_yah_wah_hoo2.ogg", "pauline_yah_wah_hoo3.ogg"},
+            [CHAR_SOUND_YAH_WAH_HOO] = { "pauline_yah_wah_hoo1.ogg", "pauline_yah_wah_hoo2.ogg", "pauline_yah_wah_hoo3.ogg" },
             [CHAR_SOUND_HELLO] = "pauline_hello.ogg"
         },
         anims = {
@@ -1141,16 +1149,20 @@ extraCharacters = {
             [CHAR_ANIM_HOLDING_BOWSER] = 'princess_holding_bowser',
             [CHAR_ANIM_GRAB_BOWSER] = 'princess_grab_bowser',
             [CS_ANIM_MENU] = "cs_pauline",
-        }
+        },
+        eyes = {
+            [CS_ANIM_MENU] = MARIO_EYES_LOOK_LEFT,
+        },
     },
     --------------
     -- Rosalina --
     --------------
     {
         name = "Rosalina",
-        description = "Protector of the cosmos and mother to billions of Lumas. She was once a little girl who lost her own mother after traveling the cosmos to help a little Luma find their own mother. She has taken her role as their mother since.",
+        description =
+        "Protector of the cosmos and mother to billions of Lumas. She was once a little girl who lost her own mother after traveling the cosmos to help a little Luma find their own mother. She has taken her role as their mother since.",
         credits = "Coop Team / VA: GauntletQueen",
-        color = {r = 143, g = 239, b = 246},
+        color = { r = 143, g = 239, b = 246 },
         model = smlua_model_util_get_id("rosalina_geo"),
         forceChar = CT_MARIO,
         lifeIcon = get_texture_info("icon-rosalina"),
@@ -1180,7 +1192,7 @@ extraCharacters = {
         },
         palettes = {
             {
-                name = "Default",
+                name     = "Default",
                 [PANTS]  = { r = 0x8F, g = 0xEF, b = 0xF6 }, -- 8FEFF6
                 [SHIRT]  = { r = 0x8F, g = 0xEF, b = 0xF6 }, -- 8FEFF6
                 [GLOVES] = { r = 0xFF, g = 0xFF, b = 0xFF }, -- FFFFFF
@@ -1191,7 +1203,7 @@ extraCharacters = {
                 [EMBLEM] = { r = 0xFF, g = 0xFF, b = 0x00 }  -- FFFF00
             },
             {
-                name = "Super Bell",
+                name     = "Super Bell",
                 [PANTS]  = { r = 0x27, g = 0x2F, b = 0x40 }, -- 272F40
                 [SHIRT]  = { r = 0x27, g = 0x2F, b = 0x40 }, -- 272F40
                 [GLOVES] = { r = 0xFF, g = 0xF9, b = 0xE9 }, -- FFF9E9
@@ -1202,7 +1214,7 @@ extraCharacters = {
                 [EMBLEM] = { r = 0xFF, g = 0xF9, b = 0xE9 }  -- FFF9E9
             },
             {
-                name = "Witch",
+                name     = "Witch",
                 [PANTS]  = { r = 0x41, g = 0x15, b = 0x45 }, -- 411545
                 [SHIRT]  = { r = 0x41, g = 0x15, b = 0x45 }, -- 272F40
                 [GLOVES] = { r = 0x7D, g = 0x36, b = 0x92 }, -- 7D3692
@@ -1242,7 +1254,7 @@ extraCharacters = {
             [CHAR_SOUND_SO_LONGA_BOWSER] = "rosalina_solonga_bowser.ogg",
             [CHAR_SOUND_SNORING1] = "rosalina_snoring1.ogg",
             [CHAR_SOUND_SNORING2] = "rosalina_snoring2.ogg",
-            [CHAR_SOUND_SNORING3] = {"rosalina_snoring2.ogg", "rosalina_snoring1.ogg", "rosalina_snoring3.ogg"},
+            [CHAR_SOUND_SNORING3] = { "rosalina_snoring2.ogg", "rosalina_snoring1.ogg", "rosalina_snoring3.ogg" },
             [CHAR_SOUND_TWIRL_BOUNCE] = "rosalina_twirl_bounce.ogg",
             [CHAR_SOUND_UH] = "rosalina_uh.ogg",
             [CHAR_SOUND_UH2] = "rosalina_uh2.ogg",
@@ -1253,8 +1265,8 @@ extraCharacters = {
             [CHAR_SOUND_YAHOO] = "rosalina_yahoo.ogg",
             [CHAR_SOUND_YAWNING] = "rosalina_yawning.ogg",
             [CHAR_SOUND_YAHOO_WAHA_YIPPEE] = { "rosalina_yahoo.ogg", "rosalina_yahoo1.ogg", "rosalina_yahoo2.ogg", "rosalina_yahoo3.ogg", "rosalina_yahoo4.ogg", "rosalina_yahoo5.ogg" },
-            [CHAR_SOUND_YAH_WAH_HOO] = { "rosalina_yah_wah_hoo1.ogg", "rosalina_yah_wah_hoo2.ogg", "rosalina_yah_wah_hoo3.ogg"},
-            [CHAR_SOUND_HELLO] = {"rosalina_hello.ogg", "rosalina_hello1.ogg", "rosalina_hello2.ogg", "rosalina_hello3.ogg", "rosalina_hello4.ogg"}
+            [CHAR_SOUND_YAH_WAH_HOO] = { "rosalina_yah_wah_hoo1.ogg", "rosalina_yah_wah_hoo2.ogg", "rosalina_yah_wah_hoo3.ogg" },
+            [CHAR_SOUND_HELLO] = { "rosalina_hello.ogg", "rosalina_hello1.ogg", "rosalina_hello2.ogg", "rosalina_hello3.ogg", "rosalina_hello4.ogg" }
         },
         anims = {
             [CHAR_ANIM_RUNNING] = 'rosalina_running',
@@ -1350,9 +1362,10 @@ extraCharacters = {
     -------------
     {
         name = "WaPeach",
-        description = "Who is this?! A Princess Peach imposter?! A very angsty girl who holds a very large axe for neferious purposes! How did she get here?! And why?",
+        description =
+        "Who is this?! A Princess Peach imposter?! A very angsty girl who holds a very large axe for neferious purposes! How did she get here?! And why?",
         credits = "Coop Team / VA: SlashOLantern",
-        color = {r = 255, g = 129, b = 69},
+        color = { r = 255, g = 129, b = 69 },
         model = smlua_model_util_get_id("wapeach_geo"),
         forceChar = CT_MARIO,
         lifeIcon = get_texture_info("icon-wapeach"),
@@ -1382,7 +1395,7 @@ extraCharacters = {
         },
         palettes = {
             {
-                name = "Default",
+                name     = "Default",
                 [PANTS]  = { r = 0x6C, g = 0x3A, b = 0xAC }, -- 6C3AAC
                 [SHIRT]  = { r = 0x6C, g = 0x3A, b = 0xAC }, -- 6C3AAC
                 [GLOVES] = { r = 0x6C, g = 0x3A, b = 0xAC }, -- 6C3AAC
@@ -1392,8 +1405,8 @@ extraCharacters = {
                 [CAP]    = { r = 0xEF, g = 0xCA, b = 0x11 }, -- EFCA11
                 [EMBLEM] = { r = 0xFF, g = 0x00, b = 0x00 }  -- FF0000
             },
-                        {
-                name = "Classic",
+            {
+                name     = "Classic",
                 [PANTS]  = { r = 0x15, g = 0x15, b = 0x10 }, -- 151010
                 [SHIRT]  = { r = 0x15, g = 0x15, b = 0x10 }, -- 151010
                 [GLOVES] = { r = 0x15, g = 0x15, b = 0x10 }, -- 151010
@@ -1403,8 +1416,8 @@ extraCharacters = {
                 [CAP]    = { r = 0xFF, g = 0xC8, b = 0x36 }, -- FFC836
                 [EMBLEM] = { r = 0xFF, g = 0x25, b = 0x8C }  -- FF258C
             },
-                        {
-                name = "Scene",
+            {
+                name     = "Scene",
                 [PANTS]  = { r = 0xFF, g = 0x00, b = 0x9E }, -- FF009E
                 [SHIRT]  = { r = 0xFF, g = 0x00, b = 0x77 }, -- FF0077
                 [GLOVES] = { r = 0xFF, g = 0x00, b = 0x5D }, -- FF005D
@@ -1444,7 +1457,7 @@ extraCharacters = {
             [CHAR_SOUND_SO_LONGA_BOWSER] = "wapeach_solonga_bowser.ogg",
             [CHAR_SOUND_SNORING1] = "wapeach_snoring1.ogg",
             [CHAR_SOUND_SNORING2] = "wapeach_snoring2.ogg",
-            [CHAR_SOUND_SNORING3] = {"wapeach_snoring2.ogg", "wapeach_snoring1.ogg", "wapeach_snoring3.ogg"},
+            [CHAR_SOUND_SNORING3] = { "wapeach_snoring2.ogg", "wapeach_snoring1.ogg", "wapeach_snoring3.ogg" },
             [CHAR_SOUND_TWIRL_BOUNCE] = "wapeach_twirl_bounce.ogg",
             [CHAR_SOUND_UH] = "wapeach_uh.ogg",
             [CHAR_SOUND_UH2] = "wapeach_uh2.ogg",
@@ -1455,19 +1468,25 @@ extraCharacters = {
             [CHAR_SOUND_YAHOO] = "wapeach_yahoo.ogg",
             [CHAR_SOUND_YAWNING] = "wapeach_yawning.ogg",
             [CHAR_SOUND_YAHOO_WAHA_YIPPEE] = { "wapeach_yahoo.ogg", "wapeach_yahoo1.ogg", "wapeach_yahoo2.ogg", "wapeach_yahoo3.ogg", "wapeach_yahoo4.ogg", "wapeach_yahoo5.ogg" },
-            [CHAR_SOUND_YAH_WAH_HOO] = { "wapeach_yah_wah_hoo1.ogg", "wapeach_yah_wah_hoo2.ogg", "wapeach_yah_wah_hoo3.ogg"},
+            [CHAR_SOUND_YAH_WAH_HOO] = { "wapeach_yah_wah_hoo1.ogg", "wapeach_yah_wah_hoo2.ogg", "wapeach_yah_wah_hoo3.ogg" },
             --[CHAR_SOUND_HELLO] = "wapeach_hello.ogg"
         },
+        anims = {
+            [CS_ANIM_MENU] = "cs_wapeach",
+        },
+        eyes = {
+            [CS_ANIM_MENU] = MARIO_EYES_LOOK_LEFT },
     },
     -----------------
     -- Donkey Kong --
     -----------------
     {
         name = "Donkey Kong",
-        description = "King of the Apes! Son of the original Donkey Kong who battled Mario in the arcades. No matter which generation, the beef continues!",
+        description =
+        "King of the Apes! Son of the original Donkey Kong who battled Mario in the arcades. No matter which generation, the beef continues!",
         credits = "Coop Team / VA: Tom Schalk",
-        color = {r = 131, g = 30, b = 20},
-        model = smlua_model_util_get_id("dk_geo")--[[smlua_model_util_get_id("dk_geo")]],
+        color = { r = 131, g = 30, b = 20 },
+        model = smlua_model_util_get_id("dk_geo") --[[smlua_model_util_get_id("dk_geo")]],
         forceChar = CT_MARIO,
         lifeIcon = get_texture_info("icon-dk"),
         camScale = 1.4,
@@ -1496,7 +1515,7 @@ extraCharacters = {
         },
         palettes = {
             {
-                name = "Default",
+                name     = "Default",
                 [PANTS]  = { r = 0xff, g = 0x00, b = 0x00 }, -- FF0000
                 [SHIRT]  = { r = 0x83, g = 0x1e, b = 0x14 }, -- 831E14
                 [GLOVES] = { r = 0x6C, g = 0x3A, b = 0xAC }, -- 6C3AAC
@@ -1536,7 +1555,7 @@ extraCharacters = {
             [CHAR_SOUND_SO_LONGA_BOWSER] = "dk_solonga_bowser.ogg",
             [CHAR_SOUND_SNORING1] = "dk_snoring1.ogg",
             [CHAR_SOUND_SNORING2] = "dk_snoring2.ogg",
-            [CHAR_SOUND_SNORING3] = {"dk_snoring2.ogg", "dk_snoring1.ogg", "dk_snoring3.ogg"},
+            [CHAR_SOUND_SNORING3] = { "dk_snoring2.ogg", "dk_snoring1.ogg", "dk_snoring3.ogg" },
             [CHAR_SOUND_TWIRL_BOUNCE] = "dk_twirl_bounce.ogg",
             [CHAR_SOUND_UH] = "dk_uh.ogg",
             [CHAR_SOUND_UH2] = "dk_uh2.ogg",
@@ -1547,7 +1566,7 @@ extraCharacters = {
             [CHAR_SOUND_YAHOO] = "dk_yahoo.ogg",
             [CHAR_SOUND_YAWNING] = "dk_yawning.ogg",
             [CHAR_SOUND_YAHOO_WAHA_YIPPEE] = { "dk_yahoo.ogg", "dk_yahoo1.ogg", "dk_yahoo2.ogg", "dk_yahoo3.ogg", "dk_yahoo4.ogg", "dk_yahoo5.ogg" },
-            [CHAR_SOUND_YAH_WAH_HOO] = { "dk_yah_wah_hoo1.ogg", "dk_yah_wah_hoo2.ogg", "dk_yah_wah_hoo3.ogg"},
+            [CHAR_SOUND_YAH_WAH_HOO] = { "dk_yah_wah_hoo1.ogg", "dk_yah_wah_hoo2.ogg", "dk_yah_wah_hoo3.ogg" },
             --[CHAR_SOUND_HELLO] = "dk_hello.ogg"
         },
         anims = {
@@ -1631,9 +1650,10 @@ extraCharacters = {
     -----------
     {
         name = "Sonic",
-        description = "A rebellious teenage hedgehog with a blue of attitude, originating from Christmas Island. How'd he got here is anyone's guess.",
+        description =
+        "A rebellious teenage hedgehog with a blue of attitude, originating from Christmas Island. How'd he got here is anyone's guess.",
         credits = "Coop Team / VA: ReeseiMental",
-        color = {r = 0, g = 0, b = 255},
+        color = { r = 0, g = 0, b = 255 },
         model = smlua_model_util_get_id("segasonic_geo"),
         forceChar = CT_MARIO,
         lifeIcon = get_texture_info("icon-segasonic"),
@@ -1663,7 +1683,7 @@ extraCharacters = {
         },
         palettes = {
             {
-                name = "Default",
+                name     = "Default",
                 [PANTS]  = { r = 0x00, g = 0x00, b = 0xff }, -- FFFF00
                 [SHIRT]  = { r = 0xfe, g = 0xc1, b = 0x79 }, -- FEC179
                 [GLOVES] = { r = 0xff, g = 0xff, b = 0xff }, -- FFFFFF
@@ -1674,7 +1694,7 @@ extraCharacters = {
                 [EMBLEM] = { r = 0x00, g = 0x00, b = 0xff }, -- 0000FF
             },
             {
-                name = "Super Sonic",
+                name     = "Super Sonic",
                 [PANTS]  = { r = 0xff, g = 0xff, b = 0x00 }, -- FFFF00
                 [SHIRT]  = { r = 0xfe, g = 0xc1, b = 0x79 }, -- FEC179
                 [GLOVES] = { r = 0xff, g = 0xff, b = 0xff }, -- FFFFFF
@@ -1714,7 +1734,7 @@ extraCharacters = {
             [CHAR_SOUND_SO_LONGA_BOWSER] = "sonic_solonga_bowser.ogg",
             [CHAR_SOUND_SNORING1] = "sonic_snoring1.ogg",
             [CHAR_SOUND_SNORING2] = "sonic_snoring2.ogg",
-            [CHAR_SOUND_SNORING3] = {"sonic_snoring2.ogg", "sonic_snoring1.ogg", "sonic_snoring3.ogg"},
+            [CHAR_SOUND_SNORING3] = { "sonic_snoring2.ogg", "sonic_snoring1.ogg", "sonic_snoring3.ogg" },
             [CHAR_SOUND_TWIRL_BOUNCE] = "sonic_twirl_bounce.ogg",
             [CHAR_SOUND_UH] = "sonic_uh.ogg",
             [CHAR_SOUND_UH2] = "sonic_uh2.ogg",
@@ -1725,7 +1745,7 @@ extraCharacters = {
             [CHAR_SOUND_YAHOO] = "sonic_yahoo.ogg",
             [CHAR_SOUND_YAWNING] = "sonic_yawning.ogg",
             [CHAR_SOUND_YAHOO_WAHA_YIPPEE] = { "sonic_yahoo.ogg", "sonic_yahoo1.ogg", "sonic_yahoo2.ogg", "sonic_yahoo3.ogg", "sonic_yahoo4.ogg", "sonic_yahoo5.ogg" },
-            [CHAR_SOUND_YAH_WAH_HOO] = { "sonic_yah_wah_hoo1.ogg", "sonic_yah_wah_hoo2.ogg", "sonic_yah_wah_hoo3.ogg"},
+            [CHAR_SOUND_YAH_WAH_HOO] = { "sonic_yah_wah_hoo1.ogg", "sonic_yah_wah_hoo2.ogg", "sonic_yah_wah_hoo3.ogg" },
             --[CHAR_SOUND_HELLO] = "sonic_hello.ogg"
         },
         anims = {},
@@ -1768,7 +1788,7 @@ PALLETE_SUPERSONIC = {
 local TEXT_VOICE_ACTOR = " (Voice Actors)"
 local TEXT_MOVESET     = " (Movesets)"
 
-local CSloaded = false
+local CSloaded         = false
 local function on_character_select_load()
     for i, char in pairs(extraCharacters) do
         local _ENV = setmetatable(char, { __index = _G })
@@ -1789,38 +1809,38 @@ local function on_character_select_load()
     --character_add_palette_preset(E_MODEL_SUPERSONIC, PALLETE_SUPERSONIC, "Default")
 
     -- CoopDX Characters Voice Cast
-    credit_add(TEXT_VANILLA_CAST..TEXT_VOICE_ACTOR, "Charles Martinet", "Mario")
-    credit_add(TEXT_VANILLA_CAST..TEXT_VOICE_ACTOR, "AndratVA", "Luigi")
-    credit_add(TEXT_VANILLA_CAST..TEXT_VOICE_ACTOR, "Ninten_King", "Toad")
-    credit_add(TEXT_VANILLA_CAST..TEXT_VOICE_ACTOR, "AndratVA", "Waluigi")
-    credit_add(TEXT_VANILLA_CAST..TEXT_VOICE_ACTOR, "ZephyrDark", "Wario")
+    credit_add(TEXT_VANILLA_CAST .. TEXT_VOICE_ACTOR, "Charles Martinet", "Mario")
+    credit_add(TEXT_VANILLA_CAST .. TEXT_VOICE_ACTOR, "AndratVA", "Luigi")
+    credit_add(TEXT_VANILLA_CAST .. TEXT_VOICE_ACTOR, "Ninten_King", "Toad")
+    credit_add(TEXT_VANILLA_CAST .. TEXT_VOICE_ACTOR, "AndratVA", "Waluigi")
+    credit_add(TEXT_VANILLA_CAST .. TEXT_VOICE_ACTOR, "ZephyrDark", "Wario")
 
     -- Ultra Bros Team
-    credit_add(TEXT_PACK_NAME, "FunkyLion",         "Lead Dev")
-    credit_add(TEXT_PACK_NAME, "Melzinoff",         "Models / Animation / Moveset")
-    credit_add(TEXT_PACK_NAME, "Sharen",            "Animation")
-    credit_add(TEXT_PACK_NAME, "FluffaMario",       "Models")
-    credit_add(TEXT_PACK_NAME, "EmilyEmmi",         "Moveset")
-    credit_add(TEXT_PACK_NAME, "Wibblus",           "Moveset")
-    credit_add(TEXT_PACK_NAME, "steven3004",        "Moveset")
-    credit_add(TEXT_PACK_NAME, "Squishy6094",       "CS Code / Optimization")
-    credit_add(TEXT_PACK_NAME, "xLuigiGamerx",      "Moveset / Optimization")
+    credit_add(TEXT_PACK_NAME, "FunkyLion", "Lead Dev")
+    credit_add(TEXT_PACK_NAME, "Melzinoff", "Models / Animation / Moveset")
+    credit_add(TEXT_PACK_NAME, "Sharen", "Animation")
+    credit_add(TEXT_PACK_NAME, "FluffaMario", "Models")
+    credit_add(TEXT_PACK_NAME, "EmilyEmmi", "Moveset")
+    credit_add(TEXT_PACK_NAME, "Wibblus", "Moveset")
+    credit_add(TEXT_PACK_NAME, "steven3004", "Moveset")
+    credit_add(TEXT_PACK_NAME, "Squishy6094", "CS Code / Optimization")
+    credit_add(TEXT_PACK_NAME, "xLuigiGamerx", "Moveset / Optimization")
     credit_add(TEXT_PACK_NAME, 'Strawberii "Oreo"', "Render Icons")
-    credit_add(TEXT_PACK_NAME, "Chars_64",          "Render Icons")
-    credit_add(TEXT_PACK_NAME, "WaterVapor",        "Render Icons")
+    credit_add(TEXT_PACK_NAME, "Chars_64", "Render Icons")
+    credit_add(TEXT_PACK_NAME, "WaterVapor", "Render Icons")
 
     -- Extra Characters Voice Cast
-    credit_add(TEXT_PACK_NAME..TEXT_VOICE_ACTOR, "MelissaMekrose", "Toadette")
-    credit_add(TEXT_PACK_NAME..TEXT_VOICE_ACTOR, "SuperKirbyLover", "Peach")
-    credit_add(TEXT_PACK_NAME..TEXT_VOICE_ACTOR, "MorphiGalaxi", "Daisy")
-    credit_add(TEXT_PACK_NAME..TEXT_VOICE_ACTOR, "FunkyLion", "Yoshi")
-    credit_add(TEXT_PACK_NAME..TEXT_VOICE_ACTOR, "LuUvvUCY", "Birdo")
-    credit_add(TEXT_PACK_NAME..TEXT_VOICE_ACTOR, "VinnyVinesauce", "Spike")
-    credit_add(TEXT_PACK_NAME..TEXT_VOICE_ACTOR, "BeckyVO", "Pauline")
-    credit_add(TEXT_PACK_NAME..TEXT_VOICE_ACTOR, "GauntletQueen", "Rosalina")
-    credit_add(TEXT_PACK_NAME..TEXT_VOICE_ACTOR, "SlashOLantern", "WaPeach")
-    credit_add(TEXT_PACK_NAME..TEXT_VOICE_ACTOR, "TomSchalk", "Donkey Kong")
-    credit_add(TEXT_PACK_NAME..TEXT_VOICE_ACTOR, "ReeseiMental", "Sonic")
+    credit_add(TEXT_PACK_NAME .. TEXT_VOICE_ACTOR, "MelissaMekrose", "Toadette")
+    credit_add(TEXT_PACK_NAME .. TEXT_VOICE_ACTOR, "SuperKirbyLover", "Peach")
+    credit_add(TEXT_PACK_NAME .. TEXT_VOICE_ACTOR, "MorphiGalaxi", "Daisy")
+    credit_add(TEXT_PACK_NAME .. TEXT_VOICE_ACTOR, "FunkyLion", "Yoshi")
+    credit_add(TEXT_PACK_NAME .. TEXT_VOICE_ACTOR, "LuUvvUCY", "Birdo")
+    credit_add(TEXT_PACK_NAME .. TEXT_VOICE_ACTOR, "VinnyVinesauce", "Spike")
+    credit_add(TEXT_PACK_NAME .. TEXT_VOICE_ACTOR, "BeckyVO", "Pauline")
+    credit_add(TEXT_PACK_NAME .. TEXT_VOICE_ACTOR, "GauntletQueen", "Rosalina")
+    credit_add(TEXT_PACK_NAME .. TEXT_VOICE_ACTOR, "SlashOLantern", "WaPeach")
+    credit_add(TEXT_PACK_NAME .. TEXT_VOICE_ACTOR, "TomSchalk", "Donkey Kong")
+    credit_add(TEXT_PACK_NAME .. TEXT_VOICE_ACTOR, "ReeseiMental", "Sonic")
 
     CSloaded = true
 end
@@ -1839,7 +1859,7 @@ end
 local function mario_update(m)
     if not CSloaded then return end
 
-    do -- `do` to contain the sonic environment here
+    do                                                          -- `do` to contain the sonic environment here
         local sonicTable = extraCharacters[11]
         local _ENV = setmetatable(sonicTable, { __index = _G }) -- Sonic's enviroment
         if get_options_status(6) ~= 0 and (not are_movesets_restricted()) then
@@ -1849,7 +1869,6 @@ local function mario_update(m)
         end
 
         if anims then character_add_animations(model, anims, eyes, hands) end
-
     end
     for _, char in pairs(extraCharacters) do
         local _ENV = setmetatable(char, { __index = _G })
