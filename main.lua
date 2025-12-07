@@ -1625,6 +1625,7 @@ extraCharacters = {
             [CHAR_ANIM_LAND_ON_STOMACH] = 'donkey_2C_anim_land_on_stomach',
             [CHAR_ANIM_SUFFOCATING] = 'donkey_2F_suffocating',
             [CHAR_ANIM_LAND_FROM_DOUBLE_JUMP] = 'donkey_4B_land_from_double_jump',
+            [CHAR_ANIM_SINGLE_JUMP] = 'donkey_4D_single_jump',
             [CHAR_ANIM_LAND_FROM_SINGLE_JUMP] = 'donkey_4E_land_from_single_jump',
             [CHAR_ANIM_SLOW_LAND_FROM_DIVE] = 'donkey_5A_slow_land_from_dive',
             [CHAR_ANIM_MISSING_CAP] = 'donkey_5E_missing_cap',
