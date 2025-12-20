@@ -192,7 +192,7 @@ function geo_custom_hand_switch(n)
     local param = switch.parameter
 
     if param == WAPEACH_HAND_AXE then
-        if sWapeachAxeActs[m.action] then
+        if sWapeachAxeActs[m.action] or m.marioObj.header.gfx.animInfo.animID == CS_ANIM_MENU then
             switch.selectedCase = 1
         else
             switch.selectedCase = 0

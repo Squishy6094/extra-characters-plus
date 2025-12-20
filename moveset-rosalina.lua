@@ -19,7 +19,7 @@ local function bhv_spin_attack_loop(o)
     o.oFaceAngleYaw = o.oFaceAngleYaw + 0x2000   -- Rotates it
     local m = get_mario_state_from_object(o.parentObj)
 
-    if m.action ~= ACT_JUMP_TWIRL then -- Deletes itself once the action changes
+    if m.action ~= ACT_JUMP_TWIRL or o.oTimer > 15 then -- Deletes itself once the action changes
         obj_mark_for_deletion(o)
     end
 end
@@ -60,16 +60,16 @@ function act_jump_twirl(m)
         if e.rosalina.canSpin then
             m.vel.y = 30 -- Initial upward velocity
             e.rosalina.canSpin = false
+
+            -- Spawn the spin effect
+            spawn_sync_object(id_bhvTwirlEffect, E_MODEL_TWIRL_EFFECT, m.pos.x, m.pos.y, m.pos.z, function(o)
+                o.parentObj = m.marioObj
+                o.globalPlayerIndex = m.marioObj.globalPlayerIndex
+            end)
         else
             m.vel.y = max(m.vel.y, 0)
         end
         m.marioObj.hitboxRadius = 100 -- Damage hitbox
-
-        -- Spawn the spin effect
-        spawn_sync_object(id_bhvTwirlEffect, E_MODEL_TWIRL_EFFECT, m.pos.x, m.pos.y, m.pos.z, function(o)
-            o.parentObj = m.marioObj
-            o.globalPlayerIndex = m.marioObj.globalPlayerIndex
-        end)
     else
         m.marioObj.hitboxRadius = 37 -- Reset the hitbox after initial hit
     end
@@ -89,10 +89,11 @@ function rosalina_allow_interact(m, o, intType)
     local e = gCharacterStates[m.playerIndex]
     if m.action == ACT_JUMP_TWIRL and intType == INTERACT_GRABBABLE and o.oInteractionSubtype & INT_SUBTYPE_NOT_GRABBABLE == 0 then
         local angleTo = mario_obj_angle_to_object(m, o)
-        if o.oInteractionSubtype & INT_SUBTYPE_GRABS_MARIO ~= 0 and m.pos.y - m.floorHeight < 100
-            and abs_angle_diff(m.faceAngle.y, angleTo) < 0x4000 then -- heavy grab objects
-            m.action = ACT_MOVE_PUNCHING
-            m.actionArg = 1
+        if (o.oInteractionSubtype & INT_SUBTYPE_GRABS_MARIO ~= 0 or obj_has_behavior_id(o, id_bhvBowser) ~= 0) then -- heavy grab objects
+            if m.pos.y - m.floorHeight < 100 and abs_angle_diff(m.faceAngle.y, angleTo) < 0x4000 then
+                m.action = ACT_MOVE_PUNCHING
+                m.actionArg = 1
+            end
         elseif not e.rosalina.orbitObjActive then -- light grab objects
             m.usedObj = o
             e.rosalina.orbitObjActive = true
