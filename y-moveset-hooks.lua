@@ -30,7 +30,6 @@ end
 --- Resets the body rotations
 --- @param m MarioState
 function torso_tilt_reset(m)
-    if m.playerIndex ~= 0 then return end
     if m.marioBodyState.allowPartRotation == 1 then
         vec3s_copy(m.marioBodyState.torsoAngle, gVec3sZero())
         vec3s_copy(m.marioBodyState.headAngle, gVec3sZero())
