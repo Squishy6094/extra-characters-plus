@@ -581,7 +581,7 @@ end
 --- @param m MarioState
 --- @return integer
 local function perform_sonic_a_action(m)
-    local o = sonic_find_homing_target(m, 1000)
+    local o = sonic_find_homing_target(m, 700)
     local dist = dist_between_objects(m.marioObj, o)
     local e = gCharacterStates[m.playerIndex]
 
@@ -751,7 +751,7 @@ end
 local function act_homing_attack(m)
     local e = gCharacterStates[m.playerIndex]
     local spinSpeed = math.max(0.5, e.sonic.prevForwardVel / 32)
-    local o = sonic_find_homing_target(m, 1000)
+    local o = sonic_find_homing_target(m, 700)
     local yaw, pitch
 
     if o and sonic_is_obj_targetable(o) then
@@ -854,12 +854,15 @@ local function act_spin_dash_charge(m)
         e.sonic.spindashState = 0
     end
 
+    m.faceAngle.y = m.intendedYaw - approach_s32(math.s16(m.intendedYaw - m.faceAngle.y), 0, 0x2000, 0x2000)
     m.marioObj.header.gfx.pos.y = m.pos.y + 60
 
     if m.input & INPUT_Z_DOWN == 0 then
         audio_sample_play(SOUND_SPIN_RELEASE, m.pos, 1)
         mario_set_forward_vel(m, e.sonic.spinCharge)
         e.sonic.spinCharge = 0
+        l.posHSpeed = 0
+        l.focHSpeed = 0
         return set_mario_action(m, ACT_SPIN_DASH, 0)
     end
     e.sonic.spindashState = e.sonic.spindashState + e.sonic.spinCharge / 50
@@ -877,16 +880,18 @@ local function act_spin_dash(m)
     m.marioObj.header.gfx.animInfo.animID = -1
     local stepResult = perform_ground_step(m)
 
-    if stepResult == GROUND_STEP_HIT_WALL then
+    if stepResult == GROUND_STEP_LEFT_GROUND then
+        m.vel.y = e.sonic.groundYVel
+        set_mario_action(m, ACT_AIR_SPIN, 0)
+        
+    elseif stepResult == GROUND_STEP_HIT_WALL then
         if m.forwardVel > 16 then
             set_mario_particle_flags(m, ACTIVE_PARTICLE_H_STAR, 0)
             return slide_bonk(m, ACT_GROUND_BONK, ACT_GROUND_BONK)
         else
             return set_mario_action(m, ACT_CROUCHING, 0)
         end
-    elseif stepResult == GROUND_STEP_LEFT_GROUND then
-        m.vel.y = e.sonic.groundYVel
-        set_mario_action(m, ACT_AIR_SPIN, 0)
+    
     end
 
     local spinPhys = update_spin_dashing(m, 3)
@@ -1057,7 +1062,7 @@ function before_set_sonic_action(m, action, actionArg)
     local e = gCharacterStates[m.playerIndex]
 
     if waterActions[action] then -- Prevent swimming in the air.
-        return ACT_SPIN_JUMP
+        return ACT_SONIC_FALL
     end
     
     if sonicActionOverride[action] then
@@ -1113,6 +1118,11 @@ function sonic_update(m)
         if m.vel.y >= 0 then
             prevHeight = m.pos.y
         end
+    end
+    
+    -- Water action sanity check in case before_set_sonic_action fails.
+    if waterActions[m.action] then
+        set_mario_action(m, ACT_SONIC_FALL, 0)
     end
 
     -- Bounce attack that's just a modified ground pound.
@@ -1250,7 +1260,164 @@ function sonic_on_interact(m, o, intType)
     end
 end
 
-function sonic_before_phys_step(m)
+
+-- Around here is unused code for slope flinging that's pretty broken. It's currently disabled, but the code will be here in case the feature is revisited.
+FLOOR_LOWER_LIMIT = gLevelValues.floorLowerLimit - gLevelValues.cellHeightLimit
+
+function sonic_slope_detach(m, nextPos)
+    local e = gCharacterStates[m.playerIndex]
+    local floorDYaw = m.floorAngle - m.faceAngle.y
+
+    --m.marioObj.header.gfx.angle.x = find_floor_slope(m, 0x8000)
+    --m.marioObj.header.gfx.angle.z = find_floor_slope(m, 0x4000)
+
+    local dist = -30
+    local ray = collision_find_surface_on_ray(nextPos.x, m.pos.y + 200, nextPos.z, 0, FLOOR_LOWER_LIMIT, 0)
+
+    local detach = false
+
+    if ray.surface ~= nil then
+
+        -- Downwards slopes are still affected.
+        local nextNormal = (math.sqrt(ray.surface.normal.x ^ 2 + ray.surface.normal.z ^ 2)) * 90 * - coss(floorDYaw)
+        local curNormal =  (math.sqrt(m.floor.normal.x ^ 2 + m.floor.normal.z ^ 2)) * 90 * - coss(floorDYaw)
+
+        djui_chat_message_create(tostring(nextNormal) .. "," .. tostring(curNormal))
+
+        if curNormal - nextNormal >= 20 and nextNormal >= 0 then
+            detach = true
+        end
+    end
+
+    return detach
+end
+
+function perform_ground_quarter_step(m, nextPos)
+    local lowerWcd = collision_get_temp_wall_collision_data()
+    local upperWcd = collision_get_temp_wall_collision_data()
+
+    local ceil = collision_find_ceil(nextPos.x, nextPos.y, nextPos.z)
+    local floor = collision_find_floor(nextPos.x, nextPos.y, nextPos.z)
+
+    local floorHeight = find_floor_height(nextPos.x, nextPos.y, nextPos.z)
+    local ceilHeight = find_ceil_height(nextPos.x, nextPos.y, nextPos.z)
+
+    local waterLevel = find_water_level(nextPos.x, nextPos.z)
+
+    local detach = sonic_slope_detach(m, nextPos)
+
+    lowerWcd = resolve_and_return_wall_collisions_data(nextPos, 30.0, 24.0, lowerWcd)
+    upperWcd = resolve_and_return_wall_collisions_data(nextPos, 60.0, 50.0, upperWcd)
+
+    mario_update_wall(m, upperWcd)
+
+    if (floor == nil) then
+        if (gServerSettings.bouncyLevelBounds == BOUNCY_LEVEL_BOUNDS_OFF) then
+            m.faceAngle.y = m.faceAngle.y + 0x8000
+            --mario_set_forward_vel(m, gServerSettings.bouncyLevelBounds == BOUNCY_LEVEL_BOUNDS_ON_CAP ? clamp(1.5f * m.forwardVel, -500, 500) : 1.5f * m.forwardVel)
+        end
+        return GROUND_STEP_HIT_WALL_STOP_QSTEPS
+    end
+
+    if ((m.action & ACT_FLAG_RIDING_SHELL) ~= 0 and floorHeight < waterLevel) then
+        local allow = true
+        if (allow == true) then
+            floorHeight = waterLevel
+            floor = gWaterSurfacePseudoFloor
+            floor.originOffset = floorHeight --! Wrong origin offset (no effect)
+        end
+    end
+
+    if (nextPos.y > floorHeight + 100.0) then
+        if (nextPos.y + m.marioObj.hitboxHeight >= ceilHeight) then
+            return GROUND_STEP_HIT_WALL_STOP_QSTEPS
+        end
+
+        vec3f_copy(m.pos, nextPos)
+        m.floor = floor
+        m.floorHeight = floorHeight
+        return GROUND_STEP_LEFT_GROUND
+    end
+
+    if detach == true then
+        m.floor = floor
+        m.floorHeight = floorHeight
+        return GROUND_STEP_LEFT_GROUND
+    end
+
+    if (floorHeight + m.marioObj.hitboxHeight >= ceilHeight) then
+        return GROUND_STEP_HIT_WALL_STOP_QSTEPS
+    end
+
+    vec3f_set(m.pos, nextPos.x, floorHeight, nextPos.z)
+    m.floor = floor
+    m.floorHeight = floorHeight
+
+    if (upperWcd.numWalls > 0) then
+        for i = 0, upperWcd.numWalls, 1 do
+            if (gLevelValues.fixCollisionBugs ~= true) then
+                i = (upperWcd.numWalls - 1)
+            end
+            local wall = upperWcd.walls[i]
+            local wallDYaw = atan2s(wall.normal.z, wall.normal.x) - m.faceAngle.y
+
+            if (wallDYaw >= 0x2AAA and wallDYaw <= 0x5555) then
+                -- nothing
+            elseif (wallDYaw <= -0x2AAA and wallDYaw >= -0x5555) then
+                -- nothing
+            else
+                return GROUND_STEP_HIT_WALL_CONTINUE_QSTEPS
+            end
+        end
+    end
+
+    return GROUND_STEP_NONE
+end
+
+function sonic_perform_ground_step(m)
+    local i = 0
+    local stepResult
+    local intendedPos = {x = 0, y = 0, z = 0}
+
+    local returnValue = 0
+    --if (smlua_call_event_hooks_mario_param_and_int_ret_int(HOOK_BEFORE_PHYS_STEP, m, STEP_TYPE_GROUND, &returnValue)) return returnValue
+
+	for i = 0, 4, 1 do
+        local step = {x = 0, y = 0, z = 0}
+        if (m.floor ~= nil) then
+            local floorNormal = m.floor.normal.y
+            step.x = floorNormal * (m.vel.x / 4.0)
+            step.z = floorNormal * (m.vel.z / 4.0)
+        end
+
+        intendedPos.x = m.pos.x + step.x
+        intendedPos.y = m.pos.y
+        intendedPos.z = m.pos.z + step.z
+
+        vec3f_normalize(step)
+
+        vec3f_copy(gFindWallDirection, step)
+
+        gFindWallDirectionActive = true
+        stepResult = perform_ground_quarter_step(m, intendedPos)
+        gFindWallDirectionActive = false
+
+        if (stepResult == GROUND_STEP_LEFT_GROUND or stepResult == GROUND_STEP_HIT_WALL_STOP_QSTEPS) then
+            break
+        end
+    end
+
+    m.terrainSoundAddend = mario_get_terrain_sound_addend(m)
+    vec3f_copy(m.marioObj.header.gfx.pos, m.pos)
+    vec3s_set(m.marioObj.header.gfx.angle, 0, m.faceAngle.y, 0)
+
+    if (stepResult == GROUND_STEP_HIT_WALL_CONTINUE_QSTEPS) then
+        stepResult = GROUND_STEP_HIT_WALL
+    end
+    return stepResult
+end
+
+function sonic_before_phys_step(m, stepType, stepArg)
     if m.playerIndex ~= 0 then return end
     if m.pos.y < m.waterLevel then
         move_with_current(m)
@@ -1272,6 +1439,10 @@ function sonic_before_phys_step(m)
 
         physTimer = 0
     end
+    
+    --[[if stepType == STEP_TYPE_GROUND then
+        return sonic_perform_ground_step(m)
+    end]]
 
     --djui_chat_message_create(tostring(m.floor.normal.x) .. ", " .. tostring(m.floor.normal.y) .. ", " .. tostring(m.floor.normal.z))
     physTimer = physTimer + 1
@@ -1298,7 +1469,8 @@ function sonic_homing_hud()
     local e = gCharacterStates[m.playerIndex]
 
     if homingActs[m.action] then
-        local o = sonic_find_homing_target(m, 995)
+        -- HUD detection range is slightly shorter to guarantee homing accuracy.
+        local o = sonic_find_homing_target(m, 695)
 
         if o and not e.sonic.actionADone then
             local pos = gVec3fZero()
