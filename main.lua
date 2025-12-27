@@ -1691,6 +1691,8 @@ extraCharacters = {
             [CHAR_ANIM_STOP_SLIDE] = 'donkey_8F_stop_slide',
             [CHAR_ANIM_FIRST_PUNCH_FAST] = 'donkey_69_first_punch_fast',
             [CHAR_ANIM_SECOND_PUNCH_FAST] = 'donkey_6A_second_punch_fast',
+            [CHAR_ANIM_TURNING_PART1] = 'donkey_BC_turningpart1',
+            [CHAR_ANIM_TURNING_PART2] = 'donkey_BD_turningpart2',
 
             [CS_ANIM_MENU] = 'cs_donkey',
         },
