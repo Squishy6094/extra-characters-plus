@@ -1,5 +1,3 @@
-local SOUND_COUNTDOWN_CD = audio_sample_load("countdown.ogg") -- Load audio sample
-
 -------------------
 -- Sonic Moveset --
 -------------------
@@ -503,6 +501,7 @@ local SOUND_SONIC_BOUNCE        = audio_sample_load("sonicbounce.ogg")   -- Load
 local SOUND_SONIC_HOMING        = audio_sample_load("sonic_homing_select.ogg")   -- Load audio sample
 local SOUND_SONIC_INSTA         = audio_sample_load("sonicinstashield.ogg")   -- Load audio sample
 local SOUND_SONIC_ELECTRIC_JUMP = audio_sample_load("sonicelectricjump.ogg")   -- Load audio sample
+local SOUND_COUNTDOWN_CD        = audio_sample_load("countdown.ogg") -- Load audio sample
 
 local sonicActionOverride = {
     [ACT_JUMP]         = ACT_SPIN_JUMP,
@@ -1181,14 +1180,55 @@ function sonic_update(m)
 			end
 		end
     end
+
+    sonic_drowning(m, e)
     
     e.sonic.instashieldTimer = e.sonic.instashieldTimer - 1
+end
 
-    -- Drowning. Should it be added back?
-    --[[if m.pos.y < m.waterLevel then
-        m.health = m.health - 1
-        return false
-    end]]
+function sonic_drowning(m, e)
+    if m.health <= 0x000 then return end
+
+    local warning = {[25] = true, [20] = true, [15] = true}
+
+    local getOutNow = {[12] = 5, 
+                       [10] = 4, 
+                        [8] = 3, 
+                        [6] = 2, 
+                        [4] = 1, 
+                        [2] = 0}
+    if e.sonic.oxygen <= 0 then
+        m.health = 0x000
+        set_mario_action(m, ACT_DROWNING, 0)
+    end
+            
+    
+    if m.pos.y + m.marioObj.hitboxHeight - 50 < m.waterLevel then
+        e.sonic.oxygenTimer = e.sonic.oxygenTimer - 1
+        if e.sonic.oxygenTimer <= 0 then
+            if warning[e.sonic.oxygen] then
+                play_sound(SOUND_MOVING_ALMOST_DROWNING, m.marioObj.header.gfx.cameraToObject)
+            
+            elseif getOutNow[e.sonic.oxygen] then
+                audio_sample_play(SOUND_COUNTDOWN_CD, m.marioObj.header.gfx.cameraToObject, 2)
+                spawn_orange_number(getOutNow[e.sonic.oxygen], 0, 100, 0)
+            end
+            
+            e.sonic.oxygen = e.sonic.oxygen - 1
+            --djui_chat_message_create(tostring(e.sonic.oxygen))
+            e.sonic.oxygenTimer = 30
+        end
+
+    else
+        e.sonic.oxygenTimer = 30
+        e.sonic.oxygen = 30
+    end
+end
+
+function sonic_on_death(m)
+    local e = gCharacterStates[m.playerIndex]
+    e.sonic.oxygenTimer = 30
+    e.sonic.oxygen = 30
 end
 
 local bounceTypes = {
