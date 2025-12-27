@@ -18,7 +18,7 @@ DONKEY_KONG_ROLL_END = 25
 --- action
 
 local bounceSounds = {
-	audio_sample_load("z_sfx_dk_bounce1"),
+	audio_sample_load("z_sfx_dk_bounce1.ogg"),
 	audio_sample_load("z_sfx_dk_bounce2.ogg"),
 	audio_sample_load("z_sfx_dk_bounce3.ogg")
 }
@@ -107,7 +107,7 @@ hook_mario_action(ACT_DK_BOUNCE, act_dk_bounce, INT_HIT_FROM_ABOVE)
 ---hook
 
 function DK_on_attack(m, obj, id)
-    if (CT_SDK ~= _G.charSelect.character_get_current_number(m.playerIndex)) then return end
+    if (CT_DONKEY_KONG ~= _G.charSelect.character_get_current_number(m.playerIndex)) then return end
     if (_G.charSelect.get_options_status(6) ~= 0) then
         if (id == INT_HIT_FROM_ABOVE and m.framesSinceA < 5) then
             m.actionTimer = 0
@@ -119,8 +119,6 @@ function DK_on_attack(m, obj, id)
         end
     end
 end
-
-hook_event(HOOK_ON_ATTACK_OBJECT, DK_on_attack)
 
 ----------------
 -- DK Gravity --
