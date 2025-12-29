@@ -9,8 +9,8 @@ DONKEY_KONG_ROLL_DECAY_PERCENT = 0.98
 DONKEY_KONG_ROLL_DECAY_TIME = 10
 DONKEY_KONG_ROLL_STARTUP = 4
 DONKEY_KONG_ROLL_END = 25
-DONKEY_KONG_SLIP_TIME = 120
-DONKEY_KONG_SLIDE_TIME = 150
+DONKEY_KONG_SLIP_TIME = 20
+DONKEY_KONG_SLIDE_TIME = 40
 
 ----------------
 -- DK Gravity --
@@ -502,7 +502,7 @@ ACT_DONKEY_CLIMB = allocate_mario_action(ACT_FLAG_AIR | ACT_GROUP_AIRBORNE)
 function act_donkey_climb(m)
     --No wall, no climb
     if m.wall == nil then
-        set_mario_action(m, ACT_JUMP, 0)
+        set_mario_action(m, ACT_TRIPLE_JUMP, 0)
         mario_set_forward_vel(m, 10)
         return true
 
@@ -555,8 +555,8 @@ function act_donkey_climb(m)
     --Face directly towards wall to make sure we're latched on
     m.faceAngle.y = wallangle
     mario_set_forward_vel(m, 1)
-    if m.actionTimer <= 150 then
-        m.vel.y = 0
+    if m.actionTimer <= 40 then
+        m.vel.y = 5
     end
 
     --Perform air step
@@ -565,7 +565,7 @@ function act_donkey_climb(m)
         return set_mario_action(m, ACT_FREEFALL_LAND, 0)
     elseif m.wall == nil then
         if transwall == nil then
-            set_mario_action(m, ACT_JUMP, 0)
+            set_mario_action(m, ACT_TRIPLE_JUMP, 0)
             mario_set_forward_vel(m, 10)
             return true
         else
