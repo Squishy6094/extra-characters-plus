@@ -1082,7 +1082,13 @@ function before_set_sonic_action(m, action, actionArg)
     end
 end
 
+
+local prevRings = rings
 function on_set_sonic_action(m)
+    if m.action == ACT_BURNING_JUMP then
+        prevRings = rings
+    end
+
     if m.faceAngle.x ~= 0 then
         m.faceAngle.x = 0
     end
@@ -1231,32 +1237,32 @@ end
 local timeBetweenDamages = 0
 local flingFactor = 0
 function sonic_ring_health(m, e)
+    if m.playerIndex ~= 0 then return end
     local realFlingFactor = math.min(math.sqrt(flingFactor ^ 2 + (m.hurtCounter / 4) ^ 2), 8)
 
-    djui_chat_message_create(tostring(realFlingFactor))
+    --djui_chat_message_create(tostring(realFlingFactor))
 
     if (m.controller.buttonPressed & X_BUTTON) ~= 0 then rings = rings + 20 end
 
     if m.hurtCounter > 0 then
-        if m.playerIndex == 0 then
-            if rings > 50 then rings = 50 end
-            m.hurtCounter = 0
+        if rings > 32 then rings = 32 end
+        m.hurtCounter = 0
             
-            if rings > 0 then
-    		    for i = 0,rings -1,1 do
-                spawn_sync_object(
-                    id_bhvSonicRing,
-                    E_MODEL_YELLOW_COIN,
-                    m.pos.x, m.pos.y, m.pos.z,
-                    function (o)
-                        o.oVelY = math.random(-15,15) * realFlingFactor
-                        o.oForwardVel = math.random(5,15) * realFlingFactor
-                        o.oMoveAngleYaw = random_u16()
-                    end)
-                end
-            else
-                m.health = 0x000
+        if rings > 0 then
+  		    for i = 0,rings -1,1 do
+            spawn_sync_object(
+                id_bhvSonicRing,
+                E_MODEL_YELLOW_COIN,
+                m.pos.x, m.pos.y, m.pos.z,
+                function (o)
+                    o.oVelY = math.random(-15,15) * realFlingFactor
+                    o.oForwardVel = math.random(5,15) * realFlingFactor
+                    o.oMoveAngleYaw = random_u16()
+                end)
             end
+            m.health = 0x16000
+        else
+            m.health = 0x000
         end
 
         if timeBetweenDamages > 0 then flingFactor = flingFactor + 1 end
@@ -1267,6 +1273,39 @@ function sonic_ring_health(m, e)
 
     if timeBetweenDamages <= 0 then flingFactor = 0 end
 
+    local burnActions = {
+        [ACT_BURNING_JUMP] = true,
+        [ACT_BURNING_FALL] = true,
+        [ACT_BURNING_GROUND] = true
+    }
+
+    if burnActions[m.action] then
+        if prevRings > 0 then
+            m.health = 0x16000
+        end          
+        if rings > 0 then
+            spawn_sync_object(
+                id_bhvSonicRing,
+                E_MODEL_YELLOW_COIN,
+                m.pos.x, m.pos.y, m.pos.z,
+                function (o)
+                    o.oVelY = math.random(20, 40)
+                    o.oForwardVel = math.random(15, 30)
+                    o.oMoveAngleYaw = m.faceAngle.y + 0x8000 + degrees_to_sm64(math.random(-30, 30))
+                    o.oTimer = 100
+                end)
+            rings = rings - 1
+        end
+
+        if m.action == ACT_BURNING_JUMP then
+            if prevRings == 0 then
+                m.health = 0x0000
+            else
+                m.health = 0x16000
+            end
+        end
+    end
+
     timeBetweenDamages = timeBetweenDamages - 1
 end
 
@@ -1274,6 +1313,7 @@ function sonic_on_death(m)
     local e = gCharacterStates[m.playerIndex]
     e.sonic.oxygenTimer = 30
     e.sonic.oxygen = 30
+    rings = 0
 end
 
 local bounceTypes = {
@@ -1637,11 +1677,10 @@ hook_mario_action(ACT_BOUNCE_LAND, act_bounce_land, INT_GROUND_POUND_OR_TWIRL)
 
 hook_event(HOOK_MARIO_OVERRIDE_PHYS_STEP_DEFACTO_SPEED, sonic_defacto_fix)
 
-
+-- Ring object.
 
 local function bhv_ring_init(o)
     o.oFlags = (OBJ_FLAG_COMPUTE_ANGLE_TO_MARIO | OBJ_FLAG_COMPUTE_DIST_TO_MARIO | OBJ_FLAG_SET_FACE_YAW_TO_MOVE_YAW | OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE)
-    cur_obj_become_intangible()
 
     -- hitbox
     o.oInteractType = INTERACT_COIN
@@ -1650,8 +1689,9 @@ local function bhv_ring_init(o)
     o.hitboxRadius = 100
     o.hitboxHeight = 64
     o.hitboxDownOffset = 0
-    o.oGravity = -1
+    o.oGravity = -2
     o.oBounciness = -0.95
+    o.oIntangibleTimer = 60
 
     obj_set_billboard(o)
 end
@@ -1663,12 +1703,10 @@ local function bhv_ring_loop(o)
     cur_obj_if_hit_wall_bounce_away()
     cur_obj_move_standard(-62)
 
-    if (o.oTimer > 60) then
-        cur_obj_become_tangible()
-    end
+    --if o.oIntangibleTimer > 0 then o.oIntangibleTimer = o.oIntangibleTimer - 1 end
 
     if (o.oMoveFlags & OBJ_MOVE_LANDED) ~= 0 then
-        if (o.oMoveFlags & (OBJ_MOVE_ABOVE_DEATH_BARRIER | OBJ_MOVE_ABOVE_LAVA)) ~= 0 then
+        if (o.oMoveFlags & (OBJ_MOVE_ABOVE_DEATH_BARRIER)) ~= 0 then
             obj_mark_for_deletion(o)
         end
     end
