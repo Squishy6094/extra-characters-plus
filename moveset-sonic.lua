@@ -140,7 +140,7 @@ end
 
 --- @param m MarioState
 local function sonic_update_air(m)
-    local dragThreshold = 64
+    local dragThreshold = 32
     local speedAngle = atan2s(m.vel.z, m.vel.x)
 
     local accel = 2
@@ -159,7 +159,7 @@ local function sonic_update_air(m)
     if (check_horizontal_wind(m)) == 0 then
 
         if m.pos.y < m.waterLevel then
-            accel = 1
+            accel = 0.5
         end
 
         if (m.input & INPUT_NONZERO_ANALOG) ~= 0 then
@@ -167,7 +167,7 @@ local function sonic_update_air(m)
 
             -- Wing Cap acting like Speed Shoes.
             if (m.flags & MARIO_WING_CAP) ~= 0 then
-                dragThreshold = dragThreshold * 2
+                dragThreshold = dragThreshold * 4
                 accel = accel * 2
             end
 
@@ -1300,7 +1300,7 @@ function sonic_ring_health(m, e)
 
     --djui_chat_message_create(tostring(realFlingFactor))
 
-    if (m.controller.buttonPressed & X_BUTTON) ~= 0 then rings = rings + 20 end
+    --if (m.controller.buttonPressed & X_BUTTON) ~= 0 then rings = rings + 20 end
 
     if m.hurtCounter > 0 then
         if rings > 32 then rings = 32 end

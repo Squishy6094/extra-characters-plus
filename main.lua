@@ -1,5 +1,5 @@
 -- name: [CS] Extra Characters DEV [WIP]
--- description: [CS] Extra Characters [WIP]\nBy: \\#00ff00\\ULTRA BROS TEAM\n\n\\#ffff00\\Ultra Bros Team:\n\\#ffffff\\FunkyLion\nMelzinoff\nFluffaMario\nSharen\nSquishy\n\n\\#f54e59\\Characters:\n\\#ffffff\\Toadette\nPeach\nDaisy\nYoshi\nBirdo\nForeman Spike\nPauline\nRosalina\nWaPeach
+-- description: [CS] Extra Characters [WIP]\nBy: \\#00ff00\\ULTRA BROS TEAM
 -- category: cs
 
 local TEXT_VANILLA_CAST = "CoopDX Characters"
@@ -9,6 +9,7 @@ if not charSelect then
     "\\#ffffa0\\Extra Characters requires\nCharacter Select to be enabled.\n\nPlease rehost with it enabled.", 4)
     return
 end
+
 
 -- Additional Voicelines used for Characters
 YOSHI_SOUND_FLUTTER = CHAR_SOUND_MAX + 1
