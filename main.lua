@@ -1710,6 +1710,7 @@ extraCharacters = {
         model = smlua_model_util_get_id("segasonic_geo"),
         forceChar = CT_MARIO,
         lifeIcon = get_texture_info("icon-segasonic"),
+        graffiti = get_texture_info("char-select-graffiti-sonic"),
         camScale = 0.9,
         offset = 0,
         meter = {
@@ -1869,17 +1870,18 @@ local ultraBrosCredits = {
     {
         name = TEXT_PACK_NAME,
         "FunkyLion,Lead Dev",
-        "Melzinoff,Models / Animation / Moveset",
+        "Melzinoff,Co-Lead",
         "Sharen,Animation",
         "FluffaMario,Models",
         "EmilyEmmi,Moveset",
         "Wibblus,Moveset",
         "steven3004,Moveset",
-        "Squishy6094,CS Code / Optimization",
-        "xLuigiGamerx,Moveset / Optimization",
+        "Squishy6094,CS Coder",
+        "xLuigiGamerx,Coder",
         'Strawberii "Oreo",Render Icons',
         "Chars_64,Render Icons",
-        "WaterVapor,Render Icons",
+        "WaterVapor,DK Render",
+        "wwolforam,Sonic Render",
     },
     {
         name = TEXT_PACK_NAME .. " Voice Actors",
@@ -1892,7 +1894,7 @@ local ultraBrosCredits = {
         "BeckyVO,Pauline",
         "GauntletQueen,Rosalina",
         "SlashOLantern,WaPeach",
-        "TomSchalk,Donkey Kong",
+        "Dean Seavor,Donkey Kong",
         "ReeseiMental,Sonic",
     }
 }
@@ -1900,7 +1902,7 @@ local ultraBrosCredits = {
 local function on_character_select_load()
     for i, char in pairs(extraCharacters) do
         local _ENV = setmetatable(char, { __index = _G })
-        tablePos = character_add(name, description, credits, color, model, forceChar, lifeIcon, camScale, offset, meter)
+        tablePos = character_add(name, description, credits, color, model, forceChar, lifeIcon, camScale, offset, meter, graffiti)
         if caps then character_add_caps(model, caps) end
         if voices then character_add_voice(model, voices) end
         if palettes then
@@ -1911,6 +1913,7 @@ local function on_character_select_load()
         character_set_category(tablePos, "CoopDX")
         if anims then character_add_animations(model, anims, eyes, hands) end
         if meter then character_add_health_meter(tablePos, meter) end
+        if graffiti then character_add_graffiti(tablePos, graffiti) end
     end
     
     for i = 1, #ultraBrosCredits do
