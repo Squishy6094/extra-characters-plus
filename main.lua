@@ -1177,6 +1177,7 @@ extraCharacters = {
         model = smlua_model_util_get_id("rosalina_geo"),
         forceChar = CT_MARIO,
         lifeIcon = get_texture_info("icon-rosalina"),
+        graffiti = get_texture_info("char-select-graffiti-rosalina"),
         camScale = 1.5,
         offset = 0,
         meter = {
