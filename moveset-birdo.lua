@@ -464,7 +464,7 @@ function bhv_birdo_egg_loop(o)
     end
 
     -- do manual shadow, otherwise the shadow renders on top of itself
-    if o.activeFlags & ACTIVE_FLAG_DEACTIVATED == 0 then
+    if o.activeFlags ~= ACTIVE_FLAG_DEACTIVATED then
         o.header.gfx.disableAutomaticShadowPos = true
         o.header.gfx.shadowPos.x = o.oPosX
         o.header.gfx.shadowPos.y = o.oPosY - 50
@@ -689,7 +689,9 @@ function birdo_update(m)
 end
 
 function birdo_on_set_action(m)
-    gCharacterStates[m.playerIndex].birdo.spitTimer = 0
+    if m.action ~= ACT_SPIT_EGG and m.action ~= ACT_SPIT_EGG_WALK and m.action ~= ACT_SPIT_EGG_AIR then
+        gCharacterStates[m.playerIndex].birdo.spitTimer = 0
+    end
     if m.action == ACT_HOLD_WALKING then -- switch to custom hold action
         set_mario_action(m, ACT_BIRDO_HOLD_WALKING, 0)
     end
@@ -817,3 +819,11 @@ hook_mario_action(ACT_BIRDO_HOLD_WALKING, act_birdo_hold_walking)
 hook_mario_action(ACT_SPIT_EGG, act_spit_egg)
 hook_mario_action(ACT_SPIT_EGG_AIR, act_spit_egg_air)
 hook_mario_action(ACT_SPIT_EGG_WALK, act_spit_egg_walk)
+
+-- Fix object shadows getting messed up. Base coop bug
+---@param o Object
+function on_obj_load(o)
+    o.header.gfx.disableAutomaticShadowPos = false
+    o.header.gfx.shadowInvisible = false
+end
+hook_event(HOOK_ON_OBJECT_LOAD, on_obj_load)
