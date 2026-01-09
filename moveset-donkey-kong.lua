@@ -384,7 +384,8 @@ local function apply_donkey_kong_vertical_wind(m)
             end
 
             if m.vel.y < maxVelY then
-                if (m.vel.y + maxVelY / 8.0) > maxVelY then
+                m.vel.y = (m.vel.y + maxVelY / 6.0) -- Bit stronger so DK doesn't fall through
+                if m.vel.y > maxVelY then
                     m.vel.y = maxVelY
                 end
             end
