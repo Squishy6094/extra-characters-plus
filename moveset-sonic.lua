@@ -845,13 +845,13 @@ local function act_homing_attack(m)
 
     elseif stepResult == AIR_STEP_HIT_WALL then
         -- A failsafe in case the homing attack doesn't break boxes for some godforsaken reason.
-        if m.wall.object == o and o.oInteractType == INTERACT_BREAKABLE then
+        if m.wall.object ~= nil and m.wall.object.oInteractType == INTERACT_BREAKABLE then
             m.vel.x = sins(m.faceAngle.y) * -16
             m.vel.z = coss(m.faceAngle.y) * -16
-            o.oInteractStatus = ATTACK_GROUND_POUND_OR_TWIRL + (INT_STATUS_INTERACTED | INT_STATUS_WAS_ATTACKED)
-            set_mario_action(m, ACT_AIR_SPIN, 0)
             if m.playerIndex == 0 then set_camera_shake_from_hit(SHAKE_ATTACK) end
             set_mario_particle_flags(m, PARTICLE_TRIANGLE, 0)
+            m.wall.object.oInteractStatus = ATTACK_GROUND_POUND_OR_TWIRL + (INT_STATUS_INTERACTED | INT_STATUS_WAS_ATTACKED)
+            set_mario_action(m, ACT_AIR_SPIN, 0)
         end
     end
 
@@ -1250,9 +1250,10 @@ function sonic_update(m)
         end
     end
 
-    if m.health > 0xFF or m.action ~= ACT_BUBBLED then
+    if m.health > 0xFF or m.action ~= ACT_BUBBLED or (m.action & ACT_GROUP_CUTSCENE) == 0 then
         sonic_drowning(m, e)
     end
+    
     sonic_ring_health(m, e)
 
     e.sonic.instashieldTimer = e.sonic.instashieldTimer - 1
@@ -1482,6 +1483,7 @@ local badnikBounceActions = {
 }
 
 function sonic_on_interact(m, o, intType)
+    local e = gCharacterStates[m.playerIndex]
     if (m.action == ACT_SONIC_RUNNING) and not m.heldObj and m.pos.y - 30 >= m.waterLevel then
         if obj_has_behavior_id(o, id_bhvDoorWarp) ~= 0 then
             set_mario_action(m, ACT_DECELERATING, 0)
@@ -1512,6 +1514,10 @@ function sonic_on_interact(m, o, intType)
         if m.action == ACT_HOMING_ATTACK then
             set_mario_action(m, ACT_AIR_SPIN, 0)
         end
+    end
+
+    if intType == INTERACT_STAR_OR_KEY then
+        if m.playerIndex == 0 then e.sonic.oxygen = 900 end
     end
 end
 
@@ -1952,6 +1958,8 @@ local function bhv_ring_loop(o)
 end
 
 function ringteract(m, o, intType) -- This is the ring interaction for ALL characters.
+    local e = gCharacterStates[m.playerIndex]
+    
     if obj_has_behavior_id(o, id_bhvSonicRing) ~= 0 then
         m.healCounter = 4
         if m.playerIndex == 0 then
@@ -1967,6 +1975,7 @@ function ringteract(m, o, intType) -- This is the ring interaction for ALL chara
     if intType == INTERACT_COIN then
         if m.playerIndex == 0 then
             gPlayerSyncTable[0].rings = gPlayerSyncTable[0].rings + o.oDamageOrCoinValue
+            e.sonic.oxygen = math.min(e.sonic.oxygen + o.oDamageOrCoinValue * 150, 900)
         end
     end
 end
